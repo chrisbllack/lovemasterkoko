@@ -1,0 +1,68 @@
+name: Deployment repair v2
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.event.head_commit.message != 'chore: repair deployment blockers'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.0'
+      - name: Patch known TypeScript blockers
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          def replace(path, old, new):
+              p = Path(path)
+              s = p.read_text()
+              if old not in s:
+                  raise SystemExit(f'Expected text not found: {path}: {old}')
+              p.write_text(s.replace(old, new, 1))
+
+          replace('src/lib/admin.functions.ts',
+            'const messages = snap.docs.map((d) => ({ id: d.id, ...d.data() }));',
+            'const messages = snap.docs.map((d) => ({ id: d.id, ...d.data() }) as { id: string; sender: string; body: string; created_at: string });')
+          replace('src/lib/admin.functions.ts',
+            'const jobs = snap.docs.map((d) => ({ id: d.id, ...d.data() }));',
+            'const jobs = snap.docs.map((d) => ({ id: d.id, ...d.data() }) as { id: string; created_at?: string });')
+          replace('src/lib/guest.functions.ts',
+            'const messages = snap.docs.map((d) => ({ id: d.id, ...d.data() }));',
+            'const messages = snap.docs.map((d) => ({ id: d.id, ...d.data() }) as { id: string; sender: string; body: string; created_at: string });')
+          replace('src/lib/concurrency-booking.server.ts',
+            '          clientSecret: initData.clientSecret,\n', '')
+          replace('src/lib/engine/inventory-engine.ts',
+            '          units: fallbackRoom.units,',
+            '          units: fallbackRoom.qty,')
+          replace('src/lib/engine/inventory-engine.ts',
+            '      booking_source: input.bookingSource || "WEBSITE",',
+            '      booking_source: (input.bookingSource || "WEBSITE") as ReservationRecord["booking_source"],')
+          replace('src/lib/site.functions.ts',
+            '    const dates = [];',
+            '    const dates: string[] = [];')
+          replace('src/routes/_authenticated/my-stay.tsx',
+            '{messages.map((m: { id: string; sender: string; body: string; created_at: string }) => {',
+            '{messages.map((m) => {')
+          PY
+      - name: Build then typecheck
+        run: |
+          bun install --frozen-lockfile
+          bun run build
+          bun run typecheck
+          bun run lint
+      - name: Commit repaired source
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          git commit -m 'chore: repair deployment blockers' || exit 0
+          git push
