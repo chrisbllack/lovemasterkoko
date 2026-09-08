@@ -26,7 +26,7 @@ export function HotelSchema() {
       latitude: 7.6211,
       longitude: 5.2214,
     },
-    image: [`${SITE_URL}/images/hero.jpg`, `${SITE_URL}/images/hero-exterior.jpg`, `${SITE_URL}/images/Hotel Lobby.jpg`],
+    image: [`${SITE_URL}/images/hero.jpg`, `${SITE_URL}/images/hotel-front-right.jpg`, `${SITE_URL}/images/Hotel Lobby.jpg`],
     starRating: {
       "@type": "Rating",
       ratingValue: 4,

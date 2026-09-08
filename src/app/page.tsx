@@ -28,32 +28,26 @@ const HERO_SLIDES = [
   { src: "/images/Reception.jpg",           caption: "Grand reception & concierge" },
   { src: "/images/Reception1.jpg",          caption: "Arrive in style" },
   { src: "/images/Hotel Lobby.jpg",         caption: "Elegant lobby & lounge areas" },
-  { src: "/images/lobby.jpg",               caption: "Refined interiors throughout" },
   { src: "/images/corridor-hallway.jpg",    caption: "Impeccably kept corridors" },
   { src: "/images/corridor-hallway-2.jpg",  caption: "Every detail, considered" },
   { src: "/images/Signature Suite.jpg",     caption: "Signature Suite — our finest residence" },
   { src: "/images/Diplomatic Suite.jpg",    caption: "Presidential Suite — stately luxury" },
   { src: "/images/Super Executive.jpg",     caption: "Super Executive — generous proportions" },
   { src: "/images/Executive Suite.jpg",     caption: "Executive — built for productivity" },
-  { src: "/images/executive-room.jpg",      caption: "Warm timber & crisp linen" },
   { src: "/images/Standard Plus.jpg",       caption: "Standard Plus — elevated comfort" },
   { src: "/images/Duluxe.jpg",              caption: "Deluxe — garden-facing calm" },
   { src: "/images/Suite1.jpg",              caption: "Studio — designed for longer stays" },
   { src: "/images/Standard room.jpg",       caption: "Standard — bright & impeccably kept" },
-  { src: "/images/room-suite.jpg",          caption: "Thoughtfully appointed rooms" },
-  { src: "/images/room-standard.jpg",       caption: "Everything you need, nothing you don't" },
   { src: "/images/OpenBar Garden.jpg",      caption: "Open-air garden bar & sit-out" },
   { src: "/images/OpenBar Garden 2.jpg",    caption: "Relax under open skies" },
   { src: "/images/OpenBar Garden 3.jpg",    caption: "Private garden courtyard" },
   { src: "/images/OpenBar sitout.jpg",      caption: "Evening cocktails in the garden" },
   { src: "/images/open air bar sitout.jpg", caption: "Al fresco dining & drinks" },
-  { src: "/images/Ballard Table.jpg",       caption: "Intimate seating under the stars" },
+  { src: "/images/Ballard Table.jpg",       caption: "Billiards & evening recreation" },
   { src: "/images/lounge.jpg",              caption: "Unwind in style" },
-  { src: "/images/lounge-bar.jpg",          caption: "Crafted cocktails & fine spirits" },
   { src: "/images/dining.jpg",              caption: "Fine dining restaurant" },
   { src: "/images/Restaurant 2.jpg",        caption: "A feast for the senses" },
-  { src: "/images/events-hall.jpg",         caption: "300-seat Banky Hall" },
-  { src: "/images/BankyHall.jpg",           caption: "Celebrations & conferences" },
+  { src: "/images/BankyHall.jpg",           caption: "300-seat Banky Hall for celebrations & conferences" },
 ];
 
 /* ------------------------------------------------------------------ */
@@ -101,12 +95,12 @@ function HeroSlideshow() {
       {/* Slide counter + caption */}
       <div className="absolute inset-x-0 top-0 z-30 flex items-start justify-center pt-[18vh] sm:pt-[22vh]">
         <div className="text-center px-6">
-          <p className="font-condensed text-[0.65rem] sm:text-xs text-white/70 font-semibold mb-1">
+          <p className="font-condensed text-[0.65rem] sm:text-xs text-white/70 font-normal mb-1">
             {idx + 1} / {total}
           </p>
           <p
             key={idx}
-            className="font-condensed text-xs sm:text-sm uppercase tracking-[0.32em] text-[var(--accent-light)] font-bold animate-fade-in"
+            className="font-condensed text-xs sm:text-sm uppercase tracking-[0.32em] text-[var(--accent-light)] font-medium animate-fade-in"
           >
             {HERO_SLIDES[idx].caption}
           </p>
@@ -170,18 +164,18 @@ export default function Home() {
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-normal text-white leading-[1.1] text-center lg:text-left">
               Quiet luxury in the heart of Ado-Ekiti
             </h1>
-            <p className="mt-3 sm:mt-5 max-w-xl mx-auto lg:mx-0 text-sm sm:text-base md:text-lg leading-relaxed text-stone-100 font-medium text-center lg:text-left">
+            <p className="mt-3 sm:mt-5 max-w-xl mx-auto lg:mx-0 text-sm sm:text-base md:text-lg leading-relaxed text-stone-100 font-normal text-center lg:text-left">
               Twenty-eight appointed residences, an open-air garden sit-out, and a master chef&apos;s table of Nigerian &amp; continental delicacies — held together by hospitality that remembers your name.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
-              <Link href="/booking" className="btn-gold px-8 py-4 text-xs sm:text-sm inline-flex items-center gap-2.5 shadow-lg shadow-[var(--accent)]/30 font-bold">
+              <Link href="/booking" className="btn-gold px-8 py-4 text-xs sm:text-sm inline-flex items-center gap-2.5 shadow-lg shadow-[var(--accent)]/30 font-medium">
                 <span>Book Now</span><ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/rooms" className="btn-outline-white px-8 py-4 text-xs sm:text-sm hidden sm:inline-flex items-center gap-2 font-bold">
+              <Link href="/rooms" className="btn-outline-white px-8 py-4 text-xs sm:text-sm hidden sm:inline-flex items-center gap-2 font-medium">
                 <span>Explore All Suites</span>
               </Link>
-              <a href={`tel:${HOTEL.phone}`} className="inline-flex items-center gap-2 text-xs sm:text-sm font-condensed uppercase tracking-wider text-stone-100 hover:text-[var(--accent-light)] font-bold transition-colors">
-                <PhoneSolidIcon className="h-4 w-4 text-[var(--accent-light)]" /><span>+234 704 700 4816</span>
+              <a href={`tel:${HOTEL.phone}`} className="inline-flex items-center gap-2 text-xs sm:text-sm font-condensed uppercase tracking-wider text-stone-100 hover:text-[var(--accent-light)] font-medium transition-colors">
+                <PhoneSolidIcon className="h-4 w-4 text-[var(--accent-light)]" /><span>+234 903 587 9708</span>
               </a>
             </div>
           </div>

@@ -102,23 +102,23 @@
   body {
     background-color: var(--surface);
     color: var(--text-primary);
-    font-weight: 450;
+    font-weight: 400;
     letter-spacing: 0.006em;
     @apply font-sans antialiased overflow-x-hidden;
   }
   p {
     color: var(--text-secondary);
     line-height: 1.68;
-    font-weight: 450;
+    font-weight: 400;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-gilda), Georgia, serif;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--text-primary);
     letter-spacing: -0.01em;
   }
   b, strong {
-    font-weight: 700;
+    font-weight: 500;
   }
 
   /* Smooth transitions for theme switching */
@@ -135,7 +135,7 @@
   .container-x { @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10; }
 
   .btn-gold {
-    @apply text-white font-condensed uppercase tracking-[0.18em] font-bold transition-all rounded-full;
+    @apply text-white font-condensed uppercase tracking-[0.18em] font-medium transition-all rounded-full;
     background-color: var(--accent);
   }
   .btn-gold:hover {
@@ -148,12 +148,12 @@
   }
 
   .btn-outline-white {
-    @apply border-2 border-white/80 text-white font-condensed uppercase tracking-[0.18em] font-bold transition-all;
+    @apply border-2 border-white/80 text-white font-condensed uppercase tracking-[0.18em] font-medium transition-all;
     @apply hover:bg-white hover:text-[#111] hover:border-white;
   }
 
   .btn-outline-gold {
-    @apply border-2 text-[#aa8453] font-condensed uppercase tracking-[0.18em] font-bold transition-all;
+    @apply border-2 text-[#aa8453] font-condensed uppercase tracking-[0.18em] font-medium transition-all;
     border-color: var(--accent);
     color: var(--accent);
   }
@@ -170,7 +170,7 @@
     @apply text-[#111];
   }
 
-  .eyebrow { @apply font-condensed text-[0.74rem] tracking-[0.24em] uppercase font-bold; }
+  .eyebrow { @apply font-condensed text-[0.74rem] tracking-[0.24em] uppercase font-medium; }
 
   .glass {
     @apply bg-white/90 backdrop-blur-xl shadow-xl;
@@ -197,18 +197,18 @@
 
   .text-secondary {
     color: var(--text-secondary);
-    font-weight: 450;
+    font-weight: 400;
   }
 }
 
-/* Universal text readability and boldness overrides */
+/* Universal text readability and subdued elegance */
 .text-\[\#666\] {
   color: var(--text-secondary) !important;
-  font-weight: 450;
+  font-weight: 400;
 }
 .dark .text-\[\#666\] {
   color: var(--text-secondary) !important;
-  font-weight: 450;
+  font-weight: 400;
 }
 .text-\[\#222\] {
   color: var(--text-primary) !important;
@@ -218,10 +218,26 @@
 }
 .dark .dark\:text-\[\#a8a29e\] {
   color: var(--text-secondary) !important;
-  font-weight: 450;
+  font-weight: 400;
 }
 .dark .dark\:text-\[\#f4efe6\] {
   color: #ffffff !important;
+}
+
+/* Global suppression of excessive font boldness across the entire site */
+.font-bold,
+.font-extrabold,
+.font-black {
+  font-weight: 500 !important;
+}
+.font-semibold {
+  font-weight: 450 !important;
+}
+
+h1, h2, h3, h4, h5, h6,
+.font-display {
+  font-family: var(--font-gilda), Georgia, serif;
+  font-weight: 400 !important;
 }
 
 @keyframes rise {

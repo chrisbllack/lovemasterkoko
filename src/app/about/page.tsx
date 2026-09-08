@@ -69,7 +69,7 @@ export default function AboutPage() {
                 True luxury is not found in newness, but in things that endure and Banky is a testament to that enduring grace. Ornate details, sweeping staircases, and interiors steeped in old-world charm meet the warmth of a team devoted to hospitality passed down through generations. Here, history is not distant or untouchable, it is alive in every handcrafted fixture, every polished floor, every quiet corner that has welcomed travelers for years past. Luxury at Banky is warm, storied, and deeply personal.
               </p>
             </div>
-            <div className="relative h-80 sm:h-96 rounded-2xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-xl group">
+            <div className="relative w-full aspect-[16/10] sm:aspect-video rounded-2xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-xl group">
               <Image
                 src="/images/Reception.jpg"
                 alt="Banky Reception & Welcome Lounge"
@@ -82,7 +82,7 @@ export default function AboutPage() {
 
           {/* Section 2: Love, Warmth, and Timeless Experiences */}
           <section className="grid gap-12 lg:grid-cols-2 items-center">
-            <div className="order-2 lg:order-1 relative h-80 sm:h-96 rounded-2xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-xl group">
+            <div className="order-2 lg:order-1 relative w-full aspect-[16/10] sm:aspect-video rounded-2xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-xl group">
               <Image
                 src="/images/OpenBar Garden.jpg"
                 alt="Banky Garden and Courtyard Sitout"
@@ -128,7 +128,7 @@ export default function AboutPage() {
                 </Link>
               </div>
             </div>
-            <div className="relative h-80 sm:h-96 rounded-2xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-xl group">
+            <div className="relative w-full aspect-[16/10] sm:aspect-video rounded-2xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-xl group">
               <Image
                 src="/images/dining.jpg"
                 alt="Banky Fine Dining Restaurant"
@@ -141,7 +141,7 @@ export default function AboutPage() {
 
           {/* Section 4: Wellness: A Sanctuary Rooted in Old-World Calm */}
           <section className="grid gap-12 lg:grid-cols-2 items-center">
-            <div className="order-2 lg:order-1 relative h-80 sm:h-96 rounded-2xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-xl group">
+            <div className="order-2 lg:order-1 relative w-full aspect-[16/10] sm:aspect-video rounded-2xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-xl group">
               <Image
                 src="/images/OpenBar sitout.jpg"
                 alt="Courtyard and Serene Relaxation Area"
@@ -191,23 +191,23 @@ export default function AboutPage() {
                   </Link>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="relative h-48 sm:h-64 rounded-xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-md">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-md">
                   <Image
                     src="/images/Signature Suite.jpg"
                     alt="Signature Suite"
                     fill
                     referrerPolicy="no-referrer"
-                    className="object-cover"
+                    className="object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
-                <div className="relative h-48 sm:h-64 rounded-xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-md mt-6">
+                <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-md">
                   <Image
                     src="/images/Executive Suite.jpg"
                     alt="Executive Suite"
                     fill
                     referrerPolicy="no-referrer"
-                    className="object-cover"
+                    className="object-cover hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               </div>

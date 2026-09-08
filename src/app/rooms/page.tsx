@@ -12,7 +12,7 @@ export default function RoomsPage() {
         <div className="container-x relative z-10 text-center">
           <span className="eyebrow text-[var(--accent)] block mb-3">Luxury Accommodations</span>
           <h1 className="font-display font-normal text-4xl sm:text-5xl md:text-6xl text-white mb-4">Rooms &amp; Suites</h1>
-          <p className="text-base text-stone-100 font-medium max-w-xl mx-auto">Twenty-eight appointed residences, each designed for comfort, elegance, and an unforgettable stay in Ado-Ekiti.</p>
+          <p className="text-base text-stone-100 font-normal max-w-xl mx-auto">Twenty-eight appointed residences, each designed for comfort, elegance, and an unforgettable stay in Ado-Ekiti.</p>
         </div>
       </section>
       <section className="py-16 sm:py-24 bg-white dark:bg-[#121212]">
@@ -20,18 +20,18 @@ export default function RoomsPage() {
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {ROOMS.map((room) => (
               <Link key={room.slug} href={`/rooms/${room.slug}`} className="group block border border-[#ece6dd] dark:border-[#2e2b26] bg-white dark:bg-[#1c1a17] overflow-hidden rounded-2xl hover:shadow-lg transition-all duration-300 hover:border-[var(--accent)]">
-                <div className="overflow-hidden h-64"><img src={room.image} alt={room.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" /></div>
+                <div className="overflow-hidden aspect-[16/10] w-full"><img src={room.image} alt={room.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" /></div>
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="eyebrow text-[var(--accent)] font-bold">{room.bed}</span>
+                    <span className="eyebrow text-[var(--accent)] font-medium">{room.bed}</span>
                     <span className="h-px w-4 bg-[#ece6dd] dark:bg-[#2e2b26]" />
-                    <span className="eyebrow text-stone-600 dark:text-stone-300 font-bold">{room.occupancy}</span>
+                    <span className="eyebrow text-stone-600 dark:text-stone-300 font-medium">{room.occupancy}</span>
                   </div>
-                  <h2 className="font-display text-2xl font-bold text-stone-900 dark:text-white mb-2">{room.name}</h2>
-                  <p className="text-sm text-stone-700 dark:text-stone-200 font-medium leading-relaxed mb-4">{room.blurb}</p>
+                  <h2 className="font-display text-2xl font-normal text-stone-900 dark:text-white mb-2">{room.name}</h2>
+                  <p className="text-sm text-stone-700 dark:text-stone-200 font-normal leading-relaxed mb-4">{room.blurb}</p>
                   <div className="flex items-center justify-between pt-3 border-t border-[#ece6dd] dark:border-[#2e2b26]">
-                    <span className="font-display text-2xl font-bold text-[var(--accent)]">{naira(room.rate)} <span className="text-xs font-condensed uppercase font-bold text-stone-600 dark:text-stone-300">/ night</span></span>
-                    <span className="btn-gold px-4 py-2 text-xs font-bold inline-flex items-center gap-1">View Details <ArrowRight className="h-3 w-3" /></span>
+                    <span className="font-display text-2xl font-medium text-[var(--accent)]">{naira(room.rate)} <span className="text-xs font-condensed uppercase font-normal text-stone-600 dark:text-stone-300">/ night</span></span>
+                    <span className="btn-gold px-4 py-2 text-xs font-medium inline-flex items-center gap-1">View Details <ArrowRight className="h-3 w-3" /></span>
                   </div>
                 </div>
               </Link>

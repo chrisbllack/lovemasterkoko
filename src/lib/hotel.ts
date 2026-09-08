@@ -2,8 +2,8 @@ export const HOTEL = {
   name: "Banky Hotel & Suites",
   tagline: "Quiet Luxury in the Heart of Ado-Ekiti",
   address: "Ado-Ekiti, Ekiti State, Nigeria",
-  phone: "+2347047004816",
-  whatsapp: "2347047004816",
+  phone: "+2349035879708",
+  whatsapp: "2349035879708",
   email: "reservations@bankyhotelandsuites.com",
   website: "https://bankyhotelandsuites.com",
   checkIn: "2:00 PM",
@@ -60,3 +60,51 @@ export function nightsBetween(a: string, b: string) {
 export function makeReference() {
   return `BHS-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
 }
+
+export type AvailabilityResult = {
+  available: boolean;
+  availableRoomsCount: number;
+  message: string;
+};
+
+/**
+ * Placeholder function to simulate checking room inventory for given dates.
+ * Simulates network latency and verifies room availability against inventory.
+ */
+export async function checkAvailability(params: {
+  roomSlug: string;
+  checkIn: string;
+  checkOut: string;
+  guests?: number;
+}): Promise<AvailabilityResult> {
+  // Simulate network / database inventory check delay
+  await new Promise((resolve) => setTimeout(resolve, 700));
+
+  const room = ROOMS.find((r) => r.slug === params.roomSlug);
+  if (!room) {
+    return {
+      available: false,
+      availableRoomsCount: 0,
+      message: "Selected room category was not found.",
+    };
+  }
+
+  const nights = nightsBetween(params.checkIn, params.checkOut);
+  if (nights <= 0) {
+    return {
+      available: false,
+      availableRoomsCount: 0,
+      message: "Please select valid check-in and check-out dates.",
+    };
+  }
+
+  // Simulate available inventory from room configuration
+  const availableCount = Math.max(1, room.qty);
+
+  return {
+    available: true,
+    availableRoomsCount: availableCount,
+    message: `${room.name} is available for your dates (${availableCount} room${availableCount > 1 ? "s" : ""} left in inventory).`,
+  };
+}
+

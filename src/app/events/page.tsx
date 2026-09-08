@@ -46,13 +46,39 @@ export default function EventsPage() {
               </div>
               <p className="font-display text-2xl text-[var(--accent)]">{naira(150000)} <span className="text-xs font-condensed text-stone-400">/ event</span></p>
             </div>
-            <div className="overflow-hidden rounded-2xl border border-[#ece6dd] dark:border-[#2e2b26] shadow-md"><img src="/images/BankyHall.jpg" alt="Banky Hall" className="w-full h-80 object-cover" /></div>
+            <div className="overflow-hidden rounded-2xl border border-[#ece6dd] dark:border-[#2e2b26] shadow-md aspect-[16/10]">
+              <img src="/images/BankyHall.jpg" alt="Banky Hall" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+            </div>
+          </div>
+
+          {/* Additional Event Facilities Landscape Showcase */}
+          <div className="mb-16">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="overflow-hidden rounded-2xl border border-[#ece6dd] dark:border-[#2e2b26] shadow-sm aspect-[16/10] relative group">
+                <img src="/images/Restaurant 2.jpg" alt="Banquet & Dining Hall Setup" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                  <div>
+                    <span className="text-[var(--accent)] text-xs font-condensed tracking-wider uppercase font-medium block mb-0.5">Configuration</span>
+                    <span className="text-white text-sm font-display font-normal">Banqueting &amp; Dining Hall Setup</span>
+                  </div>
+                </div>
+              </div>
+              <div className="overflow-hidden rounded-2xl border border-[#ece6dd] dark:border-[#2e2b26] shadow-sm aspect-[16/10] relative group">
+                <img src="/images/Reception1.jpg" alt="VIP & Event Welcoming Lounge" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4">
+                  <div>
+                    <span className="text-[var(--accent)] text-xs font-condensed tracking-wider uppercase font-medium block mb-0.5">Arrival Experience</span>
+                    <span className="text-white text-sm font-display font-normal">Event Guest Reception &amp; Foyer</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div className="text-center">
-            <a href={whatsappLink(`Hello, I would like to book Banky Hall for an event.`)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 text-xs font-condensed uppercase tracking-[0.16em] font-semibold hover:bg-[#20bd5a] transition-colors mr-3">
+            <a href={whatsappLink(`Hello, I would like to book Banky Hall for an event.`)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 text-xs font-condensed uppercase tracking-[0.16em] font-medium hover:bg-[#20bd5a] transition-colors mr-3">
               <WhatsAppIcon className="h-4 w-4" />Inquire on WhatsApp
             </a>
-            <a href={`tel:${HOTEL.phone}`} className="btn-gold px-6 py-3 text-xs">Call to Reserve</a>
+            <a href={`tel:${HOTEL.phone}`} className="btn-gold px-6 py-3 text-xs font-medium">Call to Reserve</a>
           </div>
         </div>
       </section>
