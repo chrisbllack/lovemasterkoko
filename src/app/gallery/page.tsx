@@ -38,7 +38,7 @@ const GALLERY: GalleryItem[] = [
   { src: "/images/OpenBar Garden.jpg", alt: "Open-air garden bar", category: "Garden & Outdoor" },
   { src: "/images/OpenBar Garden 2.jpg", alt: "Garden courtyard", category: "Garden & Outdoor" },
   { src: "/images/OpenBar Garden 3.jpg", alt: "Private garden area", category: "Garden & Outdoor" },
-  { src: "/images/OpenBar sitout.jpg", alt: "Evening garden sitout", category: "Garden & Outdoor" },
+  { src: "/images/OpenBar sitout.jpg", alt: "Evening garden sit-out", category: "Garden & Outdoor" },
   { src: "/images/open air bar sitout.jpg", alt: "Al fresco dining", category: "Garden & Outdoor" },
   { src: "/images/Ballard Table.jpg", alt: "Outdoor seating", category: "Garden & Outdoor" },
 
@@ -127,7 +127,7 @@ export default function GalleryPage() {
               <button
                 key={item.src}
                 onClick={() => setLightboxIdx(i)}
-                className="break-inside-avoid overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] group cursor-pointer block w-full text-left"
+                className="break-inside-avoid overflow-hidden rounded-2xl border border-[#ece6dd] dark:border-[#2e2b26] group cursor-pointer block w-full text-left shadow-sm"
               >
                 <div className="relative">
                   <img
@@ -188,11 +188,13 @@ export default function GalleryPage() {
 
           {/* Image */}
           <div className="max-w-[90vw] max-h-[85vh]" onClick={(e) => e.stopPropagation()}>
-            <img
-              src={lightboxItem.src}
-              alt={lightboxItem.alt}
-              className="max-w-full max-h-[80vh] object-contain"
-            />
+            <div className="overflow-hidden rounded-2xl shadow-2xl border border-white/10">
+              <img
+                src={lightboxItem.src}
+                alt={lightboxItem.alt}
+                className="max-w-full max-h-[80vh] object-contain"
+              />
+            </div>
             <div className="mt-3 text-center">
               <p className="text-white text-sm font-display">{lightboxItem.alt}</p>
               <p className="text-white/40 text-xs mt-1">

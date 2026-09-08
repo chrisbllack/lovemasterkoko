@@ -11,7 +11,7 @@ export default function AdminRooms() {
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {ROOMS.map((room) => (
-          <div key={room.slug} className="bg-white border border-[#ece6dd] rounded-md overflow-hidden">
+          <div key={room.slug} className="bg-white border border-[#ece6dd] rounded-2xl overflow-hidden shadow-sm">
             <img src={room.image} alt={room.name} className="w-full h-40 object-cover" />
             <div className="p-4">
               <div className="flex items-center justify-between mb-2">
@@ -19,7 +19,7 @@ export default function AdminRooms() {
                 <button className="p-1.5 text-[#666] hover:text-[#aa8453] transition-colors"><Pencil className="h-4 w-4" /></button>
               </div>
               <div className="flex items-center justify-between text-sm">
-                <span className="text-[#666]">{room.qty} units · {room.size}</span>
+                <span className="text-[#666]">{room.qty} units · {room.bed}</span>
                 <span className="font-display text-[#aa8453]">{naira(room.rate)}</span>
               </div>
             </div>

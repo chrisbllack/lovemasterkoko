@@ -46,7 +46,7 @@ export default function EventsPage() {
               </div>
               <p className="font-display text-2xl text-[var(--accent)]">{naira(150000)} <span className="text-xs font-condensed text-stone-400">/ event</span></p>
             </div>
-            <div className="overflow-hidden border border-[#ece6dd]"><img src="/images/BankyHall.jpg" alt="Banky Hall" className="w-full h-80 object-cover" /></div>
+            <div className="overflow-hidden rounded-2xl border border-[#ece6dd] dark:border-[#2e2b26] shadow-md"><img src="/images/BankyHall.jpg" alt="Banky Hall" className="w-full h-80 object-cover" /></div>
           </div>
           <div className="text-center">
             <a href={whatsappLink(`Hello, I would like to book Banky Hall for an event.`)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] text-white px-6 py-3 text-xs font-condensed uppercase tracking-[0.16em] font-semibold hover:bg-[#20bd5a] transition-colors mr-3">

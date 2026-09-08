@@ -36,14 +36,14 @@ export default function DiningPage() {
           <div className="grid gap-12 md:grid-cols-2 items-center mb-16">
             <div className="space-y-5">
               <span className="eyebrow text-[var(--accent)]">Fine Dining</span>
-              <h2 className="font-display text-3xl text-[#222] dark:text-[#f4efe6]">Restaurant</h2>
+              <h2 className="font-display font-normal text-3xl text-[#222] dark:text-[#f4efe6]">Dining: A Feast Steeped in Tradition</h2>
               <p className="text-sm text-[#666] dark:text-[#a8a29e] leading-relaxed">Our master chef presents a carefully curated menu of Nigerian classics and continental delicacies. From a lavish breakfast spread to an elegant dinner service, every meal is crafted with the finest local ingredients.</p>
               <p className="text-sm text-[#666] dark:text-[#a8a29e] leading-relaxed">Open daily for breakfast, lunch, and dinner. Room service available 24 hours.</p>
             </div>
-            <div className="overflow-hidden border border-[#ece6dd]"><img src="/images/dining.jpg" alt="Restaurant" className="w-full h-72 object-cover" /></div>
+            <div className="overflow-hidden rounded-2xl border border-[#ece6dd] dark:border-[#2e2b26] shadow-md"><img src="/images/dining.jpg" alt="Restaurant" className="w-full h-72 object-cover" /></div>
           </div>
           <div className="grid gap-12 md:grid-cols-2 items-center mb-16">
-            <div className="overflow-hidden border border-[#ece6dd] md:order-1"><img src="/images/lounge.jpg" alt="Bar" className="w-full h-72 object-cover" /></div>
+            <div className="overflow-hidden rounded-2xl border border-[#ece6dd] dark:border-[#2e2b26] shadow-md md:order-1"><img src="/images/lounge.jpg" alt="Bar" className="w-full h-72 object-cover" /></div>
             <div className="space-y-5 md:order-2">
               <span className="eyebrow text-[var(--accent)]">Cocktails &amp; Spirits</span>
               <h2 className="font-display text-3xl text-[#222] dark:text-[#f4efe6]">Open-Air Bar &amp; Lounge</h2>

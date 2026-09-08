@@ -61,33 +61,33 @@ function BookingForm() {
         <div className="glass p-6 rounded-md space-y-5 border border-[#ece6dd]/80">
           <div className="flex items-center gap-2 border-b border-[#ece6dd]/60 pb-3">
             <span className="h-6 w-6 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-bold flex items-center justify-center">1</span>
-            <h3 className="font-display text-lg text-[#222]">Stay Dates &amp; Suite Category</h3>
+            <h3 className="font-display text-xl text-stone-900 dark:text-white font-bold">Stay Dates &amp; Suite Category</h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="eyebrow text-[#666] block mb-1">Check-in Date *</label>
-              <input type="date" required value={checkIn} onChange={(e) => setCheckIn(e.target.value)} min={new Date().toISOString().split("T")[0]} className="w-full border-b border-[#ece6dd] py-2 text-sm bg-transparent outline-none text-[#222]" />
+              <label className="text-xs font-condensed uppercase tracking-wider text-stone-700 dark:text-stone-300 font-bold block mb-1">Check-in Date *</label>
+              <input type="date" required value={checkIn} onChange={(e) => setCheckIn(e.target.value)} min={new Date().toISOString().split("T")[0]} className="w-full border-b border-[#ece6dd] py-2 text-base font-semibold bg-transparent outline-none text-stone-900 dark:text-white" />
             </div>
             <div>
-              <label className="eyebrow text-[#666] block mb-1">Check-out Date *</label>
-              <input type="date" required value={checkOut} onChange={(e) => setCheckOut(e.target.value)} min={checkIn || new Date().toISOString().split("T")[0]} className="w-full border-b border-[#ece6dd] py-2 text-sm bg-transparent outline-none text-[#222]" />
+              <label className="text-xs font-condensed uppercase tracking-wider text-stone-700 dark:text-stone-300 font-bold block mb-1">Check-out Date *</label>
+              <input type="date" required value={checkOut} onChange={(e) => setCheckOut(e.target.value)} min={checkIn || new Date().toISOString().split("T")[0]} className="w-full border-b border-[#ece6dd] py-2 text-base font-semibold bg-transparent outline-none text-stone-900 dark:text-white" />
             </div>
             <div>
-              <label className="eyebrow text-[#666] block mb-1">Adults</label>
-              <select value={adults} onChange={(e) => setAdults(Number(e.target.value))} className="w-full border-b border-[#ece6dd] py-2 text-sm bg-transparent outline-none text-[#222]">
+              <label className="text-xs font-condensed uppercase tracking-wider text-stone-700 dark:text-stone-300 font-bold block mb-1">Adults</label>
+              <select value={adults} onChange={(e) => setAdults(Number(e.target.value))} className="w-full border-b border-[#ece6dd] py-2 text-base font-semibold bg-transparent outline-none text-stone-900 dark:text-white">
                 {[1, 2, 3, 4, 5].map((a) => <option key={a} value={a}>{a} {a === 1 ? "Adult" : "Adults"}</option>)}
               </select>
             </div>
             <div>
-              <label className="eyebrow text-[#666] block mb-1">Children</label>
-              <select value={children} onChange={(e) => setChildren(Number(e.target.value))} className="w-full border-b border-[#ece6dd] py-2 text-sm bg-transparent outline-none text-[#222]">
+              <label className="text-xs font-condensed uppercase tracking-wider text-stone-700 dark:text-stone-300 font-bold block mb-1">Children</label>
+              <select value={children} onChange={(e) => setChildren(Number(e.target.value))} className="w-full border-b border-[#ece6dd] py-2 text-base font-semibold bg-transparent outline-none text-stone-900 dark:text-white">
                 {[0, 1, 2, 3].map((c) => <option key={c} value={c}>{c} {c === 1 ? "Child" : "Children"}</option>)}
               </select>
             </div>
             <div className="sm:col-span-2">
-              <label className="eyebrow text-[#666] block mb-1">Suite Category</label>
-              <select value={slug} onChange={(e) => setSlug(e.target.value)} className="w-full border-b border-[#ece6dd] py-2 text-sm bg-transparent outline-none text-[#222]">
-                {ROOMS.map((r) => <option key={r.slug} value={r.slug}>{r.name} ({r.size}) — {naira(r.rate)} / night</option>)}
+              <label className="text-xs font-condensed uppercase tracking-wider text-stone-700 dark:text-stone-300 font-bold block mb-1">Suite Category</label>
+              <select value={slug} onChange={(e) => setSlug(e.target.value)} className="w-full border-b border-[#ece6dd] py-2 text-base font-semibold bg-transparent outline-none text-stone-900 dark:text-white">
+                {ROOMS.map((r) => <option key={r.slug} value={r.slug}>{r.name} ({r.bed}) — {naira(r.rate)} / night</option>)}
               </select>
             </div>
           </div>
@@ -97,29 +97,29 @@ function BookingForm() {
         <div className="glass p-6 rounded-md space-y-5 border border-[#ece6dd]/80">
           <div className="flex items-center gap-2 border-b border-[#ece6dd]/60 pb-3">
             <span className="h-6 w-6 rounded-full bg-[var(--accent)]/10 text-[var(--accent)] text-xs font-bold flex items-center justify-center">2</span>
-            <h3 className="font-display text-lg text-[#222]">Primary Guest Information</h3>
+            <h3 className="font-display text-xl text-stone-900 dark:text-white font-bold">Primary Guest Information</h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             <div className="sm:col-span-2">
-              <label className="eyebrow text-[#666] block mb-1">Full Name *</label>
-              <input required value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Chief Adeleke Johnson" className="w-full border-b border-[#ece6dd] py-2 text-sm bg-transparent outline-none placeholder:text-stone-400 text-[#222]" />
+              <label className="text-xs font-condensed uppercase tracking-wider text-stone-700 dark:text-stone-300 font-bold block mb-1">Full Name *</label>
+              <input required value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Chief Adeleke Johnson" className="w-full border-b border-[#ece6dd] py-2 text-base font-semibold bg-transparent outline-none placeholder:text-stone-400 text-stone-900 dark:text-white" />
             </div>
             <div>
-              <label className="eyebrow text-[#666] block mb-1">Email Address *</label>
-              <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="guest@domain.com" className="w-full border-b border-[#ece6dd] py-2 text-sm bg-transparent outline-none placeholder:text-stone-400 text-[#222]" />
+              <label className="text-xs font-condensed uppercase tracking-wider text-stone-700 dark:text-stone-300 font-bold block mb-1">Email Address *</label>
+              <input required type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="guest@domain.com" className="w-full border-b border-[#ece6dd] py-2 text-base font-semibold bg-transparent outline-none placeholder:text-stone-400 text-stone-900 dark:text-white" />
             </div>
             <div>
-              <label className="eyebrow text-[#666] block mb-1">Phone / WhatsApp *</label>
-              <input required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+234 800 000 0000" className="w-full border-b border-[#ece6dd] py-2 text-sm bg-transparent outline-none placeholder:text-stone-400 text-[#222]" />
+              <label className="text-xs font-condensed uppercase tracking-wider text-stone-700 dark:text-stone-300 font-bold block mb-1">Phone / WhatsApp *</label>
+              <input required type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} placeholder="+234 800 000 0000" className="w-full border-b border-[#ece6dd] py-2 text-base font-semibold bg-transparent outline-none placeholder:text-stone-400 text-stone-900 dark:text-white" />
             </div>
             <div className="sm:col-span-2">
-              <label className="eyebrow text-[#666] block mb-1">Special Requests</label>
-              <textarea rows={2} value={requests} onChange={(e) => setRequests(e.target.value)} placeholder="High floor, quiet wing, anniversary setup..." className="w-full border-b border-[#ece6dd] py-2 text-sm bg-transparent outline-none resize-none placeholder:text-stone-400 text-[#222]" />
+              <label className="text-xs font-condensed uppercase tracking-wider text-stone-700 dark:text-stone-300 font-bold block mb-1">Special Requests</label>
+              <textarea rows={2} value={requests} onChange={(e) => setRequests(e.target.value)} placeholder="High floor, quiet wing, anniversary setup..." className="w-full border-b border-[#ece6dd] py-2 text-base font-semibold bg-transparent outline-none resize-none placeholder:text-stone-400 text-stone-900 dark:text-white" />
             </div>
           </div>
         </div>
 
-        <button type="submit" disabled={!name || !email || !phone || !checkIn || !checkOut} className="btn-gold w-full min-h-[52px] text-xs inline-flex items-center justify-center gap-2 disabled:opacity-50 shadow-md">
+        <button type="submit" disabled={!name || !email || !phone || !checkIn || !checkOut} className="btn-gold w-full min-h-[52px] text-xs sm:text-sm font-bold inline-flex items-center justify-center gap-2 disabled:opacity-50 shadow-md">
           <Lock className="h-4 w-4" /><span>Confirm Reservation</span>
         </button>
       </form>
@@ -127,33 +127,33 @@ function BookingForm() {
       {/* Sidebar */}
       <aside className="h-fit rounded-xl p-6 sm:p-8 space-y-5 border border-[#ece6dd]/80 bg-white shadow-md lg:sticky lg:top-28">
         <div>
-          <span className="eyebrow text-[var(--accent)]">Stay Breakdown</span>
-          <h2 className="mt-1 text-2xl font-display text-[#222]">{room.name}</h2>
+          <span className="eyebrow text-[var(--accent)] font-bold">Stay Breakdown</span>
+          <h2 className="mt-1 text-2xl sm:text-3xl font-display font-bold text-stone-900 dark:text-white">{room.name}</h2>
         </div>
-        <div className="overflow-hidden border border-[#ece6dd] rounded-md">
+        <div className="overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] rounded-2xl shadow-sm">
           <img src={room.image} alt={room.name} className="w-full h-48 object-cover" />
         </div>
-        <div className="space-y-3 text-sm">
-          <div className="flex justify-between"><span className="text-[#666]">Room Rate</span><span>{naira(room.rate)} / night</span></div>
+        <div className="space-y-3 text-sm sm:text-base font-medium">
+          <div className="flex justify-between"><span className="text-stone-700 dark:text-stone-300 font-semibold">Room Rate</span><span className="font-bold text-stone-900 dark:text-white">{naira(room.rate)} / night</span></div>
           {checkIn && checkOut && <>
-            <div className="flex justify-between"><span className="text-[#666]">Dates</span><span>{checkIn} → {checkOut}</span></div>
-            <div className="flex justify-between"><span className="text-[#666]">Duration</span><span>{nights} night{nights !== 1 ? "s" : ""}</span></div>
-            <div className="flex justify-between"><span className="text-[#666]">Guests</span><span>{adults + children}</span></div>
-            <div className="flex justify-between border-t border-[#ece6dd] pt-3 font-bold text-[#222]">
+            <div className="flex justify-between"><span className="text-stone-700 dark:text-stone-300 font-semibold">Dates</span><span className="font-bold text-stone-900 dark:text-white">{checkIn} → {checkOut}</span></div>
+            <div className="flex justify-between"><span className="text-stone-700 dark:text-stone-300 font-semibold">Duration</span><span className="font-bold text-stone-900 dark:text-white">{nights} night{nights !== 1 ? "s" : ""}</span></div>
+            <div className="flex justify-between"><span className="text-stone-700 dark:text-stone-300 font-semibold">Guests</span><span className="font-bold text-stone-900 dark:text-white">{adults + children}</span></div>
+            <div className="flex justify-between border-t border-[#ece6dd] pt-3 font-bold text-base sm:text-lg text-stone-900 dark:text-white">
               <span>Total</span>
-              <span className="text-[var(--accent)]">{naira(total)}</span>
+              <span className="text-[var(--accent)] font-bold">{naira(total)}</span>
             </div>
           </>}
         </div>
         <div className="space-y-2">
-          <button onClick={handlePaystack} className="w-full btn-gold py-3.5 text-xs inline-flex items-center justify-center gap-2 shadow-md">
+          <button onClick={handlePaystack} className="w-full btn-gold py-3.5 text-xs sm:text-sm font-bold inline-flex items-center justify-center gap-2 shadow-md">
             <CreditCard className="h-4 w-4" />Pay Online with Paystack
           </button>
-          <button onClick={handleWhatsApp} className="w-full py-3.5 text-xs inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-condensed uppercase tracking-[0.18em] font-semibold hover:bg-[#20bd5a] transition-colors">
+          <button onClick={handleWhatsApp} className="w-full py-3.5 text-xs sm:text-sm inline-flex items-center justify-center gap-2 bg-[#25D366] text-white font-condensed uppercase tracking-[0.18em] font-bold hover:bg-[#20bd5a] transition-colors rounded">
             <WhatsAppIcon className="h-4 w-4" />Book via WhatsApp
           </button>
         </div>
-        <p className="text-[11px] text-center text-stone-400">Front desk hotline: {HOTEL.phone}</p>
+        <p className="text-xs text-center text-stone-600 dark:text-stone-300 font-medium">Front desk hotline: {HOTEL.phone}</p>
       </aside>
     </div>
   );
