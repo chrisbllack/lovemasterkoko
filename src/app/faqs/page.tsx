@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const FAQS = [
   { q: "What are your check-in and check-out times?", a: "Standard check-in begins at 2:00 PM and check-out is by 12:00 noon. Early check-in or late check-out can be requested subject to room availability." },
   { q: "Is complimentary breakfast included?", a: "Yes, all room reservations include complimentary gourmet breakfast served daily in our fine dining restaurant." },
-  { q: "Where is Banky Hotel & Suites located?", a: "We are located at Plot 5, Block II, Commercial Layout, Ado-Ekiti, Ekiti State, Nigeria — close to the city center and state administrative offices." },
+  { q: "Where is Banky Hotel & Suites located?", a: "We are located at Km 5 NDLEA Junction Ado-Iworoko Road, Adebayo, Ado-Ekiti, Ekiti State, Nigeria." },
   { q: "Do you have 24/7 security and uninterrupted power?", a: "Yes, we provide round-the-clock armed professional security, CCTV surveillance, and full multi-tier generator power backup." },
   { q: "What payment methods do you accept?", a: "We accept Paystack online payments (cards, bank transfer, USSD), direct bank transfers, and front-desk cash/card payments." },
   { q: "Can I book via WhatsApp?", a: "Absolutely. You can message us on WhatsApp to make inquiries, check availability, and confirm reservations with our front desk team." },

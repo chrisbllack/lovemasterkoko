@@ -74,7 +74,7 @@ export function Header() {
 
           {/* Center — logo + brand name */}
           <Link href="/" className="flex items-center gap-2.5 sm:gap-3.5 group shrink-0">
-            <span className="relative shrink-0 flex items-center justify-center bg-transparent p-0 transition-transform duration-300 group-hover:scale-105 w-[68px] sm:w-[82px] h-[46px] sm:h-[54px]">
+            <span className="relative shrink-0 flex items-center justify-center bg-transparent p-0 transition-transform duration-300 group-hover:scale-105 w-[116px] sm:w-[139px] h-[78px] sm:h-[92px]">
               {/* Logo 1: Banky Hotel & Suites Main Logo 1 (active on transparent navigation bar) */}
               <img
                 src="/images/Banky Hotel & Suites Main Logo 1.png"

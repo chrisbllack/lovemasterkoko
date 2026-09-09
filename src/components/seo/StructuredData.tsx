@@ -16,7 +16,7 @@ export function HotelSchema() {
     email: HOTEL.email,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Plot 5, Block II, Commercial Layout",
+      streetAddress: "Km 5 NDLEA Junction Ado-Iworoko Road, Adebayo",
       addressLocality: "Ado-Ekiti",
       addressRegion: "Ekiti State",
       addressCountry: "NG",
@@ -127,7 +127,7 @@ export function FaqSchema() {
   const faqs = [
     { q: "What are your check-in and check-out times?", a: "Standard check-in begins at 2:00 PM and check-out is by 12:00 noon." },
     { q: "Is complimentary breakfast included?", a: "Yes, all room reservations include complimentary gourmet breakfast." },
-    { q: "Where is Banky Hotel & Suites located?", a: "We are located at Plot 5, Block II, Commercial Layout, Ado-Ekiti, Ekiti State, Nigeria." },
+    { q: "Where is Banky Hotel & Suites located?", a: "We are located at Km 5 NDLEA Junction Ado-Iworoko Road, Adebayo, Ado-Ekiti, Ekiti State, Nigeria." },
     { q: "Do you have 24/7 security and uninterrupted power?", a: "Yes, we provide round-the-clock security and full multi-tier generator power backup." },
   ];
 

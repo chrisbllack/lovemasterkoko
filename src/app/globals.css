@@ -148,7 +148,7 @@
   }
 
   .btn-outline-white {
-    @apply border-2 border-white/80 text-white font-condensed uppercase tracking-[0.18em] font-medium transition-all;
+    @apply border-2 border-white/80 text-white font-condensed uppercase tracking-[0.18em] font-medium transition-all rounded-full;
     @apply hover:bg-white hover:text-[#111] hover:border-white;
   }
 

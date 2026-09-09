@@ -547,9 +547,76 @@
         "updated_at": { "type": "string" }
       },
       "required": ["guest_name", "guest_email", "rating_overall", "review_text", "created_at"]
+    },
+    "MenuCategory": {
+      "title": "MenuCategory",
+      "description": "Category for food and drink items in the QR in-room and dining menu.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "order": { "type": "number" },
+        "description": { "type": "string" },
+        "icon": { "type": "string" },
+        "is_active": { "type": "boolean" },
+        "created_at": { "type": "string" },
+        "updated_at": { "type": "string" }
+      },
+      "required": ["name", "order"]
+    },
+    "MenuItem": {
+      "title": "MenuItem",
+      "description": "Dishes, beverages, platters, and specials in the QR hotel restaurant & bar menu.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "category_id": { "type": "string" },
+        "category_name": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "price": { "type": "number" },
+        "image_url": { "type": "string" },
+        "dietary": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "is_available": { "type": "boolean" },
+        "is_featured": { "type": "boolean" },
+        "preparation_time": { "type": "string" },
+        "order": { "type": "number" },
+        "created_at": { "type": "string" },
+        "updated_at": { "type": "string" }
+      },
+      "required": ["title", "category_id", "price"]
+    },
+    "QrOrder": {
+      "title": "QrOrder",
+      "description": "Room service and table dining orders placed through the /qr mobile menu.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "order_number": { "type": "string" },
+        "room_or_table": { "type": "string" },
+        "guest_name": { "type": "string" },
+        "guest_phone": { "type": "string" },
+        "special_instructions": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": { "type": "object" }
+        },
+        "total_amount": { "type": "number" },
+        "status": { "type": "string" },
+        "created_at": { "type": "string" },
+        "updated_at": { "type": "string" }
+      },
+      "required": ["order_number", "room_or_table", "items", "total_amount", "status", "created_at"]
     }
   },
   "firestore": {
+    "menu_categories": { "entity": "MenuCategory" },
+    "menu_items": { "entity": "MenuItem" },
+    "qr_orders": { "entity": "QrOrder" },
     "organizations": { "entity": "Organization" },
     "properties": { "entity": "Property" },
     "site_settings": { "entity": "SiteSettings" },

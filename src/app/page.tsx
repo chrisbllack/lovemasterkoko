@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback, Suspense } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { PhoneSolidIcon } from "@/components/icons/PhoneSolidIcon";
 import { HOTEL } from "@/lib/hotel";
 
@@ -30,12 +30,12 @@ const HERO_SLIDES = [
   { src: "/images/Hotel Lobby.jpg",         caption: "Elegant lobby & lounge areas" },
   { src: "/images/corridor-hallway.jpg",    caption: "Impeccably kept corridors" },
   { src: "/images/corridor-hallway-2.jpg",  caption: "Every detail, considered" },
-  { src: "/images/Signature Suite.jpg",     caption: "Signature Suite — our finest residence" },
+  { src: "/images/signature suite room.jpg", caption: "Signature Suite — our finest residence" },
   { src: "/images/Diplomatic Suite.jpg",    caption: "Presidential Suite — stately luxury" },
-  { src: "/images/Super Executive.jpg",     caption: "Super Executive — generous proportions" },
-  { src: "/images/Executive Suite.jpg",     caption: "Executive — built for productivity" },
+  { src: "/images/superexecutive.jpg",      caption: "Super Executive — generous proportions" },
+  { src: "/images/executive.jpg",           caption: "Executive — built for productivity" },
   { src: "/images/Standard Plus.jpg",       caption: "Standard Plus — elevated comfort" },
-  { src: "/images/Duluxe.jpg",              caption: "Deluxe — garden-facing calm" },
+  { src: "/images/deluxe.jpg",              caption: "Deluxe — garden-facing calm" },
   { src: "/images/Suite1.jpg",              caption: "Studio — designed for longer stays" },
   { src: "/images/Standard room.jpg",       caption: "Standard — bright & impeccably kept" },
   { src: "/images/OpenBar Garden.jpg",      caption: "Open-air garden bar & sit-out" },
@@ -92,21 +92,6 @@ function HeroSlideshow() {
       {/* Gradient overlay */}
       <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/85 via-black/45 to-black/20" />
 
-      {/* Slide counter + caption */}
-      <div className="absolute inset-x-0 top-0 z-30 flex items-start justify-center pt-[18vh] sm:pt-[22vh]">
-        <div className="text-center px-6">
-          <p className="font-condensed text-[0.65rem] sm:text-xs text-white/70 font-normal mb-1">
-            {idx + 1} / {total}
-          </p>
-          <p
-            key={idx}
-            className="font-condensed text-xs sm:text-sm uppercase tracking-[0.32em] text-[var(--accent-light)] font-medium animate-fade-in"
-          >
-            {HERO_SLIDES[idx].caption}
-          </p>
-        </div>
-      </div>
-
       {/* Navigation arrows - desktop only */}
       <button
         onClick={(e) => { e.stopPropagation(); prev(); }}
@@ -122,30 +107,6 @@ function HeroSlideshow() {
       >
         <ChevronRight className="h-5 w-5" />
       </button>
-
-      {/* Progress bar + pause indicator - desktop only */}
-      <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 z-40 hidden sm:flex items-center justify-center gap-3">
-        <span className="text-white/30">
-          {paused ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
-        </span>
-        <div className="w-48 h-1 bg-white/15 rounded-full overflow-hidden">
-          <div
-            key={idx}
-            className="h-full bg-[var(--accent)] rounded-full"
-            style={{ animation: paused ? "none" : `shrinkBar 5s linear` }}
-          />
-        </div>
-        <span className="font-condensed text-[0.6rem] text-white/30 tabular-nums">
-          {idx + 1}/{total}
-        </span>
-      </div>
-
-      <style jsx>{`
-        @keyframes shrinkBar {
-          from { width: 100%; }
-          to { width: 0%; }
-        }
-      `}</style>
     </div>
   );
 }
@@ -162,16 +123,16 @@ export default function Home() {
         <div className="container-x relative z-30 flex flex-col justify-end pt-28 pb-8 sm:pb-12">
           <div className="max-w-3xl pb-6 sm:pb-8 mx-auto lg:mx-0 text-center lg:text-left">
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-normal text-white leading-[1.1] text-center lg:text-left">
-              Quiet luxury in the heart of Ado-Ekiti
+              Banky Hotel &amp; Suites
             </h1>
-            <p className="mt-3 sm:mt-5 max-w-xl mx-auto lg:mx-0 text-sm sm:text-base md:text-lg leading-relaxed text-stone-100 font-normal text-center lg:text-left">
-              Twenty-eight appointed residences, an open-air garden sit-out, and a master chef&apos;s table of Nigerian &amp; continental delicacies — held together by hospitality that remembers your name.
+            <p className="mt-3 sm:mt-5 max-w-xl mx-auto lg:mx-0 text-[14px] leading-relaxed text-stone-100 font-normal text-center lg:text-left">
+              Quiet luxury in the heart of Ado-Ekiti
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center lg:justify-start gap-3.5">
               <Link href="/booking" className="btn-gold px-8 py-4 text-xs sm:text-sm inline-flex items-center gap-2.5 shadow-lg shadow-[var(--accent)]/30 font-medium">
                 <span>Book Now</span><ArrowRight className="h-4 w-4" />
               </Link>
-              <Link href="/rooms" className="btn-outline-white px-8 py-4 text-xs sm:text-sm hidden sm:inline-flex items-center gap-2 font-medium">
+              <Link id="hero-explore-suites-btn" href="/rooms" className="btn-outline-white px-8 py-4 text-xs sm:text-sm hidden sm:inline-flex items-center gap-2 font-medium rounded-full">
                 <span>Explore All Suites</span>
               </Link>
               <a href={`tel:${HOTEL.phone}`} className="inline-flex items-center gap-2 text-xs sm:text-sm font-condensed uppercase tracking-wider text-stone-100 hover:text-[var(--accent-light)] font-medium transition-colors">
