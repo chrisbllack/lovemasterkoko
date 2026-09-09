@@ -20,12 +20,12 @@ const GALLERY: GalleryItem[] = [
   { src: "/images/corridor-hallway-2.jpg", alt: "Hallway details", category: "Lobby & Reception" },
 
   // Rooms & Suites
-  { src: "/images/Signature Suite.jpg", alt: "Signature Suite", category: "Rooms & Suites" },
+  { src: "/images/signature suite room.jpg", alt: "Signature Suite", category: "Rooms & Suites" },
   { src: "/images/Diplomatic Suite.jpg", alt: "Diplomatic Suite", category: "Rooms & Suites" },
-  { src: "/images/Super Executive.jpg", alt: "Super Executive room", category: "Rooms & Suites" },
-  { src: "/images/Executive Suite.jpg", alt: "Executive Suite", category: "Rooms & Suites" },
+  { src: "/images/superexecutive.jpg", alt: "Super Executive room", category: "Rooms & Suites" },
+  { src: "/images/executive.jpg", alt: "Executive Suite", category: "Rooms & Suites" },
   { src: "/images/Standard Plus.jpg", alt: "Standard Plus room", category: "Rooms & Suites" },
-  { src: "/images/Duluxe.jpg", alt: "Deluxe room", category: "Rooms & Suites" },
+  { src: "/images/deluxe.jpg", alt: "Deluxe room", category: "Rooms & Suites" },
   { src: "/images/Suite1.jpg", alt: "Studio suite", category: "Rooms & Suites" },
   { src: "/images/Standard room.jpg", alt: "Standard room", category: "Rooms & Suites" },
 

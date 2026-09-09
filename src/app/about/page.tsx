@@ -194,7 +194,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-md">
                   <Image
-                    src="/images/Signature Suite.jpg"
+                    src="/images/signature suite room.jpg"
                     alt="Signature Suite"
                     fill
                     referrerPolicy="no-referrer"
@@ -203,7 +203,7 @@ export default function AboutPage() {
                 </div>
                 <div className="relative aspect-[16/10] rounded-xl overflow-hidden border border-[#ece6dd] dark:border-[#2e2b26] shadow-md">
                   <Image
-                    src="/images/Executive Suite.jpg"
+                    src="/images/executive.jpg"
                     alt="Executive Suite"
                     fill
                     referrerPolicy="no-referrer"
