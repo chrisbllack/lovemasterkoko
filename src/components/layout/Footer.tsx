@@ -39,9 +39,14 @@ export function Footer() {
             <p className="text-sm text-stone-200 font-normal leading-relaxed max-w-sm">
               A sanctuary of calm in Ekiti State. Twenty-eight appointed rooms and suites, authentic culinary artistry, and gracious hospitality.
             </p>
-            <a href={whatsappLink(bookingMessage({}))} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 border text-white hover:text-white transition-all font-condensed tracking-[0.18em] uppercase text-xs py-3 px-6 rounded font-medium shadow-md" style={{ borderColor: "color-mix(in srgb, var(--accent) 60%, transparent)", backgroundColor: "var(--accent)" }}>
-              <WhatsAppIcon className="h-4 w-4" />
-              <span>Chat on WhatsApp</span>
+            <a
+              id="footer-whatsapp-btn"
+              href={whatsappLink(bookingMessage({}))}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white transition-all font-condensed tracking-[0.16em] uppercase text-xs py-3 px-6 rounded-full font-medium shadow-md active:scale-95"
+            >
+              <WhatsAppIcon text="Chat on WhatsApp" iconClassName="h-4 w-4 shrink-0" />
             </a>
           </div>
 
