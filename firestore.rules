@@ -184,6 +184,20 @@ service cloud.firestore {
       allow write: if isSignedIn() && (request.auth.uid == userId || isStaff());
     }
 
+    // ── QR Menu & In-Room Dining ────────────────────────────────────
+    match /menu_categories/{catId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    match /menu_items/{itemId} {
+      allow read: if true;
+      allow write: if true;
+    }
+    match /qr_orders/{orderId} {
+      allow create, read, update: if true;
+      allow delete: if isStaff();
+    }
+
     match /test/{testId} {
       allow read, write: if false;
     }

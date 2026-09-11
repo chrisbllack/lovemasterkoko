@@ -2,13 +2,15 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, CalendarRange, BedDouble, Settings, Menu, X } from "lucide-react";
+import { LayoutDashboard, CalendarRange, BedDouble, UtensilsCrossed, BellRing, Settings, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV = [
   { to: "/admin", label: "Overview", icon: LayoutDashboard },
   { to: "/admin/reservations", label: "Reservations", icon: CalendarRange },
   { to: "/admin/rooms", label: "Rooms", icon: BedDouble },
+  { to: "/admin/qr-orders", label: "Kitchen / Bar Orders", icon: BellRing },
+  { to: "/admin/qr-menu", label: "QR Menu & Stock", icon: UtensilsCrossed },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
