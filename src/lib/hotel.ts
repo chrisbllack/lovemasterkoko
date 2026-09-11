@@ -1,7 +1,7 @@
 export const HOTEL = {
   name: "Banky Hotel & Suites",
   tagline: "Quiet Luxury in the Heart of Ado-Ekiti",
-  address: "Ado-Ekiti, Ekiti State, Nigeria",
+  address: "Km 5 NDLEA Junction Ado-Iworoko Road, Adebayo, Ado-Ekiti, Ekiti State, Nigeria",
   phone: "+2349035879708",
   whatsapp: "2349035879708",
   email: "reservations@bankyhotelandsuites.com",
