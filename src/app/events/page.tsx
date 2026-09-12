@@ -24,15 +24,15 @@ export default function EventsPage() {
   return (
     <>
       <BreadcrumbSchema items={breadcrumbs} />
-      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 bg-[#1b1b1b] dark:bg-[#0d0d0d]">
+      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 bg-[#1b1b1b] dark:bg-[#1a1a1d]">
         <img src="/images/BankyHall.jpg" alt="" className="absolute inset-0 w-full h-full object-cover opacity-30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1b1b1b] dark:from-[#0d0d0d] via-[#1b1b1b]/60 to-[#1b1b1b]/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1b1b1b] dark:from-[#202023] via-[#1b1b1b]/60 to-[#1b1b1b]/80" />
         <div className="container-x relative z-10 text-center">
           <span className="eyebrow text-[var(--accent)] block mb-3">Banqueting &amp; Events</span>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-white">Banky Hall</h1>
         </div>
       </section>
-      <section className="py-16 sm:py-24 bg-white dark:bg-[#121212]">
+      <section className="py-16 sm:py-24 bg-white dark:bg-[#202023]">
         <div className="container-x max-w-4xl">
           <div className="grid gap-12 lg:grid-cols-2 items-center mb-16">
             <div className="space-y-5">

@@ -154,14 +154,14 @@ export function DishDetailModal({
             {/* Badges on image */}
             <div className="absolute bottom-3 left-4 right-4 flex items-end justify-between">
               <div>
-                <span className="text-[10px] uppercase font-mono tracking-wider bg-[#aa8453]/90 text-white px-2 py-0.5 rounded shadow">
+                <span className="text-[10px] uppercase font-mono tracking-wider bg-[#fbb100]/90 text-white px-2 py-0.5 rounded shadow">
                   {item.categoryName}
                 </span>
                 <h2 className="font-display text-lg sm:text-xl text-white font-medium mt-1 leading-snug drop-shadow-md">
                   {item.title}
                 </h2>
               </div>
-              <span className="font-display text-lg sm:text-xl font-bold text-[#c89e63] bg-black/70 px-2.5 py-0.5 rounded-lg border border-[#aa8453]/40 shadow">
+              <span className="font-display text-lg sm:text-xl font-bold text-[#fbb100] bg-black/70 px-2.5 py-0.5 rounded-lg border border-[#fbb100]/40 shadow">
                 {formatNaira(item.price)}
               </span>
             </div>
@@ -173,7 +173,7 @@ export function DishDetailModal({
             <div className="flex flex-wrap items-center gap-2">
               {item.preparationTime && (
                 <span className="inline-flex items-center gap-1 text-[11px] text-stone-400 bg-stone-900 border border-stone-800 px-2 py-0.5 rounded-md font-mono">
-                  <Clock className="h-3 w-3 text-[#aa8453]" />
+                  <Clock className="h-3 w-3 text-[#fbb100]" />
                   {item.preparationTime}
                 </span>
               )}
@@ -215,7 +215,7 @@ export function DishDetailModal({
                     onClick={() => setSpicePreference(sp)}
                     className={`py-1.5 px-2 rounded-lg border text-center transition-all ${
                       spicePreference === sp
-                        ? "bg-[#aa8453] text-white border-[#aa8453] font-semibold"
+                        ? "bg-[#fbb100] text-white border-[#fbb100] font-semibold"
                         : "bg-stone-950 text-stone-400 border-stone-800 hover:text-white"
                     }`}
                   >
@@ -229,7 +229,7 @@ export function DishDetailModal({
             <div>
               <div className="flex items-center justify-between mb-2">
                 <label className="text-xs font-semibold text-stone-300 uppercase tracking-wider flex items-center gap-1.5">
-                  <Sparkles className="h-3.5 w-3.5 text-[#c89e63]" />
+                  <Sparkles className="h-3.5 w-3.5 text-[#fbb100]" />
                   <span>Enhance Your Dish (Add-ons)</span>
                 </label>
                 <span className="text-[10px] text-stone-500 font-mono">Optional</span>
@@ -244,7 +244,7 @@ export function DishDetailModal({
                       onClick={() => toggleAddon(addon)}
                       className={`flex items-center justify-between p-2.5 rounded-xl border cursor-pointer transition-all ${
                         isChecked
-                          ? "bg-[#aa8453]/15 border-[#aa8453] text-white"
+                          ? "bg-[#fbb100]/15 border-[#fbb100] text-white"
                           : "bg-stone-900/70 border-stone-800/80 text-stone-300 hover:border-stone-700"
                       }`}
                     >
@@ -252,7 +252,7 @@ export function DishDetailModal({
                         <div
                           className={`h-4 w-4 rounded flex items-center justify-center border transition-colors ${
                             isChecked
-                              ? "bg-[#aa8453] border-[#aa8453] text-white"
+                              ? "bg-[#fbb100] border-[#fbb100] text-white"
                               : "border-stone-700 bg-stone-950"
                           }`}
                         >
@@ -260,7 +260,7 @@ export function DishDetailModal({
                         </div>
                         <span className="text-xs font-medium">{addon.name}</span>
                       </div>
-                      <span className="text-xs font-mono font-semibold text-[#c89e63]">
+                      <span className="text-xs font-mono font-semibold text-[#fbb100]">
                         +{formatNaira(addon.price)}
                       </span>
                     </div>
@@ -279,7 +279,7 @@ export function DishDetailModal({
                 onChange={(e) => setCookingNotes(e.target.value)}
                 placeholder="e.g. Less salt, crisp skin, separate soup bowl, extra serviettes..."
                 rows={2}
-                className="w-full p-2.5 rounded-xl bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#aa8453] resize-none"
+                className="w-full p-2.5 rounded-xl bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#fbb100] resize-none"
               />
             </div>
           </div>
@@ -300,7 +300,7 @@ export function DishDetailModal({
               </span>
               <button
                 onClick={() => setQuantity((q) => q + 1)}
-                className="h-8 w-8 flex items-center justify-center rounded-lg text-white bg-[#aa8453] active:scale-90 transition-transform"
+                className="h-8 w-8 flex items-center justify-center rounded-lg text-white bg-[#fbb100] active:scale-90 transition-transform"
               >
                 <Plus className="h-4 w-4" />
               </button>
@@ -309,7 +309,7 @@ export function DishDetailModal({
             {/* Add to Basket button */}
             <button
               onClick={handleAdd}
-              className="flex-1 h-11 px-4 bg-[#aa8453] hover:bg-[#967344] text-white rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-between shadow-lg shadow-[#aa8453]/20 active:scale-[0.98] transition-all"
+              className="flex-1 h-11 px-4 bg-[#fbb100] hover:bg-[#e09e00] text-white rounded-xl font-semibold text-xs sm:text-sm flex items-center justify-between shadow-lg shadow-[#fbb100]/20 active:scale-[0.98] transition-all"
             >
               <span className="flex items-center gap-1.5">
                 <ShoppingBag className="h-4 w-4" />

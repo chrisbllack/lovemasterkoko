@@ -21,7 +21,7 @@ const NAV = [
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  const { theme, toggleTheme } = useTheme();
+  const { theme, toggleTheme, watTimeString } = useTheme();
   const headerRef = useRef<HTMLElement>(null);
   const pathname = usePathname();
 
@@ -120,8 +120,8 @@ export function Header() {
             {/* Mobile & Tablet Mode: Day or Night toggle button at the top-right */}
             <button
               onClick={toggleTheme}
-              aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
-              title={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+              aria-label={theme === "light" ? `Switch to night mode · Lagos auto-schedule (07:00 PM – 06:59 AM WAT)${watTimeString ? ` · ${watTimeString}` : ""}` : `Switch to day mode · Lagos auto-schedule (07:00 AM – 06:59 PM WAT)${watTimeString ? ` · ${watTimeString}` : ""}`}
+              title={theme === "light" ? `Switch to night mode · Lagos auto-schedule (07:00 PM – 06:59 AM WAT)${watTimeString ? ` · ${watTimeString}` : ""}` : `Switch to day mode · Lagos auto-schedule (07:00 AM – 06:59 PM WAT)${watTimeString ? ` · ${watTimeString}` : ""}`}
               className={`p-1.5 -mr-1.5 sm:mr-0 bg-transparent border-none shadow-none transition-transform active:scale-90 flex items-center justify-center cursor-pointer ${iconBtnColor}`}
             >
               {theme === "light" ? (

@@ -96,7 +96,7 @@ export function LiveOrderTrackerModal({
           {/* Header */}
           <div className="p-4 border-b border-stone-800 flex items-center justify-between bg-stone-900/40">
             <div className="flex items-center gap-2">
-              <span className="p-1.5 rounded-lg bg-[#aa8453]/20 text-[#c89e63]">
+              <span className="p-1.5 rounded-lg bg-[#fbb100]/20 text-[#fbb100]">
                 <Clock className="h-4 w-4" />
               </span>
               <div>
@@ -133,7 +133,7 @@ export function LiveOrderTrackerModal({
                     }}
                     className={`px-2.5 py-1 rounded-full text-[11px] font-mono flex-shrink-0 transition-all ${
                       isSelected
-                        ? "bg-[#aa8453] text-white font-semibold"
+                        ? "bg-[#fbb100] text-white font-semibold"
                         : "bg-stone-900 text-stone-400 border border-stone-800"
                     }`}
                   >
@@ -149,7 +149,7 @@ export function LiveOrderTrackerModal({
               {/* Order identifier card */}
               <div className="bg-gradient-to-r from-stone-900 via-[#1c1a17] to-stone-900 border border-stone-800 rounded-2xl p-4 flex items-center justify-between">
                 <div>
-                  <span className="text-[10px] uppercase font-mono tracking-widest text-[#c89e63] bg-[#aa8453]/20 px-2 py-0.5 rounded">
+                  <span className="text-[10px] uppercase font-mono tracking-widest text-[#fbb100] bg-[#fbb100]/20 px-2 py-0.5 rounded">
                     Order Ref
                   </span>
                   <h4 className="font-mono text-base font-bold text-white mt-1">
@@ -162,7 +162,7 @@ export function LiveOrderTrackerModal({
 
                 <div className="text-right">
                   <span className="text-xs font-medium text-stone-400 block">Total</span>
-                  <span className="font-display text-lg font-bold text-[#c89e63]">
+                  <span className="font-display text-lg font-bold text-[#fbb100]">
                     {formatNaira(currentOrder.totalAmount)}
                   </span>
                 </div>
@@ -266,7 +266,7 @@ export function LiveOrderTrackerModal({
                       className="flex items-start justify-between text-xs py-1 border-b border-stone-800/40 last:border-none"
                     >
                       <div className="flex items-start gap-2">
-                        <span className="font-mono text-[#c89e63] font-semibold">
+                        <span className="font-mono text-[#fbb100] font-semibold">
                           {item.quantity}x
                         </span>
                         <div>
@@ -302,7 +302,7 @@ export function LiveOrderTrackerModal({
                   href="tel:08037166121"
                   className="h-10 px-3 bg-stone-800 hover:bg-stone-700 text-stone-200 rounded-xl text-xs font-medium flex items-center justify-center gap-1.5 transition-colors"
                 >
-                  <PhoneCall className="h-3.5 w-3.5 text-[#c89e63]" />
+                  <PhoneCall className="h-3.5 w-3.5 text-[#fbb100]" />
                   <span>Call Kitchen</span>
                 </a>
               </div>

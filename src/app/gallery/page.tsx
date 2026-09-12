@@ -21,7 +21,11 @@ const GALLERY: GalleryItem[] = [
 
   // Rooms & Suites
   { src: "/images/signature suite room.jpg", alt: "Signature Suite", category: "Rooms & Suites" },
-  { src: "/images/Diplomatic Suite.jpg", alt: "Diplomatic Suite", category: "Rooms & Suites" },
+  { src: "/images/Presidential.jpg", alt: "Presidential Suite master parlor", category: "Rooms & Suites" },
+  { src: "/images/Presidential1.jpg", alt: "Presidential Suite executive lounge", category: "Rooms & Suites" },
+  { src: "/images/presidential 17.jpg", alt: "Presidential Suite VIP appointments", category: "Rooms & Suites" },
+  { src: "/images/presidential23.jpg", alt: "Presidential Suite stately ambiance", category: "Rooms & Suites" },
+  { src: "/images/presidential3.jpg", alt: "Presidential Suite luxury interior", category: "Rooms & Suites" },
   { src: "/images/superexecutive.jpg", alt: "Super Executive room", category: "Rooms & Suites" },
   { src: "/images/executive.jpg", alt: "Executive Suite", category: "Rooms & Suites" },
   { src: "/images/Standard Plus.jpg", alt: "Standard Plus room", category: "Rooms & Suites" },
@@ -84,8 +88,8 @@ export default function GalleryPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 bg-[#1b1b1b] dark:bg-[#0d0d0d]">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1b1b1b] dark:from-[#0d0d0d] via-[#1b1b1b]/80 to-[#1b1b1b]" />
+      <section className="relative pt-32 pb-20 sm:pt-40 sm:pb-28 bg-[#1b1b1b] dark:bg-[#1a1a1d]">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1b1b1b] dark:from-[#202023] via-[#1b1b1b]/80 to-[#1b1b1b]" />
         <div className="container-x relative z-10 text-center">
           <span className="eyebrow text-[var(--accent)] block mb-3">Visual Tour</span>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-white">Photo Gallery</h1>
@@ -96,7 +100,7 @@ export default function GalleryPage() {
       </section>
 
       {/* Gallery with categories */}
-      <section className="py-16 sm:py-24 bg-white dark:bg-[#121212]">
+      <section className="py-16 sm:py-24 bg-white dark:bg-[#202023]">
         <div className="container-x">
           {/* Category tabs */}
           <div className="flex flex-wrap items-center justify-center gap-2 mb-10">

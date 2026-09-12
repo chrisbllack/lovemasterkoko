@@ -359,7 +359,7 @@ function QrMenuContent() {
       <header className="sticky top-0 z-40 bg-[#171614]/95 backdrop-blur-md border-b border-stone-800/80 shadow-lg">
         <div className="max-w-2xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="relative h-11 w-11 rounded-full overflow-hidden border border-[#aa8453]/40 bg-[#222] p-1 flex-shrink-0 shadow">
+            <div className="relative h-11 w-11 rounded-full overflow-hidden border border-[#fbb100]/40 bg-[#222] p-1 flex-shrink-0 shadow">
               <Image
                 src="/images/Banky Hotel & Suites Main Logo 1.png"
                 alt="Banky Hotel Logo"
@@ -387,7 +387,7 @@ function QrMenuContent() {
                 <span className="text-xs text-stone-300 font-medium group-hover:text-white transition-colors">
                   {roomOrTable}
                 </span>
-                <span className="text-[10px] text-[#aa8453] bg-[#aa8453]/15 px-1.5 py-0.2 rounded font-mono group-hover:bg-[#aa8453]/25 flex items-center gap-0.5">
+                <span className="text-[10px] text-[#fbb100] bg-[#fbb100]/15 px-1.5 py-0.2 rounded font-mono group-hover:bg-[#fbb100]/25 flex items-center gap-0.5">
                   Change <ChevronDown className="h-2.5 w-2.5" />
                 </span>
               </button>
@@ -402,7 +402,7 @@ function QrMenuContent() {
               className="p-2 sm:px-2.5 sm:py-1.5 rounded-xl bg-stone-900 border border-stone-800 text-stone-300 hover:text-white text-xs font-medium flex items-center gap-1.5 active:scale-95 transition-all"
               title="View Table QR Code"
             >
-              <QrIcon className="h-4 w-4 text-[#c89e63]" />
+              <QrIcon className="h-4 w-4 text-[#fbb100]" />
               <span className="hidden sm:inline">Table QR</span>
             </button>
 
@@ -423,7 +423,7 @@ function QrMenuContent() {
             {totalItemsCount > 0 && (
               <button
                 onClick={() => setIsCartOpen(true)}
-                className="relative p-2.5 bg-[#aa8453] hover:bg-[#967344] text-white rounded-full shadow-md active:scale-95 transition-transform"
+                className="relative p-2.5 bg-[#fbb100] hover:bg-[#e09e00] text-white rounded-full shadow-md active:scale-95 transition-transform"
                 aria-label="View Cart"
               >
                 <ShoppingBag className="h-4 w-4" />
@@ -439,7 +439,7 @@ function QrMenuContent() {
         <div className="max-w-2xl mx-auto px-4 pb-2.5 flex items-center gap-2 overflow-x-auto no-scrollbar">
           <button
             onClick={() => setIsServiceModalOpen(true)}
-            className="flex-shrink-0 h-7 px-3 rounded-full bg-[#aa8453]/20 border border-[#aa8453]/50 text-[#f5d799] text-[11px] font-medium flex items-center gap-1.5 hover:bg-[#aa8453]/30 transition-colors"
+            className="flex-shrink-0 h-7 px-3 rounded-full bg-[#fbb100]/20 border border-[#fbb100]/50 text-[#f5d799] text-[11px] font-medium flex items-center gap-1.5 hover:bg-[#fbb100]/30 transition-colors"
           >
             <BellRing className="h-3 w-3" />
             <span>Call Waiter</span>
@@ -472,7 +472,7 @@ function QrMenuContent() {
             href="tel:08037166121"
             className="flex-shrink-0 h-7 px-3 rounded-full bg-stone-900 border border-stone-800 text-stone-400 text-[11px] font-medium flex items-center gap-1.5 hover:text-stone-200 transition-colors"
           >
-            <PhoneCall className="h-3 w-3 text-[#aa8453]" />
+            <PhoneCall className="h-3 w-3 text-[#fbb100]" />
             <span>0803 716 6121</span>
           </a>
 
@@ -491,7 +491,7 @@ function QrMenuContent() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search dishes, grills, pepper soup, cocktails, jollof…"
-              className="w-full h-10 pl-10 pr-9 rounded-xl bg-stone-900/90 border border-stone-800 text-xs sm:text-sm text-white placeholder-stone-500 focus:outline-none focus:border-[#aa8453] transition-colors"
+              className="w-full h-10 pl-10 pr-9 rounded-xl bg-stone-900/90 border border-stone-800 text-xs sm:text-sm text-white placeholder-stone-500 focus:outline-none focus:border-[#fbb100] transition-colors"
             />
             {searchQuery && (
               <button
@@ -520,7 +520,7 @@ function QrMenuContent() {
               <div
                 className={`relative h-14 w-14 sm:h-16 sm:w-16 rounded-full overflow-hidden transition-all duration-300 p-0.5 ${
                   activeCategoryId === "all" && !showOnlyFavorites
-                    ? "ring-2 ring-[#c89e63] ring-offset-2 ring-offset-[#111] scale-105"
+                    ? "ring-2 ring-[#fbb100] ring-offset-2 ring-offset-[#111] scale-105"
                     : "border border-stone-800 opacity-85 group-hover:opacity-100"
                 }`}
               >
@@ -559,7 +559,7 @@ function QrMenuContent() {
                   <div
                     className={`relative h-14 w-14 sm:h-16 sm:w-16 rounded-full overflow-hidden transition-all duration-300 p-0.5 ${
                       isActive
-                        ? "ring-2 ring-[#c89e63] ring-offset-2 ring-offset-[#111] scale-105"
+                        ? "ring-2 ring-[#fbb100] ring-offset-2 ring-offset-[#111] scale-105"
                         : "border border-stone-800 opacity-80 group-hover:opacity-100"
                     }`}
                   >
@@ -608,12 +608,12 @@ function QrMenuContent() {
           <div className="mb-6">
             <div className="flex items-center justify-between mb-2.5">
               <div className="flex items-center gap-2">
-                <Sparkles className="h-4 w-4 text-[#c89e63]" />
+                <Sparkles className="h-4 w-4 text-[#fbb100]" />
                 <h3 className="font-display text-base text-white font-medium">
                   Chef&apos;s Signature Recommendations
                 </h3>
               </div>
-              <span className="text-[10px] uppercase tracking-wider text-[#aa8453] font-mono">
+              <span className="text-[10px] uppercase tracking-wider text-[#fbb100] font-mono">
                 Top Guest Picks
               </span>
             </div>
@@ -623,7 +623,7 @@ function QrMenuContent() {
                 <div
                   key={fItem.id}
                   onClick={() => setModalItem(fItem)}
-                  className="bg-stone-900/70 border border-stone-800/90 rounded-2xl p-2.5 flex flex-col justify-between cursor-pointer hover:border-[#aa8453]/60 transition-all group"
+                  className="bg-stone-900/70 border border-stone-800/90 rounded-2xl p-2.5 flex flex-col justify-between cursor-pointer hover:border-[#fbb100]/60 transition-all group"
                 >
                   <div className="relative h-28 w-full rounded-xl overflow-hidden bg-stone-950 mb-2">
                     <Image
@@ -633,7 +633,7 @@ function QrMenuContent() {
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                       onError={() => setImageErrors((prev) => ({ ...prev, [fItem.id]: true }))}
                     />
-                    <div className="absolute top-1.5 left-1.5 bg-[#aa8453] text-white text-[9px] font-bold uppercase px-1.5 py-0.5 rounded shadow">
+                    <div className="absolute top-1.5 left-1.5 bg-[#fbb100] text-white text-[9px] font-bold uppercase px-1.5 py-0.5 rounded shadow">
                       Popular
                     </div>
                   </div>
@@ -646,7 +646,7 @@ function QrMenuContent() {
                     </p>
                   </div>
                   <div className="flex items-center justify-between mt-2 pt-1 border-t border-stone-800/60">
-                    <span className="font-display text-xs font-bold text-[#c89e63]">
+                    <span className="font-display text-xs font-bold text-[#fbb100]">
                       {formatNaira(fItem.price)}
                     </span>
                     <button
@@ -654,7 +654,7 @@ function QrMenuContent() {
                         e.stopPropagation();
                         addToCartSimple(fItem);
                       }}
-                      className="h-6 w-6 rounded-lg bg-[#aa8453] text-white flex items-center justify-center shadow active:scale-90 transition-transform"
+                      className="h-6 w-6 rounded-lg bg-[#fbb100] text-white flex items-center justify-center shadow active:scale-90 transition-transform"
                     >
                       <Plus className="h-3.5 w-3.5" />
                     </button>
@@ -743,7 +743,7 @@ function QrMenuContent() {
                     </div>
                   )}
                   {item.isFeatured && !isOutOfStock && (
-                    <div className="absolute top-1.5 left-1.5 bg-[#aa8453]/90 backdrop-blur-sm text-white text-[9px] font-bold uppercase px-1.5 py-0.5 rounded shadow">
+                    <div className="absolute top-1.5 left-1.5 bg-[#fbb100]/90 backdrop-blur-sm text-white text-[9px] font-bold uppercase px-1.5 py-0.5 rounded shadow">
                       Popular
                     </div>
                   )}
@@ -801,7 +801,7 @@ function QrMenuContent() {
                   {/* Price & Quantity Controls */}
                   <div className="flex items-center justify-between mt-2 pt-1 border-t border-stone-800/60">
                     <div>
-                      <span className="font-display text-base font-semibold text-[#c89e63] tracking-tight">
+                      <span className="font-display text-base font-semibold text-[#fbb100] tracking-tight">
                         {formatNaira(item.price)}
                       </span>
                       {item.preparationTime && (
@@ -822,7 +822,7 @@ function QrMenuContent() {
                           e.stopPropagation();
                           addToCartSimple(item);
                         }}
-                        className="h-8 px-3.5 bg-[#aa8453] hover:bg-[#967344] text-white text-xs font-semibold rounded-lg flex items-center gap-1.5 active:scale-95 transition-all shadow-sm shadow-[#aa8453]/20"
+                        className="h-8 px-3.5 bg-[#fbb100] hover:bg-[#e09e00] text-white text-xs font-semibold rounded-lg flex items-center gap-1.5 active:scale-95 transition-all shadow-sm shadow-[#fbb100]/20"
                       >
                         <Plus className="h-3.5 w-3.5" />
                         <span>Add</span>
@@ -844,7 +844,7 @@ function QrMenuContent() {
                         </span>
                         <button
                           onClick={() => addToCartSimple(item)}
-                          className="h-7 w-7 flex items-center justify-center text-white bg-[#aa8453] rounded active:scale-90 transition-transform"
+                          className="h-7 w-7 flex items-center justify-center text-white bg-[#fbb100] rounded active:scale-90 transition-transform"
                           aria-label="Increase quantity"
                         >
                           <Plus className="h-3.5 w-3.5" />
@@ -869,7 +869,7 @@ function QrMenuContent() {
           <div className="mt-3 flex items-center justify-center gap-3">
             <button
               onClick={() => setIsServiceModalOpen(true)}
-              className="px-3 py-1.5 rounded-xl bg-[#aa8453]/20 border border-[#aa8453]/40 text-[#f5d799] text-xs font-medium flex items-center gap-1.5 hover:bg-[#aa8453]/30"
+              className="px-3 py-1.5 rounded-xl bg-[#fbb100]/20 border border-[#fbb100]/40 text-[#f5d799] text-xs font-medium flex items-center gap-1.5 hover:bg-[#fbb100]/30"
             >
               <BellRing className="h-3.5 w-3.5" />
               <span>Call Waiter</span>
@@ -878,7 +878,7 @@ function QrMenuContent() {
               href="tel:08037166121"
               className="px-3 py-1.5 rounded-xl bg-stone-900 border border-stone-800 text-stone-300 text-xs font-medium flex items-center gap-1.5 hover:text-white"
             >
-              <PhoneCall className="h-3.5 w-3.5 text-[#c89e63]" />
+              <PhoneCall className="h-3.5 w-3.5 text-[#fbb100]" />
               <span>0803 716 6121</span>
             </a>
           </div>
@@ -897,7 +897,7 @@ function QrMenuContent() {
           >
             <button
               onClick={() => setIsCartOpen(true)}
-              className="w-full h-14 bg-gradient-to-r from-[#aa8453] via-[#b6915f] to-[#aa8453] text-white rounded-2xl px-5 flex items-center justify-between shadow-2xl shadow-black/80 border border-white/20 active:scale-[0.98] transition-transform"
+              className="w-full h-14 bg-gradient-to-r from-[#fbb100] via-[#ffc42e] to-[#fbb100] text-white rounded-2xl px-5 flex items-center justify-between shadow-2xl shadow-black/80 border border-white/20 active:scale-[0.98] transition-transform"
             >
               <div className="flex items-center gap-3">
                 <div className="h-8 w-8 rounded-full bg-black/30 flex items-center justify-center font-mono font-bold text-xs">
@@ -940,7 +940,7 @@ function QrMenuContent() {
               {/* Drawer header */}
               <div className="p-4 border-b border-stone-800 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <div className="p-1.5 rounded-lg bg-[#aa8453]/20 text-[#aa8453]">
+                  <div className="p-1.5 rounded-lg bg-[#fbb100]/20 text-[#fbb100]">
                     <ShoppingBag className="h-4 w-4" />
                   </div>
                   <div>
@@ -976,7 +976,7 @@ function QrMenuContent() {
                             {item.title}
                           </h4>
                           {selectedAddons && selectedAddons.length > 0 && (
-                            <p className="text-[11px] text-[#c89e63] mt-0.5">
+                            <p className="text-[11px] text-[#fbb100] mt-0.5">
                               + {selectedAddons.map((a) => a.name).join(", ")}
                             </p>
                           )}
@@ -1003,7 +1003,7 @@ function QrMenuContent() {
                             </span>
                             <button
                               onClick={() => addToCartSimple(item)}
-                              className="h-6 w-6 flex items-center justify-center text-white bg-[#aa8453] rounded active:scale-90"
+                              className="h-6 w-6 flex items-center justify-center text-white bg-[#fbb100] rounded active:scale-90"
                             >
                               <Plus className="h-3 w-3" />
                             </button>
@@ -1038,7 +1038,7 @@ function QrMenuContent() {
                           onClick={() => setOrderType(t.id as "room" | "table" | "poolside_garden")}
                           className={`py-2 px-1 text-center rounded-lg text-xs font-medium border transition-colors ${
                             orderType === t.id
-                              ? "bg-[#aa8453] text-white border-[#aa8453]"
+                              ? "bg-[#fbb100] text-white border-[#fbb100]"
                               : "bg-stone-900 text-stone-400 border-stone-800 hover:text-white"
                           }`}
                         >
@@ -1061,7 +1061,7 @@ function QrMenuContent() {
                             ? "e.g. Table 1 (Main Hall)"
                             : "e.g. Poolside Table 4 or Garden Sitout"
                         }
-                        className="w-full h-11 px-3.5 rounded-xl bg-stone-950 border border-stone-700 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-[#aa8453]"
+                        className="w-full h-11 px-3.5 rounded-xl bg-stone-950 border border-stone-700 text-sm text-white placeholder-stone-500 focus:outline-none focus:border-[#fbb100]"
                       />
                     </div>
                   </div>
@@ -1077,7 +1077,7 @@ function QrMenuContent() {
                         value={guestName}
                         onChange={(e) => setGuestName(e.target.value)}
                         placeholder="e.g. Mr. David"
-                        className="w-full h-9 px-3 rounded-lg bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#aa8453]"
+                        className="w-full h-9 px-3 rounded-lg bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#fbb100]"
                       />
                     </div>
                     <div>
@@ -1089,7 +1089,7 @@ function QrMenuContent() {
                         value={guestPhone}
                         onChange={(e) => setGuestPhone(e.target.value)}
                         placeholder="e.g. 080..."
-                        className="w-full h-9 px-3 rounded-lg bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#aa8453]"
+                        className="w-full h-9 px-3 rounded-lg bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#fbb100]"
                       />
                     </div>
                   </div>
@@ -1104,7 +1104,7 @@ function QrMenuContent() {
                       value={specialInstructions}
                       onChange={(e) => setSpecialInstructions(e.target.value)}
                       placeholder="e.g. Less spicy, extra serviettes, ice on the side, well done..."
-                      className="w-full p-2.5 rounded-lg bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#aa8453] resize-none"
+                      className="w-full p-2.5 rounded-lg bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#fbb100] resize-none"
                     />
                   </div>
 
@@ -1129,7 +1129,7 @@ function QrMenuContent() {
                 </div>
                 <div className="flex items-center justify-between text-base font-semibold text-white pt-1 border-t border-stone-800">
                   <span>Total Amount</span>
-                  <span className="text-[#c89e63] font-display text-lg">
+                  <span className="text-[#fbb100] font-display text-lg">
                     {formatNaira(totalAmount)}
                   </span>
                 </div>
@@ -1138,7 +1138,7 @@ function QrMenuContent() {
                   type="submit"
                   form="qr-checkout-form"
                   disabled={isSubmitting || totalItemsCount === 0}
-                  className="w-full h-12 bg-[#aa8453] hover:bg-[#967344] disabled:bg-stone-800 disabled:text-stone-500 text-white rounded-xl font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-[#aa8453]/20 active:scale-[0.99] transition-all"
+                  className="w-full h-12 bg-[#fbb100] hover:bg-[#e09e00] disabled:bg-stone-800 disabled:text-stone-500 text-white rounded-xl font-semibold text-sm flex items-center justify-center gap-2 shadow-lg shadow-[#fbb100]/20 active:scale-[0.99] transition-all"
                 >
                   {isSubmitting ? (
                     <>
@@ -1166,13 +1166,13 @@ function QrMenuContent() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-[#191816] border border-[#aa8453]/40 rounded-3xl max-w-md w-full p-6 text-center shadow-2xl relative"
+              className="bg-[#191816] border border-[#fbb100]/40 rounded-3xl max-w-md w-full p-6 text-center shadow-2xl relative"
             >
               <div className="h-14 w-14 bg-emerald-950/80 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto mb-3 text-emerald-400">
                 <CheckCircle2 className="h-7 w-7" />
               </div>
 
-              <span className="text-[10px] font-mono tracking-widest uppercase text-[#aa8453] bg-[#aa8453]/10 px-2.5 py-0.5 rounded-full border border-[#aa8453]/30">
+              <span className="text-[10px] font-mono tracking-widest uppercase text-[#fbb100] bg-[#fbb100]/10 px-2.5 py-0.5 rounded-full border border-[#fbb100]/30">
                 Order Received by Kitchen
               </span>
 
@@ -1199,7 +1199,7 @@ function QrMenuContent() {
                 </div>
                 <div className="flex justify-between items-center font-semibold pt-1 border-t border-stone-800">
                   <span className="text-stone-300">Total Amount</span>
-                  <span className="text-[#c89e63] font-display text-sm">
+                  <span className="text-[#fbb100] font-display text-sm">
                     {formatNaira(placedOrder.totalAmount)}
                   </span>
                 </div>
@@ -1207,7 +1207,7 @@ function QrMenuContent() {
 
               {/* Estimated time */}
               <div className="mt-4 flex items-center justify-center gap-2 text-xs text-stone-300 bg-stone-900/60 p-2.5 rounded-lg border border-stone-800">
-                <Clock className="h-4 w-4 text-[#aa8453]" />
+                <Clock className="h-4 w-4 text-[#fbb100]" />
                 <span>Estimated arrival: <strong>15–25 mins</strong></span>
               </div>
 
@@ -1218,7 +1218,7 @@ function QrMenuContent() {
                     setPlacedOrder(null);
                     setIsTrackerModalOpen(true);
                   }}
-                  className="w-full h-11 bg-[#aa8453] hover:bg-[#967344] text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 shadow transition-colors"
+                  className="w-full h-11 bg-[#fbb100] hover:bg-[#e09e00] text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 shadow transition-colors"
                 >
                   <Clock className="h-4 w-4" />
                   <span>Track Live Order Progress</span>
@@ -1294,7 +1294,7 @@ function QrMenuContent() {
             >
               <div className="flex items-center justify-between pb-3 border-b border-stone-800">
                 <div className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-[#c89e63]" />
+                  <MapPin className="h-4 w-4 text-[#fbb100]" />
                   <h3 className="font-display text-sm font-medium text-white">
                     Select Your Dining Location
                   </h3>
@@ -1320,7 +1320,7 @@ function QrMenuContent() {
                       onClick={() => setOrderType(t.id as "room" | "table" | "poolside_garden")}
                       className={`py-1.5 text-center rounded-lg text-xs font-medium border transition-colors ${
                         orderType === t.id
-                          ? "bg-[#aa8453] text-white border-[#aa8453]"
+                          ? "bg-[#fbb100] text-white border-[#fbb100]"
                           : "bg-stone-900 text-stone-400 border-stone-800 hover:text-white"
                       }`}
                     >
@@ -1338,7 +1338,7 @@ function QrMenuContent() {
                     value={roomOrTable}
                     onChange={(e) => setRoomOrTable(e.target.value)}
                     placeholder="e.g. Table 1 or Room 204"
-                    className="w-full h-10 px-3 rounded-xl bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#aa8453]"
+                    className="w-full h-10 px-3 rounded-xl bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#fbb100]"
                   />
                 </div>
 
@@ -1364,7 +1364,7 @@ function QrMenuContent() {
                 <button
                   type="button"
                   onClick={() => setIsLocationPickerOpen(false)}
-                  className="w-full h-10 mt-2 bg-[#aa8453] hover:bg-[#967344] text-white rounded-xl text-xs font-semibold"
+                  className="w-full h-10 mt-2 bg-[#fbb100] hover:bg-[#e09e00] text-white rounded-xl text-xs font-semibold"
                 >
                   Confirm Location
                 </button>

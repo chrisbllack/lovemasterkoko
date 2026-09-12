@@ -136,7 +136,7 @@ export default function AdminReservations() {
                     <td className="p-3">
                       <div className="flex flex-wrap gap-1.5">
                         {busyId === r.id ? (
-                          <Loader2 className="h-4 w-4 animate-spin text-[#aa8453]" />
+                          <Loader2 className="h-4 w-4 animate-spin text-[#fbb100]" />
                         ) : (
                           <>
                             {r.status === "confirmed" && (
@@ -156,7 +156,7 @@ export default function AdminReservations() {
                                   if (n) act(r.id, { action: "assign_room", roomNumber: n.trim() });
                                 }}
                                 title="Assign room"
-                                className="p-1.5 rounded bg-[#aa8453]/10 text-[#aa8453] hover:bg-[#aa8453]/20"
+                                className="p-1.5 rounded bg-[#fbb100]/10 text-[#fbb100] hover:bg-[#fbb100]/20"
                               >
                                 <KeyRound className="h-3.5 w-3.5" />
                               </button>

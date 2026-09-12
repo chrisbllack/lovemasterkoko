@@ -99,7 +99,7 @@ export function ServiceRequestModal({
           {/* Header */}
           <div className="flex items-center justify-between pb-3 border-b border-stone-800">
             <div className="flex items-center gap-2">
-              <span className="p-1.5 rounded-lg bg-[#aa8453]/20 text-[#c89e63]">
+              <span className="p-1.5 rounded-lg bg-[#fbb100]/20 text-[#fbb100]">
                 <BellRing className="h-4 w-4" />
               </span>
               <div>
@@ -107,7 +107,7 @@ export function ServiceRequestModal({
                   Hospitality Service Request
                 </h3>
                 <p className="text-[11px] text-stone-400">
-                  Location: <span className="text-[#c89e63] font-semibold">{roomOrTable || "Table / Room"}</span>
+                  Location: <span className="text-[#fbb100] font-semibold">{roomOrTable || "Table / Room"}</span>
                 </p>
               </div>
             </div>
@@ -133,11 +133,11 @@ export function ServiceRequestModal({
                       onClick={() => setSelectedType(opt.id)}
                       className={`p-2.5 rounded-xl border text-left transition-all ${
                         isSelected
-                          ? "bg-[#aa8453]/20 border-[#aa8453] text-white shadow-sm"
+                          ? "bg-[#fbb100]/20 border-[#fbb100] text-white shadow-sm"
                           : "bg-stone-900/70 border-stone-800/90 text-stone-300 hover:border-stone-700"
                       }`}
                     >
-                      <Icon className={`h-4 w-4 mb-1.5 ${isSelected ? "text-[#c89e63]" : "text-stone-400"}`} />
+                      <Icon className={`h-4 w-4 mb-1.5 ${isSelected ? "text-[#fbb100]" : "text-stone-400"}`} />
                       <div className="text-xs font-semibold leading-tight">{opt.title}</div>
                       <div className="text-[10px] text-stone-400 mt-0.5 line-clamp-1">{opt.desc}</div>
                     </button>
@@ -164,7 +164,7 @@ export function ServiceRequestModal({
                         onClick={() => setPaymentMethod(pm)}
                         className={`p-2 rounded-lg border text-left text-[11px] font-medium transition-all ${
                           paymentMethod === pm
-                            ? "bg-[#aa8453] text-white border-[#aa8453]"
+                            ? "bg-[#fbb100] text-white border-[#fbb100]"
                             : "bg-stone-950 text-stone-400 border-stone-800 hover:text-white"
                         }`}
                       >
@@ -185,7 +185,7 @@ export function ServiceRequestModal({
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="e.g. Please bring 4 glasses, or urgently needed..."
-                  className="w-full h-9 px-3 rounded-xl bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#aa8453]"
+                  className="w-full h-9 px-3 rounded-xl bg-stone-950 border border-stone-800 text-xs text-white placeholder-stone-500 focus:outline-none focus:border-[#fbb100]"
                 />
               </div>
 
@@ -194,7 +194,7 @@ export function ServiceRequestModal({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 h-11 bg-[#aa8453] hover:bg-[#967344] text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#aa8453]/20 active:scale-[0.98] transition-all"
+                  className="flex-1 h-11 bg-[#fbb100] hover:bg-[#e09e00] text-white rounded-xl text-xs font-semibold flex items-center justify-center gap-2 shadow-lg shadow-[#fbb100]/20 active:scale-[0.98] transition-all"
                 >
                   <Send className="h-4 w-4" />
                   <span>{isSubmitting ? "Notifying Staff…" : "Send Service Request"}</span>

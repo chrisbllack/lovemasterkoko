@@ -27,7 +27,7 @@ export default function AboutPage() {
       <BreadcrumbSchema items={breadcrumbs} />
 
       {/* Hero Header */}
-      <section className="relative pt-36 pb-24 sm:pt-44 sm:pb-32 bg-[#1b1b1b] dark:bg-[#0d0d0d] overflow-hidden">
+      <section className="relative pt-36 pb-24 sm:pt-44 sm:pb-32 bg-[#1b1b1b] dark:bg-[#1a1a1d] overflow-hidden">
         <Image
           src="/images/Hotel Lobby.jpg"
           alt="Banky Hotel Grand Lobby"
@@ -36,7 +36,7 @@ export default function AboutPage() {
           referrerPolicy="no-referrer"
           className="object-cover opacity-25"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1b1b1b] dark:from-[#0d0d0d] via-[#1b1b1b]/70 to-[#1b1b1b]/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1b1b1b] dark:from-[#202023] via-[#1b1b1b]/70 to-[#1b1b1b]/80" />
 
         <div className="container-x relative z-10 text-center max-w-4xl mx-auto">
           <span className="eyebrow text-[var(--accent)] block mb-3 tracking-[0.25em]">
@@ -52,7 +52,7 @@ export default function AboutPage() {
       </section>
 
       {/* Main Narrative Body */}
-      <div className="bg-white dark:bg-[#121212] py-20 sm:py-28">
+      <div className="bg-white dark:bg-[#202023] py-20 sm:py-28">
         <div className="container-x max-w-6xl space-y-24 sm:space-y-32">
 
           {/* Section 1: Where Heritage Meets Warmth */}
@@ -234,7 +234,7 @@ export default function AboutPage() {
       </div>
 
       {/* Epilogue & Call to Action */}
-      <section className="relative py-24 sm:py-32 bg-[#0a2777] text-white text-center overflow-hidden border-t border-[var(--accent)]/30">
+      <section className="relative py-24 sm:py-32 bg-[#0a2777] dark:bg-[#1a1a1d] text-white text-center overflow-hidden border-t border-[var(--accent)]/30">
         <div className="container-x relative z-10 max-w-4xl mx-auto space-y-8">
           <span className="eyebrow text-[var(--accent-light)] block tracking-[0.25em]">
             Timeless Invitation

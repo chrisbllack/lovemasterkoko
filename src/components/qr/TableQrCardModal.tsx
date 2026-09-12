@@ -87,7 +87,7 @@ export function TableQrCardModal({
           {/* Header */}
           <div className="flex items-center justify-between pb-3 border-b border-stone-800/80">
             <div className="flex items-center gap-2">
-              <span className="p-1.5 rounded-lg bg-[#aa8453]/20 text-[#c89e63]">
+              <span className="p-1.5 rounded-lg bg-[#fbb100]/20 text-[#fbb100]">
                 <QrIcon className="h-4 w-4" />
               </span>
               <div className="text-left">
@@ -135,12 +135,12 @@ export function TableQrCardModal({
           <div className="mt-4 p-5 bg-gradient-to-b from-stone-900/90 to-stone-950 border border-stone-800 rounded-2xl relative shadow-inner">
             {/* Hotel branding header */}
             <div className="flex items-center justify-center gap-1.5 text-stone-300 text-[11px] uppercase tracking-widest font-mono mb-1">
-              <Hotel className="h-3 w-3 text-[#c89e63]" />
+              <Hotel className="h-3 w-3 text-[#fbb100]" />
               <span>Banky Hotel & Suites</span>
             </div>
 
             <div className="text-center mb-3">
-              <span className="inline-block px-3 py-0.5 rounded-full bg-[#c89e63]/20 border border-[#c89e63]/40 text-[#f5d799] text-xs font-semibold">
+              <span className="inline-block px-3 py-0.5 rounded-full bg-[#fbb100]/20 border border-[#fbb100]/40 text-[#f5d799] text-xs font-semibold">
                 {roomOrTable || (orderType === "table" ? "Table 1" : "Room Service")}
               </span>
             </div>
@@ -192,7 +192,7 @@ export function TableQrCardModal({
 
             <button
               onClick={handleDownload}
-              className="h-9 px-3 bg-[#aa8453] hover:bg-[#967344] text-white rounded-xl text-xs font-medium flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-sm shadow-[#aa8453]/20"
+              className="h-9 px-3 bg-[#fbb100] hover:bg-[#e09e00] text-white rounded-xl text-xs font-medium flex items-center justify-center gap-1.5 active:scale-95 transition-all shadow-sm shadow-[#fbb100]/20"
             >
               <Download className="h-3.5 w-3.5" />
               <span>Save Image</span>
