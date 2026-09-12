@@ -16,11 +16,11 @@ export default function AdminRooms() {
             <div className="p-4">
               <div className="flex items-center justify-between mb-2">
                 <h3 className="font-display text-lg text-[#222]">{room.name}</h3>
-                <button className="p-1.5 text-[#666] hover:text-[#aa8453] transition-colors"><Pencil className="h-4 w-4" /></button>
+                <button className="p-1.5 text-[#666] hover:text-[#fbb100] transition-colors"><Pencil className="h-4 w-4" /></button>
               </div>
               <div className="flex items-center justify-between text-sm">
-                <span className="text-[#666]">{room.qty} units · {room.bed}</span>
-                <span className="font-display text-[#aa8453]">{naira(room.rate)}</span>
+                <span className="text-[#666]">{room.qty} units · {room.occupancy}</span>
+                <span className="font-display text-[#fbb100]">{naira(room.rate)}</span>
               </div>
             </div>
           </div>

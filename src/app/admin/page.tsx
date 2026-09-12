@@ -3,6 +3,11 @@ import { useState, useEffect } from "react";
 import { CalendarRange, BedDouble, Users, DollarSign, LogIn, LogOut } from "lucide-react";
 import { naira } from "@/lib/hotel";
 import type { Reservation } from "@/lib/booking/types";
+import {
+  RevenueTrendChart,
+  DailyTrendItem,
+  MonthMetadata,
+} from "@/components/admin/RevenueTrendChart";
 
 function StatCard({ icon: Icon, label, value, color }: { icon: typeof CalendarRange; label: string; value: string | number; color: string }) {
   return (
@@ -18,8 +23,15 @@ function StatCard({ icon: Icon, label, value, color }: { icon: typeof CalendarRa
 
 export default function AdminOverview() {
   const [stats, setStats] = useState<{
-    totalRooms: number; arrivals: number; departures: number; inHouse: number; revenue: number;
-    recent: Reservation[]; today: string;
+    totalRooms: number;
+    arrivals: number;
+    departures: number;
+    inHouse: number;
+    revenue: number;
+    recent: Reservation[];
+    today: string;
+    dailyTrends?: DailyTrendItem[];
+    monthMetadata?: MonthMetadata;
   } | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -51,12 +63,20 @@ export default function AdminOverview() {
         </p>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-        <StatCard icon={BedDouble} label="Rooms" value={stats?.totalRooms ?? "—"} color="bg-[#aa8453]/10 text-[#aa8453]" />
+        <StatCard icon={BedDouble} label="Rooms" value={stats?.totalRooms ?? "—"} color="bg-[#fbb100]/10 text-[#fbb100]" />
         <StatCard icon={LogIn} label="Arrivals Today" value={stats?.arrivals ?? "—"} color="bg-emerald-100 text-emerald-600" />
         <StatCard icon={Users} label="In House" value={stats?.inHouse ?? "—"} color="bg-blue-100 text-blue-600" />
         <StatCard icon={LogOut} label="Departures Today" value={stats?.departures ?? "—"} color="bg-stone-200 text-stone-700" />
         <StatCard icon={DollarSign} label="Revenue (Month)" value={stats ? naira(stats.revenue / 100) : "—"} color="bg-amber-100 text-amber-600" />
       </div>
+
+      {/* Daily Revenue Trends Line Chart (Recharts) */}
+      <RevenueTrendChart
+        data={stats?.dailyTrends ?? []}
+        metadata={stats?.monthMetadata}
+        totalRevenueNaira={stats ? Math.round(stats.revenue / 100) : 0}
+        loading={loading}
+      />
 
       <div className="bg-white dark:bg-[#1a1815] border border-[#ece6dd] dark:border-[#2e2b26] rounded-md p-6">
         <h2 className="font-display text-xl text-[#222] dark:text-white mb-4">Recent Reservations</h2>

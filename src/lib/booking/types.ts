@@ -19,8 +19,9 @@ export type RoomType = {
   /** Authoritative base nightly rate in kobo (NGN minor units). */
   baseRate: number;
   maxOccupancy: number;
-  bed: string;
+  bed?: string;
   image: string;
+  images?: string[];
   blurb?: string;
   features?: string[];
   status: RoomStatus;

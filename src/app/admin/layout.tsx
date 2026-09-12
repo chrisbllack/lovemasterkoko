@@ -38,7 +38,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             const Icon = item.icon;
             const active = pathname === item.to;
             return (
-              <Link key={item.to} href={item.to} onClick={() => setOpen(false)} className={cn("flex items-center gap-3 px-4 py-3 rounded-md text-sm transition-colors", active ? "bg-[#aa8453]/20 text-[#aa8453]" : "text-stone-400 hover:bg-white/5 hover:text-white")}>
+              <Link key={item.to} href={item.to} onClick={() => setOpen(false)} className={cn("flex items-center gap-3 px-4 py-3 rounded-md text-sm transition-colors", active ? "bg-[#fbb100]/20 text-[#fbb100]" : "text-stone-400 hover:bg-white/5 hover:text-white")}>
                 <Icon className="h-4 w-4" /><span className="font-condensed uppercase tracking-wider">{item.label}</span>
               </Link>
             );

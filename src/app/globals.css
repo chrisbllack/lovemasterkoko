@@ -7,14 +7,14 @@
   /* Classic Gold (default / original) */
   :root,
   [data-scheme="gold"] {
-    --accent: #aa8453;
-    --accent-light: #c5a880;
-    --accent-dark: #8a6a3f;
-    --accent-surface: #f8f5f0;
-    --accent-muted: rgba(170, 132, 83, 0.12);
-    --accent-gradient: linear-gradient(135deg, #aa8453, #c5a880);
-    --accent-secondary: #aa8453;
-    --accent-secondary-light: #c5a880;
+    --accent: #fbb100;
+    --accent-light: #ffc42e;
+    --accent-dark: #d99800;
+    --accent-surface: #fdfaf3;
+    --accent-muted: rgba(251, 177, 0, 0.14);
+    --accent-gradient: linear-gradient(135deg, #fbb100, #ffc42e);
+    --accent-secondary: #fbb100;
+    --accent-secondary-light: #ffc42e;
   }
 
   /* Navy Blue */
@@ -32,8 +32,8 @@
   /* ─── Base tokens ─── */
   :root,
   [data-scheme="gold"] {
-    --gold: #aa8453;
-    --gold-light: #c5a880;
+    --gold: #fbb100;
+    --gold-light: #ffc42e;
     --ivory: #f8f5f0;
     --midnight: #1b1b1b;
     --cream: #f4eee6;
@@ -59,14 +59,14 @@
   }
 
   .dark {
-    --gold: #c5a880;
-    --gold-light: #dcc9a8;
-    --ivory: #181715;
-    --midnight: #0d0d0d;
-    --cream: #2a251e;
-    --border: #38332c;
-    --surface: #161616;
-    --surface-alt: #1c1a17;
+    --gold: #fbb100;
+    --gold-light: #ffc42e;
+    --ivory: #202023;
+    --midnight: #18181b;
+    --cream: #28282d;
+    --border: #3a3a42;
+    --surface: #202023;
+    --surface-alt: #28282d;
     --text-primary: #ffffff;
     --text-secondary: #e6e3dd;
     --text-muted: #c4beb7;
@@ -75,18 +75,18 @@
     --accent: #4d7adf;
     --accent-light: #6b93e8;
     --accent-dark: #3a65c4;
-    --accent-surface: #1a2040;
+    --accent-surface: #262938;
     --accent-muted: rgba(77, 122, 223, 0.15);
     --accent-gradient: linear-gradient(135deg, #4d7adf, #6b93e8);
     --accent-secondary: #fbb100;
     --accent-secondary-light: #fcd34d;
     --gold: #4d7adf;
     --gold-light: #6b93e8;
-    --ivory: #0e1225;
-    --cream: #1a2040;
-    --border: #323b60;
-    --surface: #0e1225;
-    --surface-alt: #141830;
+    --ivory: #202023;
+    --cream: #28282d;
+    --border: #3a3a42;
+    --surface: #202023;
+    --surface-alt: #28282d;
     --text-primary: #ffffff;
     --text-secondary: #e2e8f0;
     --text-muted: #cbd5e1;
@@ -153,7 +153,7 @@
   }
 
   .btn-outline-gold {
-    @apply border-2 text-[#aa8453] font-condensed uppercase tracking-[0.18em] font-medium transition-all;
+    @apply border-2 text-[#fbb100] font-condensed uppercase tracking-[0.18em] font-medium transition-all;
     border-color: var(--accent);
     color: var(--accent);
   }
@@ -183,9 +183,43 @@
 
   /* Dark mode card styles */
   .dark .card {
-    @apply bg-[#1c1a17];
+    background-color: #28282d;
     border-color: var(--border);
   }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Dark Mode Universal Grey Background Overrides                     */
+/* ------------------------------------------------------------------ */
+html.dark,
+body.dark,
+.dark,
+.dark body,
+.dark main {
+  background-color: #202023 !important;
+}
+
+/* User-selected elements in focus mode (all set to grey background) */
+.dark main:nth-of-type(1) > section:nth-of-type(8),
+.dark main:nth-of-type(1) > section:nth-of-type(5),
+.dark main:nth-of-type(1) > section:nth-of-type(4),
+.dark main:nth-of-type(1) > section:nth-of-type(3),
+.dark main:nth-of-type(1) > section:nth-of-type(3) > div:nth-of-type(1) {
+  background-color: #202023 !important;
+}
+
+/* Dark mode section & component background enforcement to grey */
+.dark .dark\:bg-black,
+.dark .dark\:bg-\[\#121212\],
+.dark .dark\:bg-\[\#1c1a17\],
+.dark .dark\:bg-\[\#1a1815\],
+.dark .dark\:bg-\[\#181613\],
+.dark .dark\:bg-\[\#0d0d0d\],
+.dark .dark\:bg-\[\#0e1225\],
+.dark .dark\:bg-\[\#161616\],
+.dark .dark\:bg-blue-950,
+.dark .dark\:bg-\[\#071d5a\] {
+  background-color: #202023 !important;
 }
 
 @layer utilities {
@@ -252,3 +286,78 @@ h1, h2, h3, h4, h5, h6,
 
 .animate-rise { animation: rise 0.8s cubic-bezier(0.16,1,0.3,1) both; }
 .animate-ticker { animation: ticker 36s linear infinite; }
+
+/* Cropped header logo fitting inside container */
+.cropped-header-logo {
+  object-fit: contain;
+  object-view-box: inset(15% 20% 20% 20%);
+}
+
+@supports not (object-view-box: inset(0)) {
+  .cropped-header-logo {
+    clip-path: inset(15% 20% 20% 20%);
+    transform: scale(1.58) translateY(2.5%);
+    transform-origin: 50% 47.5%;
+  }
+}
+
+/* Desktop / PC mode only: 10% right, 10% left, 5% above, 5% below */
+@media (min-width: 1024px) {
+  .cropped-header-logo {
+    object-fit: contain;
+    object-view-box: inset(5% 10% 5% 10%);
+  }
+
+  @supports not (object-view-box: inset(0)) {
+    .cropped-header-logo {
+      clip-path: inset(5% 10% 5% 10%);
+      transform: scale(1.18) translateY(0);
+      transform-origin: center center;
+    }
+  }
+}
+
+/* ==========================================================================
+   Thermal Printer Receipt Styles (58mm / 80mm POS Thermal Slip)
+   ========================================================================== */
+@media print {
+  /* When printing thermal receipts, isolate the slip and hide the UI */
+  body.printing-thermal-slip {
+    background: #ffffff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body.printing-thermal-slip * {
+    visibility: hidden;
+  }
+
+  body.printing-thermal-slip #thermal-receipt-container,
+  body.printing-thermal-slip #thermal-receipt-container * {
+    visibility: visible;
+  }
+
+  body.printing-thermal-slip #thermal-receipt-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 78mm !important;
+    max-width: 80mm !important;
+    margin: 0 !important;
+    padding: 2mm 3mm !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Optimize page layout for continuous roll thermal paper */
+  @page {
+    size: 80mm auto;
+    margin: 2mm 0;
+  }
+}

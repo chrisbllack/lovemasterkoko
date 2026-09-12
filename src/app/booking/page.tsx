@@ -223,7 +223,7 @@ function BookingFlow() {
       /* storage unavailable — verify falls back to the BKS reference */
     }
     window.location.assign(res.data.authorizationUrl);
-  }, [reservationId]);
+  }, [reservationId, reference]);
 
   const checkPayment = useCallback(async () => {
     if (!reference) return;
@@ -601,8 +601,8 @@ function BookingFlow() {
 export default function BookingPage() {
   return (
     <>
-      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-20 bg-[#1b1b1b]">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1b1b1b] via-[#1b1b1b]/80 to-[#1b1b1b]" />
+      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-20 bg-[#1b1b1b] dark:bg-[#1a1a1d]">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1b1b1b] dark:from-[#202023] via-[#1b1b1b]/80 to-[#1b1b1b] dark:to-[#202023]" />
         <div className="container-x relative z-10 text-center">
           <span className="eyebrow text-[var(--accent)] block mb-3">Online Reservations</span>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-white mb-4">Book Your Stay</h1>
@@ -611,7 +611,7 @@ export default function BookingPage() {
           </p>
         </div>
       </section>
-      <section className="py-10 sm:py-16 md:py-20 bg-white dark:bg-[#121212]">
+      <section className="py-10 sm:py-16 md:py-20 bg-white dark:bg-[#202023]">
         <div className="container-x">
           <Suspense fallback={<div className="text-center py-20 text-stone-400">Loading booking form…</div>}>
             <BookingFlow />

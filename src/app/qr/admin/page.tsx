@@ -108,7 +108,7 @@ export default function QrAdminKitchenStation() {
     return (
       <div className="min-h-screen bg-[#11100f] text-[#f4efe6] flex items-center justify-center p-4">
         <div className="max-w-sm w-full bg-[#181715] border border-stone-800 rounded-3xl p-6 text-center shadow-2xl">
-          <div className="h-14 w-14 rounded-2xl bg-[#aa8453]/20 border border-[#aa8453]/40 flex items-center justify-center mx-auto mb-4 text-[#aa8453]">
+          <div className="h-14 w-14 rounded-2xl bg-[#fbb100]/20 border border-[#fbb100]/40 flex items-center justify-center mx-auto mb-4 text-[#fbb100]">
             <Lock className="h-6 w-6" />
           </div>
 
@@ -129,7 +129,7 @@ export default function QrAdminKitchenStation() {
                 value={passcode}
                 onChange={(e) => setPasscode(e.target.value)}
                 placeholder="Enter passcode (e.g. banky2026)"
-                className="w-full h-11 pl-10 pr-4 bg-stone-950 border border-stone-800 rounded-xl text-sm text-white placeholder-stone-600 focus:outline-none focus:border-[#aa8453] text-center tracking-widest font-mono"
+                className="w-full h-11 pl-10 pr-4 bg-stone-950 border border-stone-800 rounded-xl text-sm text-white placeholder-stone-600 focus:outline-none focus:border-[#fbb100] text-center tracking-widest font-mono"
               />
             </div>
 
@@ -141,7 +141,7 @@ export default function QrAdminKitchenStation() {
 
             <button
               type="submit"
-              className="w-full h-11 bg-[#aa8453] hover:bg-[#967344] text-white rounded-xl text-sm font-semibold shadow-lg shadow-[#aa8453]/20 active:scale-95 transition-all"
+              className="w-full h-11 bg-[#fbb100] hover:bg-[#e09e00] text-white rounded-xl text-sm font-semibold shadow-lg shadow-[#fbb100]/20 active:scale-95 transition-all"
             >
               Unlock Station
             </button>
@@ -205,7 +205,7 @@ export default function QrAdminKitchenStation() {
             onClick={() => setActiveTab("orders")}
             className={`px-4 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-2 transition-colors ${
               activeTab === "orders"
-                ? "bg-[#aa8453] text-white"
+                ? "bg-[#fbb100] text-white"
                 : "bg-stone-900 text-stone-400 hover:text-white"
             }`}
           >
@@ -217,7 +217,7 @@ export default function QrAdminKitchenStation() {
             onClick={() => setActiveTab("stock")}
             className={`px-4 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-2 transition-colors ${
               activeTab === "stock"
-                ? "bg-[#aa8453] text-white"
+                ? "bg-[#fbb100] text-white"
                 : "bg-stone-900 text-stone-400 hover:text-white"
             }`}
           >
@@ -276,7 +276,7 @@ export default function QrAdminKitchenStation() {
 
                         {/* Room */}
                         <div className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-                          <span className="bg-[#aa8453] text-white px-2.5 py-0.5 rounded-lg text-sm">
+                          <span className="bg-[#fbb100] text-white px-2.5 py-0.5 rounded-lg text-sm">
                             {o.roomOrTable}
                           </span>
                           {o.guestName && (
@@ -313,7 +313,7 @@ export default function QrAdminKitchenStation() {
 
                       {/* Total & Action */}
                       <div className="pt-3 border-t border-stone-800/80 flex items-center justify-between gap-3">
-                        <div className="font-display font-semibold text-sm text-[#aa8453]">
+                        <div className="font-display font-semibold text-sm text-[#fbb100]">
                           {formatNaira(o.totalAmount)}
                         </div>
 

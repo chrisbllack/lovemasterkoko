@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const schemes: { id: ColorScheme; label: string; colors: string[] }[] = [
   { id: "navy", label: "Navy Blue", colors: ["#0a2777", "#0000dd", "#fbb100"] },
-  { id: "gold", label: "Classic Gold", colors: ["#aa8453", "#c5a880", "#f4eee6"] },
+  { id: "gold", label: "Classic Gold", colors: ["#fbb100", "#ffc42e", "#fdfaf3"] },
 ];
 
 export function ColorSchemeToggle() {
@@ -17,7 +17,7 @@ export function ColorSchemeToggle() {
       {/* Toggle button */}
       <button
         onClick={() => setOpen(!open)}
-        className="h-10 w-10 rounded-full bg-white dark:bg-[#1c1a17] border border-[#ece6dd] dark:border-[#2e2b26] shadow-lg flex items-center justify-center hover:scale-110 transition-all duration-200 group"
+        className="h-10 w-10 rounded-full bg-white dark:bg-[#28282d] border border-[#ece6dd] dark:border-[#3a3a42] shadow-lg flex items-center justify-center hover:scale-110 transition-all duration-200 group"
         aria-label="Change color scheme"
         title="Change color scheme"
       >
@@ -28,7 +28,7 @@ export function ColorSchemeToggle() {
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute bottom-14 left-0 z-50 w-64 rounded-xl bg-white dark:bg-[#1c1a17] border border-[#ece6dd] dark:border-[#2e2b26] shadow-2xl p-4 animate-rise">
+          <div className="absolute bottom-14 left-0 z-50 w-64 rounded-xl bg-white dark:bg-[#28282d] border border-[#ece6dd] dark:border-[#3a3a42] shadow-2xl p-4 animate-rise">
             <div className="flex items-center justify-between mb-3">
               <span className="font-condensed text-xs uppercase tracking-[0.2em] text-[#666] dark:text-[#a8a29e] font-semibold">
                 Color Scheme

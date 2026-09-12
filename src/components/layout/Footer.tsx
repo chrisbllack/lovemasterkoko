@@ -19,7 +19,7 @@ const LINKS = [
 
 export function Footer() {
   return (
-    <footer className="bg-[#0a2777] dark:bg-[#071d5a] text-white border-t" style={{ borderColor: "color-mix(in srgb, #0000dd 20%, transparent)" }}>
+    <footer className="bg-[#0a2777] dark:bg-[#18181b] text-white border-t border-transparent dark:border-[#3a3a42]" style={{ borderColor: "color-mix(in srgb, #0000dd 20%, transparent)" }}>
       <div className="container-x py-16 sm:py-20">
         <div className="grid gap-12 lg:grid-cols-12">
           {/* Brand */}

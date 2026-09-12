@@ -225,13 +225,13 @@ export default function AdminQrMenuPage() {
             onClick={() => setIsCategoryModalOpen(true)}
             className="px-3.5 py-2 bg-white text-stone-800 border border-stone-300 rounded-lg text-xs font-medium flex items-center gap-2 hover:bg-stone-50"
           >
-            <FolderPlus className="h-4 w-4 text-[#aa8453]" />
+            <FolderPlus className="h-4 w-4 text-[#fbb100]" />
             <span>Categories ({categories.length})</span>
           </button>
 
           <button
             onClick={() => setIsAddingItem(true)}
-            className="px-3.5 py-2 bg-[#aa8453] hover:bg-[#967344] text-white rounded-lg text-xs font-semibold flex items-center gap-2 shadow-sm"
+            className="px-3.5 py-2 bg-[#fbb100] hover:bg-[#e09e00] text-white rounded-lg text-xs font-semibold flex items-center gap-2 shadow-sm"
           >
             <Plus className="h-4 w-4" />
             <span>Add New Dish / Drink</span>
@@ -282,7 +282,7 @@ export default function AdminQrMenuPage() {
             onClick={() => setSelectedCategory("all")}
             className={`px-3 py-1 rounded-full font-medium whitespace-nowrap transition-colors ${
               selectedCategory === "all"
-                ? "bg-[#aa8453] text-white"
+                ? "bg-[#fbb100] text-white"
                 : "bg-stone-100 text-stone-600 hover:bg-stone-200"
             }`}
           >
@@ -296,7 +296,7 @@ export default function AdminQrMenuPage() {
                 onClick={() => setSelectedCategory(cat.id)}
                 className={`px-3 py-1 rounded-full font-medium whitespace-nowrap transition-colors ${
                   selectedCategory === cat.id
-                    ? "bg-[#aa8453] text-white"
+                    ? "bg-[#fbb100] text-white"
                     : "bg-stone-100 text-stone-600 hover:bg-stone-200"
                 }`}
               >
@@ -358,7 +358,7 @@ export default function AdminQrMenuPage() {
                     {/* Title & Desc */}
                     <td className="p-3 max-w-xs sm:max-w-md">
                       <div className="font-semibold text-stone-900 text-sm">{item.title}</div>
-                      <div className="text-[11px] text-[#aa8453] font-medium">{item.categoryName}</div>
+                      <div className="text-[11px] text-[#fbb100] font-medium">{item.categoryName}</div>
                       <p className="text-stone-500 text-[11px] line-clamp-1 mt-0.5">
                         {item.description}
                       </p>
@@ -454,7 +454,7 @@ export default function AdminQrMenuPage() {
                   required
                   defaultValue={editingItem?.title || ""}
                   placeholder="e.g. Banky Signature Jollof Rice"
-                  className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#aa8453]"
+                  className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#fbb100]"
                 />
               </div>
 
@@ -467,7 +467,7 @@ export default function AdminQrMenuPage() {
                     name="categoryId"
                     required
                     defaultValue={editingItem?.categoryId || categories[0]?.id || "breakfast"}
-                    className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#aa8453]"
+                    className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#fbb100]"
                   >
                     {categories.map((c) => (
                       <option key={c.id} value={c.id}>
@@ -487,7 +487,7 @@ export default function AdminQrMenuPage() {
                     required
                     min={0}
                     defaultValue={editingItem?.price || 3000}
-                    className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 font-mono focus:outline-none focus:border-[#aa8453]"
+                    className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 font-mono focus:outline-none focus:border-[#fbb100]"
                   />
                 </div>
               </div>
@@ -501,7 +501,7 @@ export default function AdminQrMenuPage() {
                   rows={3}
                   defaultValue={editingItem?.description || ""}
                   placeholder="Appetizing description of preparation, flavors, and serving..."
-                  className="w-full p-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#aa8453] resize-none"
+                  className="w-full p-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#fbb100] resize-none"
                 />
               </div>
 
@@ -513,7 +513,7 @@ export default function AdminQrMenuPage() {
                   type="text"
                   name="imageUrl"
                   defaultValue={editingItem?.imageUrl || "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=600&auto=format&fit=crop&q=80"}
-                  className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#aa8453]"
+                  className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#fbb100]"
                 />
               </div>
 
@@ -527,7 +527,7 @@ export default function AdminQrMenuPage() {
                     name="dietary"
                     defaultValue={editingItem?.dietary?.join(", ") || "Chef Special"}
                     placeholder="e.g. Spicy, Vegetarian, Halal"
-                    className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#aa8453]"
+                    className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#fbb100]"
                   />
                 </div>
 
@@ -540,7 +540,7 @@ export default function AdminQrMenuPage() {
                     name="preparationTime"
                     defaultValue={editingItem?.preparationTime || "15-20 mins"}
                     placeholder="e.g. 15-20 mins"
-                    className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#aa8453]"
+                    className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#fbb100]"
                   />
                 </div>
               </div>
@@ -552,7 +552,7 @@ export default function AdminQrMenuPage() {
                 <select
                   name="isAvailable"
                   defaultValue={editingItem ? String(editingItem.isAvailable) : "true"}
-                  className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#aa8453]"
+                  className="w-full h-10 px-3 rounded-lg border border-stone-300 text-stone-900 focus:outline-none focus:border-[#fbb100]"
                 >
                   <option value="true">In Stock (Available for ordering)</option>
                   <option value="false">Out of Stock (Greyed out on guest menu)</option>
@@ -572,7 +572,7 @@ export default function AdminQrMenuPage() {
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 bg-[#aa8453] hover:bg-[#967344] text-white font-semibold rounded-lg shadow"
+                  className="px-5 py-2 bg-[#fbb100] hover:bg-[#e09e00] text-white font-semibold rounded-lg shadow"
                 >
                   Save Item
                 </button>
@@ -635,7 +635,7 @@ export default function AdminQrMenuPage() {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-1.5 bg-[#aa8453] text-white rounded-lg font-semibold"
+                  className="px-4 py-1.5 bg-[#fbb100] text-white rounded-lg font-semibold"
                 >
                   Add Category
                 </button>
@@ -665,14 +665,14 @@ export default function AdminQrMenuPage() {
                 value={qrRoomOrTable}
                 onChange={(e) => setQrRoomOrTable(e.target.value)}
                 placeholder="e.g. Room 204, Table 12, or Garden Sitout"
-                className="w-full h-10 px-3 rounded-xl border border-stone-300 text-xs text-stone-900 focus:outline-none focus:border-[#aa8453]"
+                className="w-full h-10 px-3 rounded-xl border border-stone-300 text-xs text-stone-900 focus:outline-none focus:border-[#fbb100]"
               />
             </div>
 
             {/* Printable Tent Card Mockup */}
             <div
               id="printable-qr-stand"
-              className="bg-[#191816] text-[#f4efe6] p-6 rounded-2xl border-2 border-[#aa8453]/40 shadow-inner my-3"
+              className="bg-[#191816] text-[#f4efe6] p-6 rounded-2xl border-2 border-[#fbb100]/40 shadow-inner my-3"
             >
               <div className="relative h-12 w-12 mx-auto mb-2">
                 <Image
@@ -686,7 +686,7 @@ export default function AdminQrMenuPage() {
               <h4 className="font-display text-base font-semibold text-white tracking-wide">
                 BANKY HOTEL & SUITES
               </h4>
-              <p className="text-[10px] uppercase font-mono tracking-widest text-[#aa8453] mb-3">
+              <p className="text-[10px] uppercase font-mono tracking-widest text-[#fbb100] mb-3">
                 In-Room Dining & Bar Menu
               </p>
 
@@ -703,7 +703,7 @@ export default function AdminQrMenuPage() {
               </div>
 
               {qrRoomOrTable && (
-                <div className="mt-3 inline-block px-3 py-1 rounded-full bg-[#aa8453]/20 border border-[#aa8453]/40 text-[#aa8453] text-xs font-mono font-bold">
+                <div className="mt-3 inline-block px-3 py-1 rounded-full bg-[#fbb100]/20 border border-[#fbb100]/40 text-[#fbb100] text-xs font-mono font-bold">
                   {qrRoomOrTable}
                 </div>
               )}
