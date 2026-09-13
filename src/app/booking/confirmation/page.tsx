@@ -22,7 +22,8 @@ export default function BookingConfirmationPage() {
   const [state, setState] = useState<VerifyState>("verifying");
   const [message, setMessage] = useState<string>("Confirming your payment…");
   const [payload, setPayload] = useState<VerifyPayload | null>(null);
-  const pollsLeft = useRef(MAX_POLLS);
+    const [ref, setRef] = useState<string | null>(null);
+    const pollsLeft = useRef(MAX_POLLS);
 
   const verify = useCallback(async (reference: string) => {
     try {

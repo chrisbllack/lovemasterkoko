@@ -100,11 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="/favicon.png" type="image/png" />
         {/* Prevent FOUC: apply dark class based on Lagos, Nigeria WAT schedule (07:00am-06:59pm Light, 07:00pm-06:59am Dark) */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(){try{var now=new Date();var watHour=(now.getUTCHours()+1)%24;var watMin=now.getUTCMinutes();var watMinutes=watHour*60+watMin;var isLightSchedule=watMinutes>=420&&watMinutes<1140;var manual=sessionStorage.getItem('banky-theme-manual');var isDark=manual==='dark'?true:manual==='light'?false:!isLightSchedule;document.documentElement.classList.toggle('dark',isDark);var s=localStorage.getItem('banky-color-scheme');if(s==='navy'||s==='gold'){document.documentElement.setAttribute('data-scheme',s)}else{document.documentElement.setAttribute('data-scheme','gold')}}catch(e){document.documentElement.setAttribute('data-scheme','gold')}})();`,
-          }}
-        />
+        <script src="/theme-init.js" defer />
       </head>
       <body className="min-h-screen bg-white dark:bg-[#202023] text-[#222] dark:text-[#f4efe6]">
         <ThemeProvider>
