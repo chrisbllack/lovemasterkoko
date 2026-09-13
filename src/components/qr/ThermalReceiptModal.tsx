@@ -108,7 +108,7 @@ export function ThermalReceiptModal({
         {/* Modal Top Bar */}
         <div className="px-5 py-3.5 border-b border-stone-200 dark:border-stone-800 flex items-center justify-between bg-stone-50 dark:bg-stone-950">
           <div className="flex items-center gap-2">
-            <Printer className="h-4 w-4 text-[#fbb100]" />
+            <Printer className="h-4 w-4 text-[#ffbf00]" />
             <h3 className="font-display font-semibold text-stone-900 dark:text-white text-base">
               Thermal Receipt View
             </h3>
@@ -346,7 +346,7 @@ export function ThermalReceiptModal({
             </button>
             <button
               onClick={handlePrint}
-              className="px-4 py-2 bg-stone-900 hover:bg-black text-white dark:bg-[#fbb100] dark:hover:bg-[#e09e00] rounded-xl text-xs font-semibold flex items-center gap-2 shadow-md hover:shadow-lg transition-all active:scale-95"
+              className="px-4 py-2 bg-stone-900 hover:bg-black text-white dark:bg-[#ffbf00] dark:hover:bg-[#e09e00] rounded-xl text-xs font-semibold flex items-center gap-2 shadow-md hover:shadow-lg transition-all active:scale-95"
             >
               <Printer className="h-4 w-4" />
               <span>Print Thermal Slip</span>

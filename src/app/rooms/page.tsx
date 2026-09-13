@@ -28,9 +28,6 @@ export default function RoomsPage() {
                   autoSlideInterval={6000}
                 />
                 <div className="p-6">
-                  <div className="flex items-center gap-3 mb-2">
-                    <span className="eyebrow text-[var(--accent)] font-medium">{room.occupancy}</span>
-                  </div>
                   <h2 className="font-display text-2xl font-normal text-stone-900 dark:text-white mb-2">{room.name}</h2>
                   <p className="text-sm text-stone-700 dark:text-stone-200 font-normal leading-relaxed mb-4">{room.blurb}</p>
                   <div className="flex items-center justify-between pt-3 border-t border-[#ece6dd] dark:border-[#3a3a42]">

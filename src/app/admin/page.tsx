@@ -63,7 +63,7 @@ export default function AdminOverview() {
         </p>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-        <StatCard icon={BedDouble} label="Rooms" value={stats?.totalRooms ?? "—"} color="bg-[#fbb100]/10 text-[#fbb100]" />
+        <StatCard icon={BedDouble} label="Rooms" value={stats?.totalRooms ?? "—"} color="bg-[#ffbf00]/10 text-[#ffbf00]" />
         <StatCard icon={LogIn} label="Arrivals Today" value={stats?.arrivals ?? "—"} color="bg-emerald-100 text-emerald-600" />
         <StatCard icon={Users} label="In House" value={stats?.inHouse ?? "—"} color="bg-blue-100 text-blue-600" />
         <StatCard icon={LogOut} label="Departures Today" value={stats?.departures ?? "—"} color="bg-stone-200 text-stone-700" />

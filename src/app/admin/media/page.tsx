@@ -43,6 +43,10 @@ export default function AdminMediaPage() {
           const upper = f.name.toUpperCase();
           if (upper.includes("DELUXE")) roomMatch = "Deluxe Room";
           else if (upper.includes("EXECUTIVE")) roomMatch = "Executive Suite";
+          else if (upper.includes("STANDARD PLUS") || upper.includes("STANDAR PLUS")) roomMatch = "Standard Plus Room";
+          else if (upper.includes("STANDARD")) roomMatch = "Standard Room";
+          else if (upper.includes("2 PLUS") || upper.includes("WHITE")) roomMatch = "Brand Logo (White Silhouette)";
+          else if (upper.includes("LOGO")) roomMatch = "Brand Logo Asset";
           return {
             name: f.name,
             size: f.size,
@@ -125,15 +129,15 @@ export default function AdminMediaPage() {
             {uploading ? (
               <Loader2 className="h-8 w-8 animate-spin" />
             ) : (
-              <Upload className="h-8 w-8 text-[#fbb100]" />
+              <Upload className="h-8 w-8 text-[#ffbf00]" />
             )}
           </div>
           <div>
             <h3 className="font-display text-xl text-stone-900">
-              {uploading ? "Saving files to public/images/..." : "Drag & Drop Your Actual Photos Here"}
+              {uploading ? "Saving files directly to public/images/..." : "Drag & Drop Image Files Directly Here"}
             </h3>
-            <p className="text-sm text-stone-500 mt-1 max-w-md mx-auto">
-              Select or drop <strong className="text-stone-700">DELUXE MAIN1.jpeg</strong>, <strong className="text-stone-700">DELUXE MAIN2.jpeg</strong>, <strong className="text-stone-700">EXECUTIVE Main.jpeg</strong>, or any other actual hotel room photos.
+            <p className="text-sm text-stone-500 mt-1 max-w-lg mx-auto">
+              Drop any original image files — room photography (<strong className="text-stone-700">DELUXE MAIN1.jpeg</strong>, <strong className="text-stone-700">Standard PLUS.jpeg</strong>) or official brand logos (<strong className="text-stone-700">Banky Hotel &amp; Suites Main Logo plus.png</strong>). Saved byte-for-byte directly into <code className="bg-stone-100 px-1 py-0.5 rounded text-xs font-mono">public/images/</code> with zero AI editing.
             </p>
           </div>
 
@@ -145,6 +149,96 @@ export default function AdminMediaPage() {
           >
             {uploading ? "Processing..." : "Browse Local Files"}
           </button>
+        </div>
+      </div>
+
+      {/* Brand Logos & Identity Section */}
+      <div className="bg-white border border-[#ece6dd] rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-stone-100 pb-4">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-amber-500" />
+              <h2 className="font-display text-xl text-stone-900">Official Brand Logos &amp; Identity Assets</h2>
+            </div>
+            <p className="text-xs text-stone-500 mt-0.5">
+              Direct master vector/raster files stored in <code className="bg-stone-100 px-1 py-0.5 rounded font-mono">public/images/</code>. No AI alteration applied.
+            </p>
+          </div>
+          <span className="text-xs text-stone-400 font-mono">Original Brand Marks</span>
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-3">
+          {/* Logo 1: Full Brand Logo */}
+          <div className="border border-stone-200 rounded-2xl p-4 bg-stone-50/50 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-semibold text-stone-800">Full Brand Logo</span>
+              <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-medium">Color + Text</span>
+            </div>
+            <div className="aspect-[16/10] rounded-xl overflow-hidden bg-white border border-stone-200 p-3 flex items-center justify-center relative">
+              <img
+                src={`/images/Banky Hotel & Suites Main Logo plus..png?t=${refreshKey}`}
+                alt="Banky Full Brand Logo"
+                className="max-h-full max-w-full object-contain"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = `/images/banky-desktop-logo.png?t=${refreshKey}`;
+                }}
+              />
+            </div>
+            <div className="space-y-1">
+              <p className="text-[11px] font-mono text-stone-700 font-medium truncate" title="Banky Hotel & Suites Main Logo plus..png">
+                Banky Hotel &amp; Suites Main Logo plus..png
+              </p>
+              <p className="text-[10px] text-stone-500">Towers + crescent arch + &quot;BANKY HOTEL &amp; SUITES&quot;</p>
+            </div>
+          </div>
+
+          {/* Logo 2: Color Icon Mark */}
+          <div className="border border-stone-200 rounded-2xl p-4 bg-stone-50/50 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-semibold text-stone-800">Architectural Mark</span>
+              <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-medium">Color Icon</span>
+            </div>
+            <div className="aspect-[16/10] rounded-xl overflow-hidden bg-white border border-stone-200 p-3 flex items-center justify-center relative">
+              <img
+                src={`/images/Banky Hotel & Suites Main Logo plus.png?t=${refreshKey}`}
+                alt="Banky 3-Tower Icon Mark"
+                className="max-h-full max-w-full object-contain"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = `/images/Banky Hotel & Suites Main Logo 1.png?t=${refreshKey}`;
+                }}
+              />
+            </div>
+            <div className="space-y-1">
+              <p className="text-[11px] font-mono text-stone-700 font-medium truncate" title="Banky Hotel & Suites Main Logo plus.png">
+                Banky Hotel &amp; Suites Main Logo plus.png
+              </p>
+              <p className="text-[10px] text-stone-500">Royal blue 3-tower skyline with golden horizon crescent</p>
+            </div>
+          </div>
+
+          {/* Logo 3: White Silhouette Mark */}
+          <div className="border border-stone-200 rounded-2xl p-4 bg-stone-50/50 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-semibold text-stone-800">White Silhouette Mark</span>
+              <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-stone-900 text-stone-100 font-medium">Monochrome</span>
+            </div>
+            <div className="aspect-[16/10] rounded-xl overflow-hidden bg-[#14120f] border border-stone-800 p-3 flex items-center justify-center relative">
+              <img
+                src={`/images/Banky Hotel & Suites Main Logo 2 plus..png?t=${refreshKey}`}
+                alt="Banky White Silhouette Logo"
+                className="max-h-full max-w-full object-contain"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = `/images/Banky Hotel & Suites Main Logo 2 plus.png?t=${refreshKey}`;
+                }}
+              />
+            </div>
+            <div className="space-y-1">
+              <p className="text-[11px] font-mono text-stone-700 font-medium truncate" title="Banky Hotel & Suites Main Logo 2 plus..png">
+                Banky Hotel &amp; Suites Main Logo 2 plus..png
+              </p>
+              <p className="text-[10px] text-stone-500">Pure white silhouette mark for dark backdrops &amp; footer</p>
+            </div>
+          </div>
         </div>
       </div>
 

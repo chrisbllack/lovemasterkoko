@@ -4,8 +4,8 @@ import { Palette, RotateCcw } from "lucide-react";
 import { useState } from "react";
 
 const schemes: { id: ColorScheme; label: string; colors: string[] }[] = [
-  { id: "navy", label: "Navy Blue", colors: ["#0a2777", "#0000dd", "#fbb100"] },
-  { id: "gold", label: "Classic Gold", colors: ["#fbb100", "#ffc42e", "#fdfaf3"] },
+  { id: "navy", label: "Navy Blue", colors: ["#0a2777", "#0000dd", "#ffbf00"] },
+  { id: "gold", label: "Classic Gold", colors: ["#ffbf00", "#ffc42e", "#fdfaf3"] },
 ];
 
 export function ColorSchemeToggle() {

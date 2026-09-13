@@ -7,13 +7,13 @@
   /* Classic Gold (default / original) */
   :root,
   [data-scheme="gold"] {
-    --accent: #fbb100;
+    --accent: #ffbf00;
     --accent-light: #ffc42e;
     --accent-dark: #d99800;
     --accent-surface: #fdfaf3;
-    --accent-muted: rgba(251, 177, 0, 0.14);
-    --accent-gradient: linear-gradient(135deg, #fbb100, #ffc42e);
-    --accent-secondary: #fbb100;
+    --accent-muted: rgba(255, 191, 0, 0.14);
+    --accent-gradient: linear-gradient(135deg, #ffbf00, #ffc42e);
+    --accent-secondary: #ffbf00;
     --accent-secondary-light: #ffc42e;
   }
 
@@ -25,14 +25,14 @@
     --accent-surface: #e8edf7;
     --accent-muted: rgba(10, 39, 119, 0.10);
     --accent-gradient: linear-gradient(135deg, #0a2777, #0000dd);
-    --accent-secondary: #fbb100;
+    --accent-secondary: #ffbf00;
     --accent-secondary-light: #fcd34d;
   }
 
   /* ─── Base tokens ─── */
   :root,
   [data-scheme="gold"] {
-    --gold: #fbb100;
+    --gold: #ffbf00;
     --gold-light: #ffc42e;
     --ivory: #f8f5f0;
     --midnight: #1b1b1b;
@@ -59,7 +59,7 @@
   }
 
   .dark {
-    --gold: #fbb100;
+    --gold: #ffbf00;
     --gold-light: #ffc42e;
     --ivory: #202023;
     --midnight: #18181b;
@@ -78,7 +78,7 @@
     --accent-surface: #262938;
     --accent-muted: rgba(77, 122, 223, 0.15);
     --accent-gradient: linear-gradient(135deg, #4d7adf, #6b93e8);
-    --accent-secondary: #fbb100;
+    --accent-secondary: #ffbf00;
     --accent-secondary-light: #fcd34d;
     --gold: #4d7adf;
     --gold-light: #6b93e8;
@@ -153,7 +153,7 @@
   }
 
   .btn-outline-gold {
-    @apply border-2 text-[#fbb100] font-condensed uppercase tracking-[0.18em] font-medium transition-all;
+    @apply border-2 text-[#ffbf00] font-condensed uppercase tracking-[0.18em] font-medium transition-all;
     border-color: var(--accent);
     color: var(--accent);
   }

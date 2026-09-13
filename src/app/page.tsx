@@ -1,8 +1,8 @@
 "use client";
-import { useState, useEffect, useCallback, Suspense } from "react";
+import { useState, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 
 /* ------------------------------------------------------------------ */
 /*  Dynamic imports — below-fold sections load only when scrolled to    */
@@ -17,94 +17,79 @@ const FaqSection = dynamic(() => import("@/components/home/sections").then((m) =
 const CtaSection = dynamic(() => import("@/components/home/sections").then((m) => m.CtaSection), { loading: () => <div className="h-64" /> });
 
 /* ------------------------------------------------------------------ */
-/*  Hero slides — every unique hotel image                             */
+/*  Hero Video Header                                                 */
 /* ------------------------------------------------------------------ */
-const HERO_SLIDES = [
-  { src: "/images/hero.jpg",                caption: "Welcome to Banky Hotel & Suites" },
-  { src: "/images/hotel-front-left.jpg",    caption: "Elegant facade in the heart of Ado-Ekiti" },
-  { src: "/images/hotel-front-right.jpg",   caption: "Where luxury meets Ekiti warmth" },
-  { src: "/images/Reception.jpg",           caption: "Grand reception & concierge" },
-  { src: "/images/Reception1.jpg",          caption: "Arrive in style" },
-  { src: "/images/Hotel Lobby.jpg",         caption: "Elegant lobby & lounge areas" },
-  { src: "/images/corridor-hallway.jpg",    caption: "Impeccably kept corridors" },
-  { src: "/images/corridor-hallway-2.jpg",  caption: "Every detail, considered" },
-  { src: "/images/signature suite room.jpg", caption: "Signature Suite — our finest residence" },
-  { src: "/images/Presidential.jpg",        caption: "Presidential Suite — stately luxury" },
-  { src: "/images/Presidential1.jpg",       caption: "Presidential Suite — executive lounge & parlor" },
-  { src: "/images/superexecutive.jpg",      caption: "Super Executive — generous proportions" },
-  { src: "/images/executive.jpg",           caption: "Executive — built for productivity" },
-  { src: "/images/Standard PLUS.jpeg",       caption: "Standard Plus — elevated comfort" },
-  { src: "/images/Suite1.jpg",              caption: "Studio — designed for longer stays" },
-  { src: "/images/Standard room.jpg",       caption: "Standard — bright & impeccably kept" },
-  { src: "/images/OpenBar Garden.jpg",      caption: "Open-air garden bar & sit-out" },
-  { src: "/images/OpenBar Garden 2.jpg",    caption: "Relax under open skies" },
-  { src: "/images/OpenBar Garden 3.jpg",    caption: "Private garden courtyard" },
-  { src: "/images/OpenBar sitout.jpg",      caption: "Evening cocktails in the garden" },
-  { src: "/images/open air bar sitout.jpg", caption: "Al fresco dining & drinks" },
-  { src: "/images/Ballard Table.jpg",       caption: "Billiards & evening recreation" },
-  { src: "/images/lounge.jpg",              caption: "Unwind in style" },
-  { src: "/images/dining.jpg",              caption: "Fine dining restaurant" },
-  { src: "/images/Restaurant 2.jpg",        caption: "A feast for the senses" },
-  { src: "/images/BankyHall.jpg",           caption: "300-seat Banky Hall for celebrations & conferences" },
-];
-
-/* ------------------------------------------------------------------ */
-/*  Hero Slideshow                                                     */
-/* ------------------------------------------------------------------ */
-function HeroSlideshow() {
-  const [idx, setIdx] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const total = HERO_SLIDES.length;
-
-  const next = useCallback(() => setIdx((p) => (p + 1) % total), [total]);
-  const prev = useCallback(() => setIdx((p) => (p - 1 + total) % total), [total]);
+function HeroVideoHeader() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
-    if (paused) return;
-    const t = setInterval(next, 5000);
-    return () => clearInterval(t);
-  }, [paused, next]);
+    if (videoRef.current) {
+      videoRef.current.play().catch(() => {
+        if (videoRef.current) {
+          videoRef.current.muted = true;
+          videoRef.current.play().catch(() => {});
+        }
+      });
+    }
+  }, []);
+
+  const togglePlay = () => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const toggleMute = () => {
+    if (!videoRef.current) return;
+    videoRef.current.muted = !videoRef.current.muted;
+    setIsMuted(videoRef.current.muted);
+  };
 
   return (
-    <div
-      className="absolute inset-0 group"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
-      {/* Slides — first 2 eagerly loaded, rest lazy */}
-      {HERO_SLIDES.map((slide, i) => (
-        <div
-          key={slide.src}
-          className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${i === idx ? "opacity-100 z-10" : "opacity-0 z-0"}`}
-        >
-          <img
-            src={encodeURI(slide.src)}
-            alt=""
-            loading={i < 2 ? "eager" : "lazy"}
-            fetchPriority={i === 0 ? "high" : "auto"}
-            className="w-full h-full object-cover"
-          />
-        </div>
-      ))}
+    <div className="absolute inset-0 overflow-hidden bg-black">
+      <video
+        ref={videoRef}
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        poster="/images/hero.jpg"
+        className="w-full h-full object-cover select-none"
+      >
+        <source src="/videos/hero.mp4" type="video/mp4" />
+        <source src="/videos/executive-room.mp4" type="video/mp4" />
+      </video>
 
       {/* Gradient overlay */}
-      <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/85 via-black/45 to-black/20" />
+      <div className="absolute inset-0 z-20 bg-gradient-to-t from-black/85 via-black/45 to-black/25 pointer-events-none" />
 
-      {/* Navigation arrows - desktop only */}
-      <button
-        onClick={(e) => { e.stopPropagation(); prev(); }}
-        className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-40 h-10 w-10 sm:h-12 sm:w-12 hidden sm:flex items-center justify-center border border-white/20 bg-black/30 backdrop-blur-sm text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[var(--accent)] hover:border-[var(--accent)]"
-        aria-label="Previous slide"
-      >
-        <ChevronLeft className="h-5 w-5" />
-      </button>
-      <button
-        onClick={(e) => { e.stopPropagation(); next(); }}
-        className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-40 h-10 w-10 sm:h-12 sm:w-12 hidden sm:flex items-center justify-center border border-white/20 bg-black/30 backdrop-blur-sm text-white opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-[var(--accent)] hover:border-[var(--accent)]"
-        aria-label="Next slide"
-      >
-        <ChevronRight className="h-5 w-5" />
-      </button>
+      {/* Playback & Audio Controls */}
+      <div className="absolute bottom-6 right-6 z-30 flex items-center gap-2">
+        <button
+          onClick={togglePlay}
+          className="h-9 w-9 rounded-full bg-black/40 hover:bg-black/70 border border-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all hover:scale-105 active:scale-95 shadow-md"
+          aria-label={isPlaying ? "Pause video" : "Play video"}
+          title={isPlaying ? "Pause video" : "Play video"}
+        >
+          {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4 fill-white" />}
+        </button>
+        <button
+          onClick={toggleMute}
+          className="h-9 w-9 rounded-full bg-black/40 hover:bg-black/70 border border-white/20 text-white flex items-center justify-center backdrop-blur-md transition-all hover:scale-105 active:scale-95 shadow-md"
+          aria-label={isMuted ? "Unmute audio" : "Mute audio"}
+          title={isMuted ? "Unmute audio" : "Mute audio"}
+        >
+          {isMuted ? <VolumeX className="h-4 w-4" /> : <Volume2 className="h-4 w-4" />}
+        </button>
+      </div>
     </div>
   );
 }
@@ -117,7 +102,7 @@ export default function Home() {
     <>
       {/* HERO — critical, inlined */}
       <section className="relative min-h-[95svh] sm:min-h-[100svh] w-full overflow-hidden flex flex-col justify-end">
-        <HeroSlideshow />
+        <HeroVideoHeader />
         <div className="container-x relative z-30 flex flex-col justify-end pt-28 pb-8 sm:pb-12">
           <div className="max-w-3xl pb-6 sm:pb-8 mx-auto lg:mx-0 text-center lg:text-left">
             <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-normal text-white leading-[1.1] text-center lg:text-left">

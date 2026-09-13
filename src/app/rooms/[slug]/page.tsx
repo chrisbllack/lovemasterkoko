@@ -427,7 +427,7 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
                                 ? "Standard Bedroom & Ambient Lighting"
                                 : "Workstation & Guest Interior"
                               : idx === 0
-                              ? "King Bed & Ambient Mood Lighting"
+                              ? "Primary Chamber & Ambient Mood Lighting"
                               : "Media Wall, Desk & Wardrobe Suite"}
                           </p>
                           <p className="text-[10px] text-stone-600 dark:text-stone-300 font-mono mt-0.5 truncate">
@@ -459,7 +459,6 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
                   <span className="text-xs font-condensed uppercase font-normal text-stone-600 dark:text-stone-300 block mt-1">per night</span>
                 </div>
                 <div className="space-y-3 mb-6 text-sm sm:text-base font-normal">
-                  <div className="flex justify-between py-2.5 border-b border-[#ece6dd] dark:border-[#2e2b26]"><span className="text-stone-600 dark:text-stone-300 font-normal">Occupancy</span><span className="font-medium text-stone-900 dark:text-white">{room.occupancy}</span></div>
                   <div className="flex justify-between py-2.5 border-b border-[#ece6dd] dark:border-[#2e2b26]"><span className="text-stone-600 dark:text-stone-300 font-normal">Check-in</span><span className="font-medium text-stone-900 dark:text-white">{HOTEL.checkIn}</span></div>
                   <div className="flex justify-between py-2.5"><span className="text-stone-600 dark:text-stone-300 font-normal">Check-out</span><span className="font-medium text-stone-900 dark:text-white">{HOTEL.checkOut}</span></div>
                 </div>

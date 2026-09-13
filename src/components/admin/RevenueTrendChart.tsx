@@ -54,11 +54,11 @@ function CustomTooltip({ active, payload }: any) {
     <div className="bg-stone-900/95 text-white border border-stone-700/80 px-3.5 py-2.5 rounded-lg shadow-xl text-xs backdrop-blur-md">
       <div className="flex items-center justify-between gap-3 mb-1 border-b border-stone-800 pb-1.5">
         <span className="font-semibold text-stone-200 flex items-center gap-1.5">
-          <Calendar className="h-3 w-3 text-[#fbb100]" />
+          <Calendar className="h-3 w-3 text-[#ffbf00]" />
           {item.dayLabel}, {item.date.slice(0, 4)}
         </span>
         {item.isToday && (
-          <span className="px-1.5 py-0.5 rounded text-[10px] bg-[#fbb100] text-black font-semibold uppercase tracking-wider">
+          <span className="px-1.5 py-0.5 rounded text-[10px] bg-[#ffbf00] text-black font-semibold uppercase tracking-wider">
             Today
           </span>
         )}
@@ -122,7 +122,7 @@ export function RevenueTrendChart({
             <h2 className="font-display text-xl text-[#222] dark:text-white font-semibold">
               Daily Revenue Trends
             </h2>
-            <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-[#fbb100]/10 text-[#fbb100] border border-[#fbb100]/20">
+            <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-[#ffbf00]/10 text-[#ffbf00] border border-[#ffbf00]/20">
               {currentMonthTitle}
             </span>
           </div>
@@ -162,7 +162,7 @@ export function RevenueTrendChart({
           <span className="text-stone-500 dark:text-stone-400 block mb-0.5 font-medium">
             Month-to-Date Revenue
           </span>
-          <span className="font-display text-base sm:text-lg font-bold text-[#fbb100]">
+          <span className="font-display text-base sm:text-lg font-bold text-[#ffbf00]">
             {naira(totalRevenueNaira)}
           </span>
         </div>
@@ -199,7 +199,7 @@ export function RevenueTrendChart({
       <div className="w-full h-72 sm:h-80 pt-2">
         {!mounted || loading ? (
           <div className="h-full w-full flex items-center justify-center bg-stone-50/50 dark:bg-stone-900/20 rounded-lg text-stone-400 text-xs">
-            <BarChart2 className="h-5 w-5 animate-pulse mr-2 text-[#fbb100]" />
+            <BarChart2 className="h-5 w-5 animate-pulse mr-2 text-[#ffbf00]" />
             Rendering revenue trend visualization…
           </div>
         ) : displayedData.length === 0 ? (
@@ -214,8 +214,8 @@ export function RevenueTrendChart({
             >
               <defs>
                 <linearGradient id="goldRevenueGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#fbb100" stopOpacity={0.35} />
-                  <stop offset="95%" stopColor="#fbb100" stopOpacity={0.0} />
+                  <stop offset="5%" stopColor="#ffbf00" stopOpacity={0.35} />
+                  <stop offset="95%" stopColor="#ffbf00" stopOpacity={0.0} />
                 </linearGradient>
               </defs>
               <CartesianGrid
@@ -242,12 +242,12 @@ export function RevenueTrendChart({
               {metadata?.currentDay && (
                 <ReferenceLine
                   x={metadata.currentDay}
-                  stroke="#fbb100"
+                  stroke="#ffbf00"
                   strokeDasharray="3 3"
                   label={{
                     value: "Today",
                     position: "insideTopLeft",
-                    fill: "#fbb100",
+                    fill: "#ffbf00",
                     fontSize: 10,
                     fontWeight: 600,
                   }}
@@ -256,7 +256,7 @@ export function RevenueTrendChart({
               <Area
                 type="monotone"
                 dataKey="revenue"
-                stroke="#fbb100"
+                stroke="#ffbf00"
                 strokeWidth={2.5}
                 fillOpacity={1}
                 fill="url(#goldRevenueGrad)"
@@ -269,8 +269,8 @@ export function RevenueTrendChart({
                         cx={cx}
                         cy={cy}
                         r={payload.isToday ? 5 : 3.5}
-                        fill={payload.isToday ? "#fbb100" : "#ffffff"}
-                        stroke="#fbb100"
+                        fill={payload.isToday ? "#ffbf00" : "#ffffff"}
+                        stroke="#ffbf00"
                         strokeWidth={2}
                       />
                     );
@@ -279,7 +279,7 @@ export function RevenueTrendChart({
                 }}
                 activeDot={{
                   r: 6,
-                  fill: "#fbb100",
+                  fill: "#ffbf00",
                   stroke: "#ffffff",
                   strokeWidth: 2,
                 }}

@@ -15,7 +15,7 @@ export function ThemeToggle() {
       onClick={toggleTheme}
       aria-label={titleText}
       title={titleText}
-      className="hidden lg:flex fixed bottom-6 left-24 z-40 h-14 w-14 rounded-full border border-[#ece6dd] dark:border-[#3a3a42] bg-white dark:bg-[#28282d] text-[#fbb100] items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 hover:shadow-2xl hover:border-[#fbb100]"
+      className="hidden lg:flex fixed bottom-6 left-24 z-40 h-14 w-14 rounded-full border border-[#ece6dd] dark:border-[#3a3a42] bg-white dark:bg-[#28282d] text-[#ffbf00] items-center justify-center shadow-xl hover:scale-110 transition-all duration-300 hover:shadow-2xl hover:border-[#ffbf00]"
     >
       {theme === "light" ? (
         <Moon className="h-6 w-6" />

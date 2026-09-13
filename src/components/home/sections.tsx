@@ -91,7 +91,6 @@ export const RoomsSection = memo(function RoomsSection() {
                 autoSlideInterval={6000}
               />
               <div className="p-5">
-                <span className="font-condensed text-xs uppercase tracking-wider font-medium text-[var(--accent)] block mb-1">{room.occupancy}</span>
                 <h3 className="font-display font-normal text-xl text-stone-900 dark:text-white mb-2">{room.name}</h3>
                 <p className="text-sm text-stone-700 dark:text-stone-200 leading-relaxed line-clamp-2 mb-3 font-normal">{room.blurb}</p>
                 <div className="flex items-center justify-between">

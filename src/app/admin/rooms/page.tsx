@@ -98,7 +98,7 @@ export default function AdminRooms() {
             </div>
             <div className="p-4 flex-1 flex flex-col justify-between">
               <div className="flex items-center justify-between mb-2">
-                <Link href={`/rooms/${room.slug}`} className="font-display text-lg text-[#222] hover:text-[#fbb100] transition-colors">
+                <Link href={`/rooms/${room.slug}`} className="font-display text-lg text-[#222] hover:text-[#ffbf00] transition-colors">
                   {room.name}
                 </Link>
                 <span className="text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-medium">
@@ -106,8 +106,8 @@ export default function AdminRooms() {
                 </span>
               </div>
               <div className="flex items-center justify-between text-sm pt-2 border-t border-[#f3eee8]">
-                <span className="text-[#666]">{room.occupancy}</span>
-                <span className="font-display text-[#fbb100] font-semibold">{naira(room.rate)}</span>
+                <span className="text-xs font-mono uppercase tracking-wider text-[#888]">Rate</span>
+                <span className="font-display text-[#ffbf00] font-semibold">{naira(room.rate)}</span>
               </div>
             </div>
           </div>

@@ -27,6 +27,10 @@ export async function POST(req: NextRequest) {
     const aliasPath = path.join(videosDir, `${slug}.mp4`);
     await fs.writeFile(aliasPath, buffer);
 
+    if (slug === "hero" || slug === "header") {
+      await fs.writeFile(path.join(videosDir, "hero.mp4"), buffer);
+    }
+
     return NextResponse.json({
       success: true,
       url: `/videos/${filename}`,

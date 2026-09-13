@@ -88,6 +88,29 @@ export async function POST(req: NextRequest) {
           await fs.writeFile(path.join(imagesDir, "standard.jpg"), buffer);
         }
       }
+
+      // 6. Map brand logo files if applicable
+      const upperName = originalName.toUpperCase();
+      if (upperName.includes("LOGO") || upperName.includes("BANKY")) {
+        // Normalize names (handle double dots like plus..png)
+        if (originalName.endsWith("..png")) {
+          const singleDotName = originalName.slice(0, -5) + ".png";
+          await fs.writeFile(path.join(imagesDir, singleDotName), buffer);
+        }
+
+        if (upperName.includes("2 PLUS") || upperName.includes("WHITE")) {
+          // White silhouette logo mark
+          await fs.writeFile(path.join(imagesDir, "Banky Hotel & Suites Main Logo 2 plus.png"), buffer);
+          await fs.writeFile(path.join(imagesDir, "Banky Hotel & Suites Main Logo 2 plus..png"), buffer);
+          await fs.writeFile(path.join(imagesDir, "banky-white-logo.png"), buffer);
+        } else if (upperName.includes("PLUS..") || (upperName.includes("PLUS") && !upperName.includes("2 PLUS"))) {
+          // Full brand logo / Mark logo
+          await fs.writeFile(path.join(imagesDir, "Banky Hotel & Suites Main Logo plus.png"), buffer);
+          await fs.writeFile(path.join(imagesDir, "Banky Hotel & Suites Main Logo plus..png"), buffer);
+          await fs.writeFile(path.join(imagesDir, "banky-desktop-logo.png"), buffer);
+          await fs.writeFile(path.join(imagesDir, "Banky Hotel & Suites Main Logo 1.png"), buffer);
+        }
+      }
     }
 
     return NextResponse.json({
