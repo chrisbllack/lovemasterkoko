@@ -259,6 +259,114 @@ export default function AdminMediaPage() {
               </div>
             </div>
           </div>
+
+          {/* Standard Plus Room Box */}
+          <div className="bg-white border border-[#ece6dd] rounded-2xl p-5 shadow-sm space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-display text-lg text-stone-900">Standard Plus Suite</h3>
+                <p className="text-xs text-stone-500">Auto-slides smoothly every 6s on /rooms/standard-plus</p>
+              </div>
+              <Link
+                href="/rooms/standard-plus"
+                target="_blank"
+                className="inline-flex items-center gap-1 text-xs text-[var(--accent)] hover:underline font-medium"
+              >
+                <span>View Live Page</span>
+                <ExternalLink className="h-3 w-3" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <div className="aspect-[4/3] rounded-lg overflow-hidden bg-stone-100 border border-stone-200 relative">
+                  <img
+                    src={`/images/Standard PLUS.jpeg?t=${refreshKey}`}
+                    alt="Standard Plus 1"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "/images/Standard Plus.jpg";
+                    }}
+                  />
+                  <span className="absolute bottom-1.5 left-1.5 px-2 py-0.5 rounded bg-black/70 text-white text-[10px] font-mono">
+                    MAIN1
+                  </span>
+                </div>
+                <p className="text-[11px] font-mono text-stone-600 truncate">Standard PLUS.jpeg</p>
+              </div>
+
+              <div className="space-y-1.5">
+                <div className="aspect-[4/3] rounded-lg overflow-hidden bg-stone-100 border border-stone-200 relative">
+                  <img
+                    src={`/images/STANDARD PLUS MAIN .jpeg?t=${refreshKey}`}
+                    alt="Standard Plus 2"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "/images/STANDARD PLUS MAIN.jpeg";
+                    }}
+                  />
+                  <span className="absolute bottom-1.5 left-1.5 px-2 py-0.5 rounded bg-black/70 text-white text-[10px] font-mono">
+                    MAIN2
+                  </span>
+                </div>
+                <p className="text-[11px] font-mono text-stone-600 truncate">STANDARD PLUS MAIN .jpeg</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Standard Room Box */}
+          <div className="bg-white border border-[#ece6dd] rounded-2xl p-5 shadow-sm space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-display text-lg text-stone-900">Standard Room</h3>
+                <p className="text-xs text-stone-500">Auto-slides smoothly every 6s on /rooms/standard</p>
+              </div>
+              <Link
+                href="/rooms/standard"
+                target="_blank"
+                className="inline-flex items-center gap-1 text-xs text-[var(--accent)] hover:underline font-medium"
+              >
+                <span>View Live Page</span>
+                <ExternalLink className="h-3 w-3" />
+              </Link>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <div className="aspect-[4/3] rounded-lg overflow-hidden bg-stone-100 border border-stone-200 relative">
+                  <img
+                    src={`/images/Standard room.jpg?t=${refreshKey}`}
+                    alt="Standard Room 1"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "/images/Standard roomx.jpg";
+                    }}
+                  />
+                  <span className="absolute bottom-1.5 left-1.5 px-2 py-0.5 rounded bg-black/70 text-white text-[10px] font-mono">
+                    MAIN1
+                  </span>
+                </div>
+                <p className="text-[11px] font-mono text-stone-600 truncate">Standard room.jpg</p>
+              </div>
+
+              <div className="space-y-1.5">
+                <div className="aspect-[4/3] rounded-lg overflow-hidden bg-stone-100 border border-stone-200 relative">
+                  <img
+                    src={`/images/standard.jpg?t=${refreshKey}`}
+                    alt="Standard Room 2"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "/images/Standard room.jpg";
+                    }}
+                  />
+                  <span className="absolute bottom-1.5 left-1.5 px-2 py-0.5 rounded bg-black/70 text-white text-[10px] font-mono">
+                    MAIN2
+                  </span>
+                </div>
+                <p className="text-[11px] font-mono text-stone-600 truncate">standard.jpg</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

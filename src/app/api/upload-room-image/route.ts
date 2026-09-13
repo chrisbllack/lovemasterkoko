@@ -62,6 +62,32 @@ export async function POST(req: NextRequest) {
           await fs.writeFile(path.join(imagesDir, "EXECUTIVE MAIN2.jpeg"), buffer);
         }
       }
+
+      // 4. Map to standard names for Standard Plus if applicable
+      if (slug === "standard-plus" || originalName.toUpperCase().includes("STANDARD PLUS") || originalName.toUpperCase().includes("STANDAR PLUS")) {
+        if (i === 0) {
+          await fs.writeFile(path.join(imagesDir, "Standard PLUS.jpeg"), buffer);
+          await fs.writeFile(path.join(imagesDir, "Standard Plus.jpg"), buffer);
+        } else if (i === 1) {
+          await fs.writeFile(path.join(imagesDir, "STANDARD PLUS MAIN .jpeg"), buffer);
+          await fs.writeFile(path.join(imagesDir, "STANDARD PLUS MAIN.jpeg"), buffer);
+          await fs.writeFile(path.join(imagesDir, "standar plus.jpg"), buffer);
+        }
+      }
+
+      // 5. Map to standard names for Standard Room if applicable
+      if (
+        slug === "standard" ||
+        (originalName.toUpperCase().includes("STANDARD") &&
+          !originalName.toUpperCase().includes("PLUS"))
+      ) {
+        if (i === 0) {
+          await fs.writeFile(path.join(imagesDir, "Standard room.jpg"), buffer);
+          await fs.writeFile(path.join(imagesDir, "Standard roomx.jpg"), buffer);
+        } else if (i === 1) {
+          await fs.writeFile(path.join(imagesDir, "standard.jpg"), buffer);
+        }
+      }
     }
 
     return NextResponse.json({

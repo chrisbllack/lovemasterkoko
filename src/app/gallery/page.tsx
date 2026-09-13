@@ -29,9 +29,11 @@ const GALLERY: GalleryItem[] = [
   { src: "/images/superexecutive.jpg", alt: "Super Executive room", category: "Rooms & Suites" },
   { src: "/images/EXECUTIVE Main.jpeg", alt: "Executive room — Master bed and ambient paneling", category: "Rooms & Suites" },
   { src: "/images/EXECUTIVE MAIN2.jpeg", alt: "Executive room — Marble media wall and dressing suite", category: "Rooms & Suites" },
-  { src: "/images/Standard Plus.jpg", alt: "Standard Plus room", category: "Rooms & Suites" },
+  { src: "/images/Standard PLUS.jpeg", alt: "Standard Plus room — Master bed and ambient lighting", category: "Rooms & Suites" },
+  { src: "/images/STANDARD PLUS MAIN .jpeg", alt: "Standard Plus room — Suite interior and appointments", category: "Rooms & Suites" },
   { src: "/images/Suite1.jpg", alt: "Studio suite", category: "Rooms & Suites" },
-  { src: "/images/Standard room.jpg", alt: "Standard room", category: "Rooms & Suites" },
+  { src: "/images/Standard room.jpg", alt: "Standard room — Sanctuary bed and mood lighting", category: "Rooms & Suites" },
+  { src: "/images/standard.jpg", alt: "Standard room — Contemporary appointments and workstation", category: "Rooms & Suites" },
 
   // Dining & Bar
   { src: "/images/dining.jpg", alt: "Fine dining restaurant", category: "Dining & Bar" },

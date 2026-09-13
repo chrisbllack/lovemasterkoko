@@ -33,7 +33,7 @@ const HERO_SLIDES = [
   { src: "/images/Presidential1.jpg",       caption: "Presidential Suite — executive lounge & parlor" },
   { src: "/images/superexecutive.jpg",      caption: "Super Executive — generous proportions" },
   { src: "/images/executive.jpg",           caption: "Executive — built for productivity" },
-  { src: "/images/Standard Plus.jpg",       caption: "Standard Plus — elevated comfort" },
+  { src: "/images/Standard PLUS.jpeg",       caption: "Standard Plus — elevated comfort" },
   { src: "/images/Suite1.jpg",              caption: "Studio — designed for longer stays" },
   { src: "/images/Standard room.jpg",       caption: "Standard — bright & impeccably kept" },
   { src: "/images/OpenBar Garden.jpg",      caption: "Open-air garden bar & sit-out" },

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, memo } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Maximize2 } from "lucide-react";
 
 interface RoomImageSliderProps {
   images: string[];
@@ -10,6 +10,7 @@ interface RoomImageSliderProps {
   aspectClass?: string;
   autoSlideInterval?: number; // ms, default 6000 (6 seconds)
   showControls?: boolean;
+  onExpand?: (index: number) => void;
 }
 
 export const RoomImageSlider = memo(function RoomImageSlider({
@@ -18,6 +19,7 @@ export const RoomImageSlider = memo(function RoomImageSlider({
   aspectClass = "aspect-[16/13.5]",
   autoSlideInterval = 6000,
   showControls = true,
+  onExpand,
 }: RoomImageSliderProps) {
   const [currentIdx, setCurrentIdx] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -41,7 +43,10 @@ export const RoomImageSlider = memo(function RoomImageSlider({
 
   if (!isMulti) {
     return (
-      <div className={`overflow-hidden relative w-full ${aspectClass}`}>
+      <div
+        className={`overflow-hidden relative w-full group ${aspectClass} ${onExpand ? "cursor-pointer" : ""}`}
+        onClick={() => onExpand?.(0)}
+      >
         <Image
           src={images[0] || "/images/hero.jpg"}
           alt={alt}
@@ -49,15 +54,31 @@ export const RoomImageSlider = memo(function RoomImageSlider({
           className="object-cover group-hover:scale-105 transition-transform duration-700"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
+        {onExpand && (
+          <button
+            type="button"
+            aria-label="Expand image gallery"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onExpand(0);
+            }}
+            className="absolute top-3 right-3 z-20 h-7 w-7 rounded-full bg-black/60 hover:bg-black/80 text-white/90 border border-white/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            title="Expand Fullscreen Lightbox"
+          >
+            <Maximize2 className="h-3.5 w-3.5" />
+          </button>
+        )}
       </div>
     );
   }
 
   return (
     <div
-      className={`overflow-hidden relative w-full select-none ${aspectClass}`}
+      className={`overflow-hidden relative w-full select-none group ${aspectClass} ${onExpand ? "cursor-pointer" : ""}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => onExpand?.(currentIdx)}
     >
       {/* Slides with slow, graceful crossfade */}
       {images.map((img, idx) => {
@@ -84,11 +105,26 @@ export const RoomImageSlider = memo(function RoomImageSlider({
         );
       })}
 
-      {/* Subtle photo counter badge for suites with multiple views */}
-      <div className="absolute top-3 right-3 z-20 pointer-events-none">
-        <span className="px-2 py-0.5 rounded-full text-[10px] font-condensed uppercase tracking-wider font-semibold bg-black/60 backdrop-blur-sm text-white/90 border border-white/15">
+      {/* Subtle photo counter badge & expand button for suites with multiple views */}
+      <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 pointer-events-auto">
+        <span className="px-2 py-0.5 rounded-full text-[10px] font-condensed uppercase tracking-wider font-semibold bg-black/60 backdrop-blur-sm text-white/90 border border-white/15 pointer-events-none">
           {currentIdx + 1} / {total} Photos
         </span>
+        {onExpand && (
+          <button
+            type="button"
+            aria-label="Expand image gallery"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onExpand(currentIdx);
+            }}
+            className="h-6 w-6 rounded-full bg-black/60 hover:bg-black/90 text-white/90 hover:text-white border border-white/20 flex items-center justify-center transition-colors"
+            title="Expand Fullscreen Lightbox"
+          >
+            <Maximize2 className="h-3 w-3" />
+          </button>
+        )}
       </div>
 
       {/* Manual Prev / Next Controls (Click stops navigation to room link) */}

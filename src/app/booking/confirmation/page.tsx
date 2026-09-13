@@ -22,8 +22,8 @@ export default function BookingConfirmationPage() {
   const [state, setState] = useState<VerifyState>("verifying");
   const [message, setMessage] = useState<string>("Confirming your payment…");
   const [payload, setPayload] = useState<VerifyPayload | null>(null);
-    const [ref, setRef] = useState<string | null>(null);
-    const pollsLeft = useRef(MAX_POLLS);
+  const [ref, setRef] = useState<string | null>(null);
+  const pollsLeft = useRef(MAX_POLLS);
 
   const verify = useCallback(async (reference: string) => {
     try {
@@ -66,8 +66,9 @@ export default function BookingConfirmationPage() {
   }, []);
 
   useEffect(() => {
-    const ref = new URLSearchParams(window.location.search).get("ref");
-    if (!ref) {
+    const urlRef = new URLSearchParams(window.location.search).get("ref");
+    setRef(urlRef);
+    if (!urlRef) {
       setState("failed");
       setMessage("No reservation reference was provided. If you just paid, check your email or contact the front desk.");
       return;
@@ -76,7 +77,7 @@ export default function BookingConfirmationPage() {
     let cancelled = false;
     (async () => {
       while (!cancelled) {
-        const done = await verify(ref);
+        const done = await verify(urlRef);
         if (done || cancelled) break;
         await new Promise((r) => setTimeout(r, POLL_INTERVAL_MS));
       }
@@ -86,8 +87,6 @@ export default function BookingConfirmationPage() {
       cancelled = true;
     };
   }, [verify]);
-
-  const ref = typeof window !== "undefined" ? new URLSearchParams(window.location.search).get("ref") : null;
 
   return (
     <>

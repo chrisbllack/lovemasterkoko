@@ -2,10 +2,11 @@
 import { use, useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { ROOMS, HOTEL, naira, whatsappLink, bookingMessage } from "@/lib/hotel";
-import { ArrowRight, Check, Play, Pause, Volume2, VolumeX, Upload, Sparkles } from "lucide-react";
+import { ArrowRight, Check, Play, Pause, Volume2, VolumeX, Upload, Sparkles, Maximize2 } from "lucide-react";
 import { PhoneSolidIcon } from "@/components/icons/PhoneSolidIcon";
 import { RoomSchema } from "@/components/seo/StructuredData";
 import { RoomImageSlider } from "@/components/common/RoomImageSlider";
+import { RoomPhotoLightbox } from "@/components/common/RoomPhotoLightbox";
 
 export default function RoomDetail({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = use(params);
@@ -21,7 +22,14 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
   const [customImages, setCustomImages] = useState<string[] | null>(null);
   const [uploadingPhotos, setUploadingPhotos] = useState<boolean>(false);
   const [uploadSuccessMessage, setUploadSuccessMessage] = useState<string | null>(null);
+  const [lightboxOpen, setLightboxOpen] = useState<boolean>(false);
+  const [lightboxIndex, setLightboxIndex] = useState<number>(0);
   const photoInputRef = useRef<HTMLInputElement>(null);
+
+  const openLightbox = (index: number = 0) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
 
   // Reduced speed by 50% from 0.65x down to ~0.33x for ultra-smooth luxurious slow motion
   const [playbackSpeed, setPlaybackSpeed] = useState<number>(0.33);
@@ -243,6 +251,17 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
             )}
 
             <button
+              id="room-header-lightbox-trigger"
+              type="button"
+              onClick={() => openLightbox(activeHeaderImgIdx)}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/50 hover:bg-black/75 backdrop-blur-md border border-white/20 text-[11px] sm:text-xs font-condensed tracking-wider uppercase text-white hover:text-amber-200 transition-all shadow-sm cursor-pointer"
+              title="Expand photos in full resolution lightbox gallery"
+            >
+              <Maximize2 className="h-3.5 w-3.5" />
+              <span>Full Lightbox</span>
+            </button>
+
+            <button
               id="room-photo-upload-trigger"
               type="button"
               onClick={() => photoInputRef.current?.click()}
@@ -365,15 +384,18 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
                   alt={room.name}
                   aspectClass="aspect-[16/10]"
                   autoSlideInterval={6000}
+                  onExpand={(idx) => openLightbox(idx)}
                 />
               </div>
 
               {roomImages.length > 1 && (
                 <div className="mb-8 grid grid-cols-2 gap-3">
                   {roomImages.map((img, idx) => (
-                    <div
-                      key={img}
-                      className="group relative overflow-hidden rounded-xl border border-[#ece6dd] dark:border-[#3a3a42] bg-stone-100 dark:bg-stone-800 transition-all hover:border-[var(--accent)]"
+                    <button
+                      key={img + idx}
+                      type="button"
+                      onClick={() => openLightbox(idx)}
+                      className="group relative overflow-hidden rounded-xl border border-[#ece6dd] dark:border-[#3a3a42] bg-stone-100 dark:bg-stone-800 transition-all hover:border-[var(--accent)] text-left cursor-pointer shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[var(--accent)]"
                     >
                       <div className="aspect-[16/10] relative overflow-hidden">
                         <img
@@ -381,19 +403,40 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
                           alt={`${room.name} Photo ${idx + 1}`}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                         />
-                        <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-condensed uppercase tracking-wider bg-black/70 text-white font-medium backdrop-blur-sm">
+                        <span className="absolute top-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-condensed uppercase tracking-wider bg-black/70 text-white font-medium backdrop-blur-sm z-10">
                           Photo {idx + 1}
                         </span>
+
+                        {/* Hover Overlay with High-Res Lightbox Cue */}
+                        <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[1px] z-10">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/70 text-white text-xs font-condensed uppercase tracking-wider border border-white/30 backdrop-blur-sm shadow-md">
+                            <Maximize2 className="h-3.5 w-3.5 text-amber-300" />
+                            <span>View High-Res</span>
+                          </span>
+                        </div>
                       </div>
-                      <div className="p-2.5 bg-white dark:bg-[#28282d] border-t border-[#ece6dd] dark:border-[#3a3a42]">
-                        <p className="text-xs font-medium text-stone-800 dark:text-stone-200 truncate">
-                          {idx === 0 ? "King Bed & Ambient Mood Lighting" : "Media Wall, Desk & Wardrobe Suite"}
-                        </p>
-                        <p className="text-[10px] text-stone-600 dark:text-stone-300 font-mono mt-0.5">
-                          {img.replace("/images/", "")}
-                        </p>
+                      <div className="p-2.5 bg-white dark:bg-[#28282d] border-t border-[#ece6dd] dark:border-[#3a3a42] flex items-center justify-between">
+                        <div className="min-w-0 flex-1">
+                          <p className="text-xs font-medium text-stone-800 dark:text-stone-200 truncate">
+                            {room.slug === "standard-plus"
+                              ? idx === 0
+                                ? "Standard Plus Master Bedroom"
+                                : "Lounge & Workstation Interior"
+                              : room.slug === "standard"
+                              ? idx === 0
+                                ? "Standard Bedroom & Ambient Lighting"
+                                : "Workstation & Guest Interior"
+                              : idx === 0
+                              ? "King Bed & Ambient Mood Lighting"
+                              : "Media Wall, Desk & Wardrobe Suite"}
+                          </p>
+                          <p className="text-[10px] text-stone-600 dark:text-stone-300 font-mono mt-0.5 truncate">
+                            {img.replace("/images/", "")}
+                          </p>
+                        </div>
+                        <Maximize2 className="h-4 w-4 text-stone-400 group-hover:text-[var(--accent)] transition-colors shrink-0 ml-2" />
                       </div>
-                    </div>
+                    </button>
                   ))}
                 </div>
               )}
@@ -434,6 +477,17 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
           </div>
         </div>
       </section>
+
+      {/* Expanded High-Resolution Lightbox Gallery */}
+      <RoomPhotoLightbox
+        isOpen={lightboxOpen}
+        images={roomImages}
+        currentIndex={lightboxIndex}
+        roomName={room.name}
+        onClose={() => setLightboxOpen(false)}
+        onNavigate={(idx) => setLightboxIndex(idx)}
+        onUploadClick={() => photoInputRef.current?.click()}
+      />
     </>
   );
 }
