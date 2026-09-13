@@ -13,22 +13,23 @@ export function ColorSchemeToggle() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="fixed bottom-20 left-4 z-40">
+    <div className="fixed bottom-6 left-6 z-40">
       {/* Toggle button */}
       <button
+        id="color-scheme-toggle-btn"
         onClick={() => setOpen(!open)}
-        className="h-10 w-10 rounded-full bg-white dark:bg-[#28282d] border border-[#ece6dd] dark:border-[#3a3a42] shadow-lg flex items-center justify-center hover:scale-110 transition-all duration-200 group"
+        className="h-14 w-14 rounded-full bg-white dark:bg-[#28282d] border border-[#ece6dd] dark:border-[#3a3a42] shadow-xl flex items-center justify-center hover:scale-110 transition-all duration-200 group"
         aria-label="Change color scheme"
         title="Change color scheme"
       >
-        <Palette className="h-4 w-4 text-[#666] dark:text-[#a8a29e] group-hover:text-[var(--accent)] transition-colors" />
+        <Palette className="h-6 w-6 text-[#666] dark:text-[#a8a29e] group-hover:text-[var(--accent)] transition-colors" />
       </button>
 
       {/* Popup */}
       {open && (
         <>
           <div className="fixed inset-0 z-40" onClick={() => setOpen(false)} />
-          <div className="absolute bottom-14 left-0 z-50 w-64 rounded-xl bg-white dark:bg-[#28282d] border border-[#ece6dd] dark:border-[#3a3a42] shadow-2xl p-4 animate-rise">
+          <div className="absolute bottom-16 left-0 z-50 w-64 rounded-xl bg-white dark:bg-[#28282d] border border-[#ece6dd] dark:border-[#3a3a42] shadow-2xl p-4 animate-rise">
             <div className="flex items-center justify-between mb-3">
               <span className="font-condensed text-xs uppercase tracking-[0.2em] text-[#666] dark:text-[#a8a29e] font-semibold">
                 Color Scheme

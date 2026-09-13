@@ -27,9 +27,9 @@ const GALLERY: GalleryItem[] = [
   { src: "/images/presidential23.jpg", alt: "Presidential Suite stately ambiance", category: "Rooms & Suites" },
   { src: "/images/presidential3.jpg", alt: "Presidential Suite luxury interior", category: "Rooms & Suites" },
   { src: "/images/superexecutive.jpg", alt: "Super Executive room", category: "Rooms & Suites" },
-  { src: "/images/executive.jpg", alt: "Executive Suite", category: "Rooms & Suites" },
+  { src: "/images/EXECUTIVE Main.jpeg", alt: "Executive room — Master bed and ambient paneling", category: "Rooms & Suites" },
+  { src: "/images/EXECUTIVE MAIN2.jpeg", alt: "Executive room — Marble media wall and dressing suite", category: "Rooms & Suites" },
   { src: "/images/Standard Plus.jpg", alt: "Standard Plus room", category: "Rooms & Suites" },
-  { src: "/images/deluxe.jpg", alt: "Deluxe room", category: "Rooms & Suites" },
   { src: "/images/Suite1.jpg", alt: "Studio suite", category: "Rooms & Suites" },
   { src: "/images/Standard room.jpg", alt: "Standard room", category: "Rooms & Suites" },
 
@@ -133,7 +133,7 @@ export default function GalleryPage() {
                 className="overflow-hidden rounded-2xl border border-[#ece6dd] dark:border-[#2e2b26] group cursor-pointer block w-full text-left shadow-sm aspect-[16/10] relative"
               >
                 <img
-                  src={item.src}
+                  src={encodeURI(item.src)}
                   alt={item.alt}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   loading="lazy"
@@ -191,7 +191,7 @@ export default function GalleryPage() {
           <div className="max-w-[90vw] max-h-[85vh]" onClick={(e) => e.stopPropagation()}>
             <div className="overflow-hidden rounded-2xl shadow-2xl border border-white/10">
               <img
-                src={lightboxItem.src}
+                src={encodeURI(lightboxItem.src)}
                 alt={lightboxItem.alt}
                 className="max-w-full max-h-[80vh] object-contain"
               />

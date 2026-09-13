@@ -5,6 +5,7 @@ import { whatsappLink, bookingMessage } from "@/lib/hotel";
 export function WhatsAppFab() {
   return (
     <a
+      id="whatsapp-fab-btn"
       href={whatsappLink(bookingMessage({}))}
       target="_blank"
       rel="noreferrer"

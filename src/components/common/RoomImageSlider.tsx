@@ -8,7 +8,7 @@ interface RoomImageSliderProps {
   images: string[];
   alt: string;
   aspectClass?: string;
-  autoSlideInterval?: number; // ms, default 4500
+  autoSlideInterval?: number; // ms, default 6000 (6 seconds)
   showControls?: boolean;
 }
 
@@ -16,7 +16,7 @@ export const RoomImageSlider = memo(function RoomImageSlider({
   images,
   alt,
   aspectClass = "aspect-[16/13.5]",
-  autoSlideInterval = 4500,
+  autoSlideInterval = 6000,
   showControls = true,
 }: RoomImageSliderProps) {
   const [currentIdx, setCurrentIdx] = useState(0);
@@ -62,18 +62,19 @@ export const RoomImageSlider = memo(function RoomImageSlider({
       {/* Slides with slow, graceful crossfade */}
       {images.map((img, idx) => {
         const isActive = idx === currentIdx;
+        const safeSrc = encodeURI(img);
         return (
           <div
             key={img}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+            className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${
               isActive ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"
             }`}
           >
             <Image
-              src={img}
+              src={safeSrc}
               alt={`${alt} — Photo ${idx + 1}`}
               fill
-              className={`object-cover transition-transform duration-[4500ms] ease-out ${
+              className={`object-cover transition-transform duration-[6500ms] ease-out ${
                 isActive ? "scale-105" : "scale-100"
               }`}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"

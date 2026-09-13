@@ -3,8 +3,6 @@ import { useState, useEffect, useCallback, Suspense } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
-import { PhoneSolidIcon } from "@/components/icons/PhoneSolidIcon";
-import { HOTEL } from "@/lib/hotel";
 
 /* ------------------------------------------------------------------ */
 /*  Dynamic imports — below-fold sections load only when scrolled to    */
@@ -36,7 +34,6 @@ const HERO_SLIDES = [
   { src: "/images/superexecutive.jpg",      caption: "Super Executive — generous proportions" },
   { src: "/images/executive.jpg",           caption: "Executive — built for productivity" },
   { src: "/images/Standard Plus.jpg",       caption: "Standard Plus — elevated comfort" },
-  { src: "/images/deluxe.jpg",              caption: "Deluxe — garden-facing calm" },
   { src: "/images/Suite1.jpg",              caption: "Studio — designed for longer stays" },
   { src: "/images/Standard room.jpg",       caption: "Standard — bright & impeccably kept" },
   { src: "/images/OpenBar Garden.jpg",      caption: "Open-air garden bar & sit-out" },
@@ -81,7 +78,7 @@ function HeroSlideshow() {
           className={`absolute inset-0 transition-opacity duration-[2000ms] ease-in-out ${i === idx ? "opacity-100 z-10" : "opacity-0 z-0"}`}
         >
           <img
-            src={slide.src}
+            src={encodeURI(slide.src)}
             alt=""
             loading={i < 2 ? "eager" : "lazy"}
             fetchPriority={i === 0 ? "high" : "auto"}
@@ -133,12 +130,6 @@ export default function Home() {
               <Link href="/booking" className="btn-gold px-8 py-4 text-xs sm:text-sm inline-flex items-center gap-2.5 shadow-lg shadow-[var(--accent)]/30 font-medium">
                 <span>Book Now</span><ArrowRight className="h-4 w-4" />
               </Link>
-              <Link id="hero-explore-suites-btn" href="/rooms" className="btn-outline-white px-8 py-4 text-xs sm:text-sm hidden sm:inline-flex items-center gap-2 font-medium rounded-full">
-                <span>Explore All Suites</span>
-              </Link>
-              <a href={`tel:${HOTEL.phone}`} className="inline-flex items-center gap-2 text-xs sm:text-sm font-condensed uppercase tracking-wider text-stone-100 hover:text-[var(--accent-light)] font-medium transition-colors">
-                <PhoneSolidIcon className="h-4 w-4 text-[var(--accent-light)]" /><span>+234 903 587 9708</span>
-              </a>
             </div>
           </div>
         </div>

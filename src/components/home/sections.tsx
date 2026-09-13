@@ -88,7 +88,7 @@ export const RoomsSection = memo(function RoomsSection() {
                 images={room.images && room.images.length > 0 ? room.images : [room.image]}
                 alt={room.name}
                 aspectClass="aspect-[16/13.5]"
-                autoSlideInterval={4500}
+                autoSlideInterval={6000}
               />
               <div className="p-5">
                 <span className="font-condensed text-xs uppercase tracking-wider font-medium text-[var(--accent)] block mb-1">{room.occupancy}</span>

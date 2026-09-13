@@ -403,7 +403,7 @@ function BookingFlow() {
             )}
             {search.rooms.map((r) => (
               <div key={r.roomType.id} className={`glass p-5 rounded-md border ${r.available > 0 ? "border-[#ece6dd]" : "border-[#ece6dd]/50 opacity-60"} flex gap-4`}>
-                <img src={r.roomType.image} alt={r.roomType.name} className="hidden sm:block w-28 h-28 object-cover rounded-xl" />
+                <img src={encodeURI(r.roomType.image)} alt={r.roomType.name} className="hidden sm:block w-28 h-28 object-cover rounded-xl" />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-2">
                     <h4 className="font-display text-lg text-stone-900 dark:text-white">{r.roomType.name}</h4>

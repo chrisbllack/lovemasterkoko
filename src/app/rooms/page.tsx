@@ -25,7 +25,7 @@ export default function RoomsPage() {
                   images={room.images && room.images.length > 0 ? room.images : [room.image]}
                   alt={room.name}
                   aspectClass="aspect-[16/10]"
-                  autoSlideInterval={4500}
+                  autoSlideInterval={6000}
                 />
                 <div className="p-6">
                   <div className="flex items-center gap-3 mb-2">
