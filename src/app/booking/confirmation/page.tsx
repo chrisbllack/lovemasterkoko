@@ -230,6 +230,14 @@ export default function BookingConfirmationPage() {
     <div className="min-h-screen bg-[#faf8f5] dark:bg-[#121110]">
       {/* Hero Header Section */}
       <section className="pt-28 pb-12 sm:pt-36 sm:pb-16 bg-[#171513] text-white relative overflow-hidden print-hide">
+        {/* Baseline Header Image — Luxury Hotel Exterior */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/exterior-night.jpg"
+          alt="Banky Hotel & Suites Exterior at Night"
+          className="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none select-none"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#171513] via-[#171513]/75 to-[#171513]/85" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-950/20 via-transparent to-transparent pointer-events-none" />
         <div className="container-x relative z-10 text-center max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[var(--accent)]/15 border border-[var(--accent)]/30 text-[var(--accent)] text-xs font-condensed uppercase tracking-wider font-semibold mb-4">

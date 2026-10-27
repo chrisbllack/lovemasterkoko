@@ -28,6 +28,7 @@ import {
   Volume2,
   VolumeX,
   Save,
+  Trash2,
 } from "lucide-react";
 import Link from "next/link";
 import { ROOMS, Room } from "@/lib/hotel";
@@ -37,6 +38,7 @@ import { BatchRenamerModal, type MediaFileItem } from "@/components/admin/BatchR
 import { UsageAuditReport } from "@/components/admin/UsageAuditReport";
 import { VideoStitcherModal } from "@/components/admin/VideoStitcherModal";
 import { RoomVideoUploadModal } from "@/components/admin/RoomVideoUploadModal";
+import { ConfirmDeleteModal } from "@/components/admin/ConfirmDeleteModal";
 
 interface UploadedFile {
   name: string;
@@ -111,6 +113,53 @@ export default function AdminMediaPage() {
   const [playingVideoMap, setPlayingVideoMap] = useState<Record<string, boolean>>({});
   const [loadingVideoMap, setLoadingVideoMap] = useState<Record<string, boolean>>({});
   const [enlargedVideo, setEnlargedVideo] = useState<{ name: string; url: string; slug: string } | null>(null);
+
+  // Deletion modal state for image and video assets
+  const [fileToDelete, setFileToDelete] = useState<{
+    type: "image" | "video";
+    filename: string;
+    displayName?: string;
+    slug?: string;
+  } | null>(null);
+  const [isDeletingMedia, setIsDeletingMedia] = useState(false);
+
+  const handleConfirmDelete = async () => {
+    if (!fileToDelete) return;
+    setIsDeletingMedia(true);
+    try {
+      const res = await fetch("/api/admin/media/delete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(fileToDelete),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatusMessage(data.message || `Deleted ${fileToDelete.displayName || fileToDelete.filename} successfully.`);
+        setRefreshKey(Date.now());
+        if (fileToDelete.type === "video") {
+          await fetchVideoStatuses();
+          if (fileToDelete.slug) {
+            setActiveVideoMap((prev) => {
+              const updated = { ...prev };
+              delete updated[fileToDelete.slug!];
+              return updated;
+            });
+            setPlayingVideoMap((prev) => ({ ...prev, [fileToDelete.slug!]: false }));
+          }
+        } else {
+          await fetchMediaData();
+        }
+      } else {
+        alert(data.error || "Failed to delete media asset");
+      }
+    } catch (err) {
+      console.error("Delete media error:", err);
+      alert("An error occurred while deleting the media file.");
+    } finally {
+      setIsDeletingMedia(false);
+      setFileToDelete(null);
+    }
+  };
 
   // Query actual video files located on the server in /public/videos/
   const fetchVideoStatuses = useCallback(async () => {
@@ -717,31 +766,64 @@ export default function AdminMediaPage() {
                             {img.label}
                           </span>
 
-                          {/* Hover action: Crop to 16:10 */}
-                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                          {/* Hover action: Crop to 16:10 & Delete */}
+                          <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 p-2">
                             <button
                               type="button"
                               onClick={() => handleCropExistingImage(img.url, img.name, room.slug)}
-                              className="px-2.5 py-1 rounded-lg bg-white/95 hover:bg-white text-stone-900 text-xs font-condensed uppercase tracking-wider font-bold shadow flex items-center gap-1 transition-transform transform scale-95 hover:scale-100 cursor-pointer"
+                              className="px-2 py-1 rounded-lg bg-white/95 hover:bg-white text-stone-900 text-xs font-condensed uppercase tracking-wider font-bold shadow flex items-center gap-1 transition-transform transform scale-95 hover:scale-100 cursor-pointer"
                               title="Crop to 16:10 Aspect Ratio"
                             >
-                              <Crop className="h-3.5 w-3.5 text-amber-600" />
-                              <span>Crop 16:10</span>
+                              <Crop className="h-3 w-3 text-amber-600" />
+                              <span>Crop</span>
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setFileToDelete({
+                                  type: "image",
+                                  filename: img.name,
+                                  displayName: `${room.name} (${img.name})`,
+                                  slug: room.slug,
+                                })
+                              }
+                              className="px-2 py-1 rounded-lg bg-rose-600/90 hover:bg-rose-600 text-white text-xs font-condensed uppercase tracking-wider font-bold shadow flex items-center gap-1 transition-transform transform scale-95 hover:scale-100 cursor-pointer"
+                              title={`Delete ${img.name}`}
+                            >
+                              <Trash2 className="h-3 w-3" />
+                              <span>Delete</span>
                             </button>
                           </div>
                         </div>
 
                         <div className="flex items-center justify-between text-[11px] font-mono text-stone-600 dark:text-stone-400">
-                          <p className="truncate max-w-[140px]" title={img.name}>
+                          <p className="truncate max-w-[130px]" title={img.name}>
                             {img.name}
                           </p>
-                          <button
-                            type="button"
-                            onClick={() => openBatchRenamerWithSelection([img.name])}
-                            className="hover:text-[var(--accent)] font-condensed uppercase tracking-wider text-[10px] ml-1"
-                          >
-                            Rename
-                          </button>
+                          <div className="flex items-center gap-1.5 shrink-0">
+                            <button
+                              type="button"
+                              onClick={() => openBatchRenamerWithSelection([img.name])}
+                              className="hover:text-[var(--accent)] font-condensed uppercase tracking-wider text-[10px]"
+                            >
+                              Rename
+                            </button>
+                            <span className="text-stone-300 dark:text-stone-600">·</span>
+                            <button
+                              type="button"
+                              onClick={() =>
+                                setFileToDelete({
+                                  type: "image",
+                                  filename: img.name,
+                                  displayName: `${room.name} (${img.name})`,
+                                  slug: room.slug,
+                                })
+                              }
+                              className="text-stone-400 hover:text-rose-500 font-condensed uppercase tracking-wider text-[10px]"
+                            >
+                              Delete
+                            </button>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -1184,6 +1266,23 @@ export default function AdminMediaPage() {
                           <Maximize2 className="h-3 w-3 text-amber-300" />
                           <span>Theater</span>
                         </button>
+
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setFileToDelete({
+                              type: "video",
+                              filename: `${room.slug}-room.mp4`,
+                              slug: room.slug,
+                              displayName: `${room.name} Video Header`,
+                            })
+                          }
+                          className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-rose-950/80 hover:bg-rose-900 border border-rose-500/40 text-[10px] font-condensed uppercase tracking-wider text-rose-300 hover:text-white transition-colors shadow-sm cursor-pointer"
+                          title={`Delete video header for ${room.name}`}
+                        >
+                          <Trash2 className="h-3 w-3 text-rose-300" />
+                          <span>Delete</span>
+                        </button>
                       </div>
                     </div>
 
@@ -1218,7 +1317,7 @@ export default function AdminMediaPage() {
                       </div>
 
                       <div className="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-stone-200 dark:border-stone-800">
-                        <div className="flex items-center gap-1.5">
+                        <div className="flex flex-wrap items-center gap-1.5">
                           <button
                             type="button"
                             onClick={() => {
@@ -1243,6 +1342,23 @@ export default function AdminMediaPage() {
                           >
                             <Save className="h-3.5 w-3.5 text-amber-500" />
                             <span>Upload &amp; Save</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setFileToDelete({
+                                type: "video",
+                                filename: `${room.slug}-room.mp4`,
+                                slug: room.slug,
+                                displayName: `${room.name} Video Header`,
+                              })
+                            }
+                            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-rose-300 dark:border-rose-900 bg-rose-50 dark:bg-rose-950/40 hover:bg-rose-600 hover:text-white text-rose-700 dark:text-rose-300 font-condensed uppercase tracking-wider text-xs font-semibold transition-all shadow-sm cursor-pointer"
+                            title={`Delete video header for ${room.name}`}
+                          >
+                            <Trash2 className="h-3.5 w-3.5 text-rose-500 hover:text-white" />
+                            <span>Delete Video</span>
                           </button>
                         </div>
 
@@ -1273,6 +1389,13 @@ export default function AdminMediaPage() {
           files={allMediaFiles}
           summary={auditSummary}
           onOpenBatchRenameWithFiles={openBatchRenamerWithSelection}
+          onDeleteFile={(fileName) =>
+            setFileToDelete({
+              type: "image",
+              filename: fileName,
+              displayName: fileName,
+            })
+          }
         />
       )}
 
@@ -1376,6 +1499,24 @@ export default function AdminMediaPage() {
                   <Upload className="h-3.5 w-3.5" />
                   <span>Replace Video</span>
                 </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const { slug, name } = enlargedVideo;
+                    setEnlargedVideo(null);
+                    setFileToDelete({
+                      type: "video",
+                      filename: `${slug}-room.mp4`,
+                      slug,
+                      displayName: `${name} Video Header`,
+                    });
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold transition-colors cursor-pointer"
+                  title="Permanently delete this room video header"
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                  <span>Delete Video</span>
+                </button>
                 <Link
                   href={`/rooms/${enlargedVideo.slug}`}
                   target="_blank"
@@ -1402,6 +1543,22 @@ export default function AdminMediaPage() {
           setStatusMessage(`Successfully saved and activated main video header for ${slug}!`);
           fetchVideoStatuses();
         }}
+      />
+
+      {/* Confirmation Modal for Image & Video Deletion */}
+      <ConfirmDeleteModal
+        isOpen={!!fileToDelete}
+        onClose={() => setFileToDelete(null)}
+        onConfirm={handleConfirmDelete}
+        title={fileToDelete?.type === "video" ? "Delete Room Video Header" : "Delete Media Image"}
+        description={
+          fileToDelete?.type === "video"
+            ? `Are you sure you want to permanently delete the video header for ${fileToDelete?.displayName || fileToDelete?.slug}? The room will revert to still photography.`
+            : `Are you sure you want to permanently delete "${fileToDelete?.displayName || fileToDelete?.filename}" from public/images/? This cannot be undone.`
+        }
+        itemName={fileToDelete?.displayName || fileToDelete?.filename}
+        itemType={fileToDelete?.type || "item"}
+        isDeleting={isDeletingMedia}
       />
     </div>
   );

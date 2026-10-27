@@ -9,8 +9,9 @@ interface RoomImageSliderProps {
   images: string[];
   alt: string;
   aspectClass?: string;
-  autoSlideInterval?: number; // ms, default 6000 (6 seconds)
+  autoSlideInterval?: number; // ms, default 5000
   showControls?: boolean;
+  pauseOnHover?: boolean;
   onExpand?: (index: number) => void;
   priority?: boolean;
 }
@@ -19,8 +20,9 @@ export const RoomImageSlider = memo(function RoomImageSlider({
   images,
   alt,
   aspectClass = "aspect-[16/13.5]",
-  autoSlideInterval = 6000,
+  autoSlideInterval = 5000,
   showControls = true,
+  pauseOnHover = false,
   onExpand,
   priority = false,
 }: RoomImageSliderProps) {
@@ -58,22 +60,25 @@ export const RoomImageSlider = memo(function RoomImageSlider({
     [total]
   );
 
-  // Slow auto-sliding when multiple images exist and not hovered
+  // Smooth continuous auto-sliding when multiple images exist
   useEffect(() => {
-    if (!isMulti || isHovered) return;
+    if (!isMulti) return;
+    if (pauseOnHover && isHovered) return;
     const timer = setInterval(() => {
       setCurrentIdx((prevIdx) => (prevIdx + 1) % total);
     }, autoSlideInterval);
     return () => clearInterval(timer);
-  }, [isMulti, isHovered, total, autoSlideInterval]);
+  }, [isMulti, isHovered, total, autoSlideInterval, pauseOnHover]);
 
   if (!isMulti) {
     const singleSrc = images[0] || "/images/hero.jpg";
     return (
       <div
-        className={`overflow-hidden relative w-full group ${aspectClass} ${onExpand ? "cursor-pointer" : ""} bg-stone-200 dark:bg-stone-800`}
+        className={`overflow-hidden relative w-full group ${aspectClass} ${onExpand && showControls ? "cursor-pointer" : ""} bg-stone-200 dark:bg-stone-800`}
         {...({ loading: "lazy" } as any)}
-        onClick={() => onExpand?.(0)}
+        onClick={() => {
+          if (showControls) onExpand?.(0);
+        }}
       >
         {/* Blurred placeholder background using CSS filter: blur(20px) while full image loads */}
         <div
@@ -229,8 +234,8 @@ export const RoomImageSlider = memo(function RoomImageSlider({
         </>
       )}
 
-      {/* Expand/zoom button only when onExpand is provided (e.g. room detail view) */}
-      {onExpand && (
+      {/* Expand/zoom button only when onExpand is provided and showControls is true */}
+      {showControls && onExpand && (
         <div className="absolute top-3 right-3 z-20 flex items-center gap-1.5 pointer-events-auto">
           <button
             type="button"

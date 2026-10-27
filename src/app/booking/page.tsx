@@ -1294,12 +1294,19 @@ function BookingFlow() {
 export default function BookingPage() {
   return (
     <>
-      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-20 bg-[#1b1b1b] dark:bg-[#1a1a1d]">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#1b1b1b] dark:from-[#202023] via-[#1b1b1b]/80 to-[#1b1b1b] dark:to-[#202023]" />
+      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-20 bg-[#1b1b1b] dark:bg-[#1a1a1d] overflow-hidden">
+        {/* Baseline Header Image — Luxury Hotel Exterior */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/images/exterior-night.jpg"
+          alt="Banky Hotel & Suites Exterior at Night"
+          className="absolute inset-0 w-full h-full object-cover opacity-35 pointer-events-none select-none"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1b1b1b] dark:from-[#202023] via-[#1b1b1b]/70 to-[#1b1b1b]/85" />
         <div className="container-x relative z-10 text-center">
           <span className="eyebrow text-[var(--accent)] block mb-3">Online Reservations</span>
           <h1 className="font-display text-4xl sm:text-5xl md:text-6xl text-white mb-4">Book Your Stay</h1>
-          <p className="text-sm text-stone-300 max-w-xl mx-auto">
+          <p className="text-sm text-stone-200 max-w-xl mx-auto">
             Real-time availability, transparent pricing, and secure Paystack payments — confirmed the moment your payment is verified.
           </p>
         </div>

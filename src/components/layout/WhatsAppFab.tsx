@@ -6,7 +6,7 @@ import { whatsappLink, bookingMessage } from "@/lib/hotel";
 export function WhatsAppFab() {
   const pathname = usePathname();
 
-  if (pathname?.startsWith("/qr")) {
+  if (pathname?.startsWith("/qr") || pathname?.startsWith("/admin")) {
     return null;
   }
 

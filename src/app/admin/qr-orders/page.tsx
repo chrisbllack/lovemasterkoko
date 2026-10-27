@@ -42,7 +42,7 @@ export default function AdminQrOrdersPage() {
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [soundEnabled, setSoundEnabled] = useState(true);
-  const [currentTime, setCurrentTime] = useState<number>(Date.now());
+  const [currentTime, setCurrentTime] = useState<number>(0);
   const [receiptModalOrder, setReceiptModalOrder] = useState<QrOrder | null>(null);
   const [autoPrintModal, setAutoPrintModal] = useState<boolean>(false);
   const [selectedOrderIds, setSelectedOrderIds] = useState<string[]>([]);
@@ -52,6 +52,7 @@ export default function AdminQrOrdersPage() {
 
   // Live timer interval to keep elapsed times accurate without reloading
   useEffect(() => {
+    setCurrentTime(Date.now());
     const timer = setInterval(() => {
       setCurrentTime(Date.now());
     }, 10000); // update every 10 seconds

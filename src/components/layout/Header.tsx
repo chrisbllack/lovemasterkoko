@@ -70,7 +70,7 @@ export function Header() {
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
-  if (pathname?.startsWith("/qr")) {
+  if (pathname?.startsWith("/qr") || pathname?.startsWith("/admin")) {
     return null;
   }
 
@@ -118,16 +118,19 @@ export function Header() {
           <div className="flex-1 flex items-center justify-end gap-2 sm:gap-3">
             {/* Mobile & Tablet Mode: Day or Night toggle button at the top-right */}
             <button
+              suppressHydrationWarning
               onClick={toggleTheme}
-              aria-label={theme === "light" ? `Switch to night mode · Lagos auto-schedule (07:00 PM – 06:59 AM WAT)${watTimeString ? ` · ${watTimeString}` : ""}` : `Switch to day mode · Lagos auto-schedule (07:00 AM – 06:59 PM WAT)${watTimeString ? ` · ${watTimeString}` : ""}`}
-              title={theme === "light" ? `Switch to night mode · Lagos auto-schedule (07:00 PM – 06:59 AM WAT)${watTimeString ? ` · ${watTimeString}` : ""}` : `Switch to day mode · Lagos auto-schedule (07:00 AM – 06:59 PM WAT)${watTimeString ? ` · ${watTimeString}` : ""}`}
+              aria-label={theme === "light" ? "Switch to night mode" : "Switch to day mode"}
+              title={theme === "light" ? "Switch to night mode" : "Switch to day mode"}
               className={`p-1.5 -mr-1.5 sm:mr-0 bg-transparent border-none shadow-none transition-transform active:scale-90 flex items-center justify-center cursor-pointer ${iconBtnColor}`}
             >
-              {theme === "light" ? (
-                <Moon className="h-5 w-5" />
-              ) : (
-                <Sun className="h-5 w-5" />
-              )}
+              <span suppressHydrationWarning className="inline-flex">
+                {theme === "light" ? (
+                  <Moon className="h-5 w-5" />
+                ) : (
+                  <Sun className="h-5 w-5" />
+                )}
+              </span>
             </button>
 
             {/* Desktop: Reserve button */}

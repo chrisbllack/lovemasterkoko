@@ -14,6 +14,7 @@ import {
   ExternalLink,
   ShieldAlert,
   Sparkles,
+  Trash2,
 } from "lucide-react";
 import type { MediaFileItem } from "./BatchRenamerModal";
 
@@ -31,6 +32,7 @@ interface UsageAuditReportProps {
   files: MediaFileItem[];
   summary: AuditSummary | null;
   onOpenBatchRenameWithFiles: (fileNames: string[]) => void;
+  onDeleteFile?: (fileName: string) => void;
 }
 
 function formatBytes(bytes: number): string {
@@ -45,6 +47,7 @@ export function UsageAuditReport({
   files,
   summary,
   onOpenBatchRenameWithFiles,
+  onDeleteFile,
 }: UsageAuditReportProps) {
   const [filter, setFilter] = useState<"all" | "orphaned" | "referenced" | "brand">("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -351,6 +354,17 @@ export function UsageAuditReport({
                           >
                             Rename
                           </button>
+
+                          {onDeleteFile && (
+                            <button
+                              type="button"
+                              onClick={() => onDeleteFile(file.name)}
+                              className="p-1.5 rounded-lg border border-rose-200 dark:border-rose-900/60 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 transition-colors"
+                              title={`Delete ${file.name}`}
+                            >
+                              <Trash2 className="h-3.5 w-3.5" />
+                            </button>
+                          )}
                         </div>
                       </td>
                     </tr>

@@ -14,7 +14,7 @@ export function ColorSchemeToggle() {
   const { scheme, setScheme } = useColorScheme();
   const [open, setOpen] = useState(false);
 
-  if (pathname?.startsWith("/qr")) {
+  if (pathname?.startsWith("/qr") || pathname?.startsWith("/admin")) {
     return null;
   }
 

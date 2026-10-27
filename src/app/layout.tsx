@@ -102,7 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Prevent FOUC: apply dark class based on Lagos, Nigeria WAT schedule (07:00am-06:59pm Light, 07:00pm-06:59am Dark) */}
         <script src="/theme-init.js" defer />
       </head>
-      <body className="min-h-screen bg-white dark:bg-[#202023] text-[#222] dark:text-[#f4efe6]">
+      <body suppressHydrationWarning className="min-h-screen bg-white dark:bg-[#202023] text-[#222] dark:text-[#f4efe6]">
         <ThemeProvider>
           <ColorSchemeProvider>
             <HotelSchema />

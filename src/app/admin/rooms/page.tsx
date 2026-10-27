@@ -1,20 +1,25 @@
 "use client";
-import { useState, useRef, useMemo } from "react";
-import { ROOMS, naira } from "@/lib/hotel";
-import { Upload, CheckCircle2, Loader2, Video, Play, Pause, Maximize2, X, ExternalLink, Film, Save } from "lucide-react";
+import { useState, useRef, useMemo, useEffect } from "react";
+import { ROOMS, Room, naira } from "@/lib/hotel";
+import { subscribeRooms, saveRoomCategory, deleteRoomCategory, seedDefaultRooms, getCachedRooms } from "@/lib/rooms-data";
+import { Upload, CheckCircle2, Loader2, Video, Play, Pause, Maximize2, X, ExternalLink, Film, Save, Trash2, Image as ImageIcon, Plus, Edit2, RotateCcw } from "lucide-react";
 import Link from "next/link";
 import { RoomSortDropdown, type RoomSortOption } from "@/components/admin/RoomSortDropdown";
 import { VideoStitcherModal } from "@/components/admin/VideoStitcherModal";
 import { RoomVideoUploadModal } from "@/components/admin/RoomVideoUploadModal";
+import { ConfirmDeleteModal } from "@/components/admin/ConfirmDeleteModal";
+import { RoomPhotosModal } from "@/components/admin/RoomPhotosModal";
+import { RoomCategoryModal } from "@/components/admin/RoomCategoryModal";
 
 export default function AdminRooms() {
+  const [rooms, setRooms] = useState<Room[]>(ROOMS);
   const [uploadingSlug, setUploadingSlug] = useState<string | null>(null);
   const [uploadingVideoSlug, setUploadingVideoSlug] = useState<string | null>(null);
   const [successMsg, setSuccessMsg] = useState<string | null>(null);
   const [recentlyUpdatedSlugs, setRecentlyUpdatedSlugs] = useState<string[]>(["deluxe", "executive"]);
   const [sortOption, setSortOption] = useState<RoomSortOption>("custom_order");
   const [previewVideo, setPreviewVideo] = useState<{ name: string; url: string; slug: string } | null>(null);
-  const [videoTimestamp, setVideoTimestamp] = useState<number>(Date.now());
+  const [videoTimestamp, setVideoTimestamp] = useState<number>(0);
   const [cardViewMode, setCardViewMode] = useState<Record<string, "video" | "photo">>({});
   const [playingVideoSlugs, setPlayingVideoSlugs] = useState<Record<string, boolean>>({});
   const [loadingVideoSlugs, setLoadingVideoSlugs] = useState<Record<string, boolean>>({});
@@ -22,9 +27,53 @@ export default function AdminRooms() {
   const [stitcherDefaultSlug, setStitcherDefaultSlug] = useState("standard-plus");
   const [videoModalOpen, setVideoModalOpen] = useState(false);
   const [videoModalSlug, setVideoModalSlug] = useState("luxury-suite");
+  const [videoToDelete, setVideoToDelete] = useState<{ slug: string; name: string } | null>(null);
+  const [isDeletingVideo, setIsDeletingVideo] = useState(false);
+  const [photoManageRoom, setPhotoManageRoom] = useState<Room | null>(null);
+  const [categoryModalOpen, setCategoryModalOpen] = useState(false);
+  const [editingCategory, setEditingCategory] = useState<Room | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const videoInputRef = useRef<HTMLInputElement>(null);
   const selectedSlugRef = useRef<string>("deluxe");
+
+  // Subscribe to live room categories
+  useEffect(() => {
+    const unsub = subscribeRooms((liveRooms) => {
+      setRooms(liveRooms);
+    });
+    return () => unsub();
+  }, []);
+
+  const handleDeleteVideo = async () => {
+    if (!videoToDelete) return;
+    setIsDeletingVideo(true);
+    try {
+      const res = await fetch("/api/admin/media/delete", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: "video", slug: videoToDelete.slug }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSuccessMsg(`Video header for ${videoToDelete.name} deleted successfully. Reverted to photo.`);
+        setCardViewMode((prev) => ({ ...prev, [videoToDelete.slug]: "photo" }));
+        setPlayingVideoSlugs((prev) => ({ ...prev, [videoToDelete.slug]: false }));
+        setVideoTimestamp(Date.now());
+        if (previewVideo?.slug === videoToDelete.slug) {
+          setPreviewVideo(null);
+        }
+        setTimeout(() => setSuccessMsg(null), 5000);
+      } else {
+        alert(data.error || "Failed to delete video");
+      }
+    } catch (err) {
+      console.error("Failed to delete video:", err);
+      alert("Error deleting video file");
+    } finally {
+      setIsDeletingVideo(false);
+      setVideoToDelete(null);
+    }
+  };
 
   const handleTogglePlayback = (slug: string, container: HTMLElement | null) => {
     if (cardViewMode[slug] === "photo") {
@@ -83,7 +132,7 @@ export default function AdminRooms() {
   };
 
   const sortedRooms = useMemo(() => {
-    const list = [...ROOMS];
+    const list = [...rooms];
     if (sortOption === "name_asc") {
       return list.sort((a, b) => a.name.localeCompare(b.name));
     }
@@ -99,7 +148,27 @@ export default function AdminRooms() {
     }
     // "custom_order" retains default catalog tier order
     return list;
-  }, [sortOption, recentlyUpdatedSlugs]);
+  }, [rooms, sortOption, recentlyUpdatedSlugs]);
+
+  const handleSaveCategory = async (savedRoom: Room) => {
+    await saveRoomCategory(savedRoom);
+    setSuccessMsg(`Room category "${savedRoom.name}" saved with rate ${naira(savedRoom.rate)}.`);
+    setRecentlyUpdatedSlugs((prev) => [savedRoom.slug, ...prev.filter((s) => s !== savedRoom.slug)]);
+    setTimeout(() => setSuccessMsg(null), 5000);
+  };
+
+  const handleDeleteCategory = async (slug: string) => {
+    await deleteRoomCategory(slug);
+    setSuccessMsg(`Room category "${slug}" deleted.`);
+    setTimeout(() => setSuccessMsg(null), 5000);
+  };
+
+  const handleRestoreDefaults = async () => {
+    if (!window.confirm("Restore the complete standard Banky Hotel & Suites 8 room categories and baseline rates?")) return;
+    await seedDefaultRooms();
+    setSuccessMsg("Restored default room categories successfully.");
+    setTimeout(() => setSuccessMsg(null), 5000);
+  };
 
   const triggerUpload = (slug: string) => {
     selectedSlugRef.current = slug;
@@ -193,7 +262,29 @@ export default function AdminRooms() {
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3">
+        <div className="flex flex-wrap items-center gap-2.5">
+          <button
+            type="button"
+            onClick={() => {
+              setEditingCategory(null);
+              setCategoryModalOpen(true);
+            }}
+            className="px-3.5 py-2 bg-[#ffbf00] hover:bg-[#e09e00] text-white rounded-xl text-xs font-semibold flex items-center gap-1.5 shadow-sm transition-all cursor-pointer"
+          >
+            <Plus className="h-4 w-4" />
+            <span>Add Room Category</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={handleRestoreDefaults}
+            className="px-3 py-2 text-stone-600 hover:text-stone-900 text-xs font-medium border border-stone-300 rounded-xl hover:bg-stone-50 flex items-center gap-1.5 transition-colors cursor-pointer"
+            title="Restore Banky Hotel default 8 room categories"
+          >
+            <RotateCcw className="h-3.5 w-3.5" />
+            <span>Reset Defaults</span>
+          </button>
+
           <RoomSortDropdown value={sortOption} onChange={setSortOption} />
           {successMsg && (
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-medium">
@@ -411,10 +502,20 @@ export default function AdminRooms() {
                     <Maximize2 className="h-3 w-3" />
                     <span className="hidden sm:inline">Theater</span>
                   </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setVideoToDelete({ slug: room.slug, name: room.name })}
+                    className="inline-flex items-center gap-1 px-2 py-1 rounded-full bg-rose-950/80 hover:bg-rose-900 border border-rose-500/40 text-[10px] font-condensed uppercase tracking-wider text-rose-300 hover:text-white transition-colors cursor-pointer"
+                    title={`Delete video header for ${room.name}`}
+                  >
+                    <Trash2 className="h-3 w-3" />
+                    <span className="hidden sm:inline">Delete Video</span>
+                  </button>
                 </div>
 
                 {/* Bottom Action Buttons */}
-                <div className="absolute bottom-2.5 right-2.5 z-20 flex items-center gap-1.5">
+                <div className="absolute bottom-2.5 right-2.5 z-20 flex flex-wrap items-center gap-1.5">
                   <button
                     type="button"
                     onClick={() => {
@@ -437,14 +538,23 @@ export default function AdminRooms() {
                     title={`Select, preview, and save the active video header for ${room.name}`}
                   >
                     <Save className="h-3.5 w-3.5" />
-                    <span>Upload &amp; Save Video</span>
+                    <span>Upload Video</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setPhotoManageRoom(room)}
+                    className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-stone-900/90 hover:bg-black text-amber-300 hover:text-amber-200 border border-amber-400/30 text-xs font-medium backdrop-blur-sm transition-all cursor-pointer shadow-md"
+                    title={`View, manage, and delete photos for ${room.name}`}
+                  >
+                    <ImageIcon className="h-3.5 w-3.5" />
+                    <span>Photos &amp; Gallery</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => triggerUpload(room.slug)}
                     disabled={uploadingSlug === room.slug}
                     className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-black/70 hover:bg-black text-white text-xs font-medium backdrop-blur-sm transition-all cursor-pointer shadow-md disabled:opacity-60"
-                    title={`Upload photos for ${room.name}`}
+                    title={`Upload new photos for ${room.name}`}
                   >
                     {uploadingSlug === room.slug ? (
                       <>
@@ -454,7 +564,7 @@ export default function AdminRooms() {
                     ) : (
                       <>
                         <Upload className="h-3.5 w-3.5" />
-                        <span>Photos</span>
+                        <span>Upload</span>
                       </>
                     )}
                   </button>
@@ -468,9 +578,22 @@ export default function AdminRooms() {
                       <span>{room.name}</span>
                       <ExternalLink className="h-3.5 w-3.5 text-stone-400" />
                     </Link>
-                    <span className="text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-medium">
-                      {room.qty} units
-                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="text-xs px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 font-medium">
+                        {room.qty} units
+                      </span>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setEditingCategory(room);
+                          setCategoryModalOpen(true);
+                        }}
+                        className="p-1 text-stone-500 hover:text-stone-900 hover:bg-stone-100 rounded-lg transition-colors cursor-pointer"
+                        title={`Edit ${room.name} category name, price & details`}
+                      >
+                        <Edit2 className="h-3.5 w-3.5 text-amber-600" />
+                      </button>
+                    </div>
                   </div>
                   <p className="text-xs text-stone-500 line-clamp-2 mb-3 leading-relaxed">
                     {room.blurb}
@@ -479,7 +602,20 @@ export default function AdminRooms() {
 
                 <div className="flex items-center justify-between text-sm pt-2.5 border-t border-[#f3eee8]">
                   <span className="text-xs font-mono uppercase tracking-wider text-[#888]">Nightly Rate</span>
-                  <span className="font-display text-[#ffbf00] font-semibold text-base">{naira(room.rate)}</span>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setEditingCategory(room);
+                        setCategoryModalOpen(true);
+                      }}
+                      className="font-display text-[#ffbf00] hover:text-[#e09e00] font-semibold text-base flex items-center gap-1 group cursor-pointer"
+                      title="Click to edit category name or nightly rate"
+                    >
+                      <span>{naira(room.rate)}</span>
+                      <Edit2 className="h-3 w-3 opacity-0 group-hover:opacity-100 text-stone-400 transition-opacity" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -571,10 +707,23 @@ export default function AdminRooms() {
                     setPreviewVideo(null);
                     triggerVideoUpload(s);
                   }}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-black text-xs font-semibold transition-colors"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-600 text-black text-xs font-semibold transition-colors cursor-pointer"
                 >
                   <Upload className="h-3.5 w-3.5" />
                   <span>Replace Video</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    const { slug, name } = previewVideo;
+                    setPreviewVideo(null);
+                    setVideoToDelete({ slug, name });
+                  }}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold transition-colors cursor-pointer"
+                  title="Permanently delete this room video header"
+                >
+                  <Trash2 className="h-3.5 w-3.5" />
+                  <span>Delete Video</span>
                 </button>
                 <Link
                   href={`/rooms/${previewVideo.slug}`}
@@ -615,6 +764,39 @@ export default function AdminRooms() {
           setSuccessMsg(`Successfully saved and activated main video header for ${slug}!`);
           setTimeout(() => setSuccessMsg(null), 5000);
         }}
+      />
+
+      {/* Room Photos & Gallery Management Modal (With photo deletion) */}
+      <RoomPhotosModal
+        isOpen={!!photoManageRoom}
+        onClose={() => setPhotoManageRoom(null)}
+        room={photoManageRoom}
+        onUploadPhotos={(slug) => triggerUpload(slug)}
+        onPhotoDeleted={(filename) => {
+          setSuccessMsg(`Photo "${filename}" deleted successfully.`);
+          setTimeout(() => setSuccessMsg(null), 5000);
+        }}
+      />
+
+      {/* Confirmation Modal for Video Deletion */}
+      <ConfirmDeleteModal
+        isOpen={!!videoToDelete}
+        onClose={() => setVideoToDelete(null)}
+        onConfirm={handleDeleteVideo}
+        title="Delete Room Video Header"
+        description={`Are you sure you want to delete the video header for ${videoToDelete?.name}? The public room page and admin catalog will immediately revert to still photography.`}
+        itemName={videoToDelete ? `/videos/${videoToDelete.slug}-room.mp4` : undefined}
+        itemType="video"
+        isDeleting={isDeletingVideo}
+      />
+
+      {/* Room Category Add / Edit Modal */}
+      <RoomCategoryModal
+        isOpen={categoryModalOpen}
+        onClose={() => setCategoryModalOpen(false)}
+        room={editingCategory}
+        onSave={handleSaveCategory}
+        onDelete={handleDeleteCategory}
       />
     </div>
   );

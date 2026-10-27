@@ -15,6 +15,7 @@ import {
   Settings,
   ArrowRight,
   ReceiptText,
+  Film,
 } from "lucide-react";
 import { naira } from "@/lib/hotel";
 import type { Reservation } from "@/lib/booking/types";
@@ -124,6 +125,15 @@ export default function AdminOverview() {
               </>
             )}
           </button>
+
+          <Link
+            href="/admin/home-media"
+            className="px-2.5 py-1.5 rounded-lg text-xs font-semibold bg-[var(--accent)]/15 hover:bg-[var(--accent)]/25 text-[#9a7300] dark:text-[var(--accent)] flex items-center gap-1.5 transition-colors border border-[var(--accent)]/30"
+            title="Open Home Page Video & Image Management Center"
+          >
+            <Film className="h-3.5 w-3.5 text-[var(--accent)]" />
+            <span className="hidden sm:inline">Home Media Center</span>
+          </Link>
 
           <Link
             href="/admin/transactions"

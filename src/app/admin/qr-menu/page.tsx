@@ -29,7 +29,10 @@ import {
   BedDouble,
   UtensilsCrossed,
   Sliders,
+  Layers,
+  FileDown,
 } from "lucide-react";
+import { BatchQrPrintModal } from "@/components/admin/BatchQrPrintModal";
 import { MenuCategory, MenuItem, DietaryTag } from "@/lib/qr-menu/types";
 import {
   subscribeMenuCategories,
@@ -97,6 +100,7 @@ export default function AdminQrMenuPage() {
   const [catFormOrder, setCatFormOrder] = useState<number | string>(1);
   const [catFormDescription, setCatFormDescription] = useState("");
   const [isQrModalOpen, setIsQrModalOpen] = useState(false);
+  const [isBatchPrintModalOpen, setIsBatchPrintModalOpen] = useState(false);
   const [locationType, setLocationType] = useState<"room" | "table">("room");
   const [qrRoomOrTable, setQrRoomOrTable] = useState("Room 204");
   const [qrCustomFooterText, setQrCustomFooterText] = useState("Event A");
@@ -114,7 +118,14 @@ export default function AdminQrMenuPage() {
   const [venueSubtitle, setVenueSubtitle] = useState<string>(DEFAULT_VENUE_SUBTITLE);
   const [isBrandingOpen, setIsBrandingOpen] = useState(false);
   const [isUploadingLogo, setIsUploadingLogo] = useState(false);
+  const [origin, setOrigin] = useState("https://bankyhotel.com");
   const logoInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      setOrigin(window.location.origin);
+    }
+  }, []);
 
   const startEditCategory = (cat: MenuCategory) => {
     setEditingCategory(cat);
@@ -427,9 +438,7 @@ export default function AdminQrMenuPage() {
     return `${baseUrl}/qr${query ? `?${query}` : ""}`;
   };
 
-  const qrTargetUrl = typeof window !== "undefined"
-    ? buildQrUrl(window.location.origin)
-    : buildQrUrl("https://bankyhotel.com");
+  const qrTargetUrl = buildQrUrl(origin);
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto">
@@ -446,11 +455,20 @@ export default function AdminQrMenuPage() {
 
         <div className="flex flex-wrap items-center gap-2.5">
           <button
+            onClick={() => setIsBatchPrintModalOpen(true)}
+            className="px-3.5 py-2 bg-[#ffbf00] hover:bg-[#e09e00] text-white rounded-lg text-xs font-semibold flex items-center gap-2 shadow-sm transition-all cursor-pointer"
+            title="Batch Print QR stands for multiple rooms & tables in a single PDF"
+          >
+            <Printer className="h-4 w-4" />
+            <span>Batch Print QR Stands</span>
+          </button>
+
+          <button
             onClick={() => setIsQrModalOpen(true)}
-            className="px-3.5 py-2 bg-stone-900 text-white rounded-lg text-xs font-semibold flex items-center gap-2 hover:bg-stone-800 shadow-sm"
+            className="px-3.5 py-2 bg-stone-900 text-white rounded-lg text-xs font-semibold flex items-center gap-2 hover:bg-stone-800 shadow-sm cursor-pointer"
           >
             <QrCode className="h-4 w-4" />
-            <span>Generate QR Stand</span>
+            <span>Single QR Stand</span>
           </button>
 
           <button
@@ -1549,6 +1567,18 @@ export default function AdminQrMenuPage() {
             {/* Modal Bottom Actions */}
             <div className="flex flex-wrap items-center justify-center gap-3 pt-4 border-t border-stone-200">
               <button
+                onClick={() => {
+                  setIsQrModalOpen(false);
+                  setIsBatchPrintModalOpen(true);
+                }}
+                className="px-4 py-2.5 bg-[#ffbf00] hover:bg-[#e09e00] text-white rounded-xl text-xs font-semibold flex items-center gap-2 shadow-sm transition-colors cursor-pointer"
+                title="Print multiple room & table stands at once in a single PDF"
+              >
+                <Layers className="h-4 w-4" />
+                <span>Switch to Batch Printing</span>
+              </button>
+
+              <button
                 onClick={() => window.print()}
                 className="px-5 py-2.5 bg-stone-900 hover:bg-stone-800 text-white rounded-xl text-xs font-semibold flex items-center gap-2 shadow-sm transition-colors cursor-pointer"
               >
@@ -1570,7 +1600,7 @@ export default function AdminQrMenuPage() {
 
               <button
                 onClick={() => setIsQrModalOpen(false)}
-                className="px-4 py-2.5 text-stone-500 hover:text-stone-800 text-xs font-medium"
+                className="px-4 py-2.5 text-stone-500 hover:text-stone-800 text-xs font-medium cursor-pointer"
               >
                 Close
               </button>
@@ -1578,6 +1608,15 @@ export default function AdminQrMenuPage() {
           </div>
         </div>
       )}
+
+      {/* ── Batch QR Stand Generator Modal ── */}
+      <BatchQrPrintModal
+        isOpen={isBatchPrintModalOpen}
+        onClose={() => setIsBatchPrintModalOpen(false)}
+        venueLogoUrl={venueLogoUrl}
+        venueName={venueName}
+        venueSubtitle={venueSubtitle}
+      />
     </div>
   );
 }

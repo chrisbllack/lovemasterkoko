@@ -237,3 +237,67 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Failed to upload video file" }, { status: 500 });
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const rawSlug = req.nextUrl.searchParams.get("slug");
+    let slug = rawSlug ? rawSlug.trim().toLowerCase().replace(/\s+/g, "-").replace(/_/g, "-") : "";
+
+    if (!slug) {
+      try {
+        const body = await req.json();
+        if (body.slug) {
+          slug = String(body.slug).trim().toLowerCase().replace(/\s+/g, "-").replace(/_/g, "-");
+        }
+      } catch {
+        // body might be empty
+      }
+    }
+
+    if (!slug) {
+      return NextResponse.json({ error: "Room slug is required for deletion" }, { status: 400 });
+    }
+
+    const videosDir = path.join(process.cwd(), "public", "videos");
+    const filenames = [
+      `${slug}-room.mp4`,
+      `${slug}.mp4`,
+      `${slug.replace(/-/g, "")}-room.mp4`,
+      `${slug.replace(/-/g, "")}.mp4`,
+    ];
+
+    let deletedAny = false;
+    for (const f of Array.from(new Set(filenames))) {
+      const p = path.join(videosDir, f);
+      try {
+        await fs.unlink(p);
+        deletedAny = true;
+      } catch {
+        // ignore missing files
+      }
+    }
+
+    // Clean up manifest
+    try {
+      const manifestPath = path.join(videosDir, "manifest.json");
+      const manifestData = await fs.readFile(manifestPath, "utf-8");
+      const manifest = JSON.parse(manifestData);
+      if (manifest[slug]) {
+        delete manifest[slug];
+        await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2));
+      }
+    } catch {
+      // manifest might not exist
+    }
+
+    return NextResponse.json({
+      success: true,
+      slug,
+      message: `Video header for room '${slug}' deleted successfully.`,
+    });
+  } catch (error) {
+    console.error("Failed to delete video:", error);
+    return NextResponse.json({ error: "Failed to delete video file" }, { status: 500 });
+  }
+}
+

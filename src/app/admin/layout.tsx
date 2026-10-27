@@ -12,11 +12,13 @@ import {
   X,
   Image as ImageIcon,
   ReceiptText,
+  Film,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV = [
   { to: "/admin", label: "Overview", icon: LayoutDashboard },
+  { to: "/admin/home-media", label: "Home Media Center", icon: Film },
   { to: "/admin/reservations", label: "Reservations", icon: CalendarRange },
   { to: "/admin/transactions", label: "Transaction Audit", icon: ReceiptText },
   { to: "/admin/rooms", label: "Rooms", icon: BedDouble },
